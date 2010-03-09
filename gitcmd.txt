@@ -1,0 +1,21 @@
+useful git command:
+
+// create SSH key
+ssh-keygen -C "username@email.com" -t rsa
+
+// configure your git
+git config --global user.email Your.Email@domain.com
+git config --global user.name "Your Real Name"
+
+
+// clone the repot
+git clone repoURL // git@github.com:HaoranYi/gitProj.git
+
+// get changes
+git remote add upstream git@github.com:kylecordes/sample1.git
+git pull kyle upstream
+
+
+// push changes
+git remote add harry git@github.com:harrycordes/odtimetracker.git
+git push harry master
