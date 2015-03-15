@@ -11,7 +11,7 @@ cloud9 is a web-dev environment:
         - clone directly from gihub project
        
 This vim mode works well in safari browser, but not so well in chrome. 
-I need to figure it out why.
+UPDATE: C-c works allows vim in chrome to quit insert mode.
 
 The default mode in cloud9 editor:
 Editor:
@@ -23,3 +23,7 @@ Find:
     - C-f
     - C-k              next
     - C-S-k            previous
+    
+    
+    
+            
