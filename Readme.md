@@ -10,4 +10,5 @@ cloud9 is a web-dev environment:
     - integrated into gitub
         - clone directly from gihub project
         
+This vim mode works well in safari browser. but not so well in chrome. i need to figure out why.
             
