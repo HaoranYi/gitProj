@@ -28,4 +28,7 @@ Find:
     - C-f
     - C-k              next
     - C-S-k            previous
-    
+
+when running into problem to open c9 work station:
+    check: status.c9.io
+    email: support@c9.io
