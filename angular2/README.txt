@@ -5,3 +5,7 @@ Angular2 Notes
 
     ng new my-app    -- create app
     ng serve -open   -- serve app
+
+module
+    component
+    template
