@@ -26,6 +26,12 @@ Use route to navigate between view/component
     - derictive {RouterOutlet, RouterLink, RouterLinkActive}
     - config: {Routes}
 
+* Understanding Angular route *
+With angular route, the framework intercepts the http route and renders the
+component directly without forwarding it the server. In traditional server
+architecture, each route change is forwarded to the server and server send the
+new page back.
+
 Use http to talk to server to get data
     - HttpModule
     - mock server 
