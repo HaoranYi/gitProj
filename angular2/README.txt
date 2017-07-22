@@ -25,4 +25,23 @@ Use route to navigate between view/component
     - RouterModule
     - derictive {RouterOutlet, RouterLink, RouterLinkActive}
     - config: {Routes}
+
 Use http to talk to server to get data
+    - HttpModule
+    - mock server 
+        import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
+        import { InMemoryDataService }  from './in-memory-data.service';
+            ...
+        InMemoryWebApiModule.forRoot(InMemoryDataService) // use our own 
+                           //InMemoryDataService to provide data to webapi
+
+        InMemoryDataService implements InMemoryDbService from angular-in-memory-web-api
+        the url of mock server is :base/:collectionName/:id?
+
+// for requests to an `api` base URL that gets heroes from a 'heroes' collection 
+GET api/heroes          // all heroes
+GET api/heroes/42       // the character with id=42
+GET api/heroes?name=^j  // 'j' is a regex; returns heroes whose name starting with 'j' or 'J'
+GET api/heroes.json/42  // ignores the ".json"
+
+    
