@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Hero } from './hero';
-import { HeroService } from './hero.service';
+
+//import { Hero } from './hero';
+//import { HeroService } from './hero.service';
 
 //export class Hero {
 //    id: number;
@@ -22,43 +23,55 @@ import { HeroService } from './hero.service';
  
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
-  providers: [HeroService] // inject service
+    selector: 'app-root',
+
+    template: `
+        <h1>{{ title }}</h1>
+        <nav>
+            <a routerLink="/dashboard">Dashboard</a>
+            <a routerLink="/heroes">Heroes</a>
+            <a routerLink="/about">About</a>
+        </nav>
+        <!--my-heros></my-heros-->
+        <router-outlet><router-outlet>
+    `
+
+    //templateUrl: './app.component.html',
+    //styleUrls: ['./app.component.css'],
+    //providers: [HeroService] // inject service
 })
 export class AppComponent {
   title = 'Dongyin App';
-  hero = {id:1, name: 'windstorm'};
-  //heros = HEROES;
-  heroes:Hero[]; 
-  selectedHero:Hero = null;
-
-  // inject HeroService on demand
-  constructor(private heroService: HeroService) { }
- 
-  // async call to get data
-  getHeroes(): void {
-    this.heroService.getHeroes().then(heroes => this.heroes = heroes);
-  }
- 
-  // getData on ngOnInit
-  ngOnInit(): void {
-    this.getHeroes();
-  }
-
-  clicked() {
-      if (this.title == 'Dongyin App') {
-          this.title = 'abc';
-      } else {
-          this.title = 'Dongyin App';
-      }
-  }
-
-
-  onSelect(hero: Hero): void {
-    this.selectedHero = hero;
-  }
+    //  hero = {id:1, name: 'windstorm'};
+    //  //heros = HEROES;
+    //  heroes:Hero[]; 
+    //  selectedHero:Hero = null;
+    //
+    //  // inject HeroService on demand
+    //  constructor(private heroService: HeroService) { }
+    // 
+    //  // async call to get data
+    //  getHeroes(): void {
+    //    this.heroService.getHeroes().then(heroes => this.heroes = heroes);
+    //  }
+    // 
+    //  // getData on ngOnInit
+    //  ngOnInit(): void {
+    //    this.getHeroes();
+    //  }
+    //
+    //  clicked() {
+    //      if (this.title == 'Dongyin App') {
+    //          this.title = 'abc';
+    //      } else {
+    //          this.title = 'Dongyin App';
+    //      }
+    //  }
+    //
+    //
+    //  onSelect(hero: Hero): void {
+    //    this.selectedHero = hero;
+    //  }
 }
 
    

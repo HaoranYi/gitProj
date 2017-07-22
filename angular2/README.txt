@@ -22,4 +22,7 @@ organize the view into sub-componet
     - use cli to create component
 
 Use route to navigate between view/component
+    - RouterModule
+    - derictive {RouterOutlet, RouterLink, RouterLinkActive}
+    - config: {Routes}
 Use http to talk to server to get data
