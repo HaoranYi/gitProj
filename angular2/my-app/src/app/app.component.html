@@ -3,4 +3,43 @@
   <h1>
     Welcome to {{title}}!
   </h1>
+  <!-- click event binding -->
+  <button (click)="clicked()" >click</button>
+
+  <!-- template interpolation -->
+  <h2> {{hero.name}} details! </h2>
+  <div><label>id:</label>{{hero.id}}</div>
+  <div><label>name:</label>{{hero.name}}</div>
+
 </div>
+
+<div>
+  <label>name: </label>
+  <!-- two way binding -->
+  <input [(ngModel)]="hero.name" planceholder="name" />
+</div>
+
+<div>
+    <!-- see style app.component.css -->
+    <ul class="heroes">
+        <!-- ngFor loop with style and click event binding -->
+        <li *ngFor="let h of heroes" 
+        [class.selected]="hero === selectedHero"
+        (click)="onSelect(h)">
+            <span class="badge">{{h.id}}</span> {{h.name}}
+         </li>
+    </ul>
+</div>
+
+<!-- ngIf to show details -->
+<div *ngIf="selectedHero">
+  <h2>{{selectedHero.name}} details!</h2>
+  <div><label>id: </label>{{selectedHero.id}}</div>
+  <div>
+    <label>name: </label>
+    <input [(ngModel)]="selectedHero.name" placeholder="name"/>
+  </div>
+</div>
+
+<!-- use sub-component -->
+ <hero-detail [hero]="selectedHero"></hero-detail>

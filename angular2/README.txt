@@ -9,3 +9,17 @@ Angular2 Notes
 module
     component
     template
+
+template syntax
+    - {{}} for interpolation
+    - [] for property binding
+    - () for event binding
+    - # for variable declaration
+    - * for structure directives
+
+organize the view into sub-componet
+    - app.component should be a simple shell to host those sub-component
+    - use cli to create component
+
+Use route to navigate between view/component
+Use http to talk to server to get data
