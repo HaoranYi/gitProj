@@ -50,4 +50,9 @@ GET api/heroes/42       // the character with id=42
 GET api/heroes?name=^j  // 'j' is a regex; returns heroes whose name starting with 'j' or 'J'
 GET api/heroes.json/42  // ignores the ".json"
 
-    
+* typescript *
+    - use `tsc` to comile *.ts to *.js
+    - C# like OOP 
+    - structral type
+    - namespace
+    - module
