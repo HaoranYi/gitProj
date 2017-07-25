@@ -1,0 +1,84 @@
+{% set name = "pyinstrument" %}
+{% set version = "0.13.2" %}
+{% set hash_type = "sha256" %}
+{% set hash_value = "a0a645d69df12551214311fdf2e454c12b96cb0abc0f5dcc3067d8ef71713e02" %}
+
+package:
+  name: '{{ name|lower }}'
+  version: '{{ version }}'
+
+source:
+  fn: '{{ name }}-{{ version }}.tar.gz'
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  '{{ hash_type }}': '{{ hash_value }}'
+
+build:
+  number: 0
+  entry_points:
+    - pyinstrument = pyinstrument.__main__:main
+  script: python setup.py install  --single-version-externally-managed --record=record.txt
+
+requirements:
+  build:
+    - python
+    - setuptools
+  run:
+    - python
+
+test:
+  imports:
+    - pyinstrument
+  commands:
+    - pyinstrument --help
+
+about:
+  home: https://github.com/joerick/pyinstrument
+  license: BSD License
+  license_family: BSD
+  license_file: ''
+  summary: A call stack profiler for Python. Inspired by Apple's Instruments.app
+  description: "pyinstrument\n============\n\nA Python profiler that records the call stack of the executing code, instead\nof just the final function in it.\n\n[![Screenshot](screenshot.jpg)](https://raw.githubusercontent.com/joerick/pyinstrument/master/screenshot.jpg)\n\
+    \nIt uses a **statistical profiler**, meaning the code samples the stack\nperiodically (every 1 ms). This is lower overhead than event-\nbased profiling (as done by `profile` and `cProfile`).\n\nDocumentation\n\
+    -------------\n\n* [Installation](#installation)\n* [Usage](#usage)\n  * [Command-line](#command-line)\n  * [Django](#django)\n  * [Python](#python)\n* [Signal or setprofile mode?](#signal-or-setprofile-mode)\n\
+    * [Known issues](#known-issues)\n* [Changelog](#changelog)\n  * [What's new in v0.13](#whats-new-in-v013)\n  * [What's new in v0.12](#whats-new-in-v012)\n* [Further information](#further-information)\n\
+    \  * [Call stack profiling?](#call-stack-profiling)\n\nInstallation\n------------\n\n    pip install pyinstrument\n\npyinstrument supports Python 2.7 and 3.3+.\n\nUsage\n-----\n\n#### Command-line ####\n\
+    \nYou can call pyinstrument directly from the command line.\n\n    python -m pyinstrument [options] myscript.py [args...]\n    \n    Options:\n      -h, --help            show this help message and\
+    \ exit\n      --setprofile          run in setprofile mode, instead of signal mode\n      --html                output HTML instead of text\n      -o OUTFILE, --outfile=OUTFILE\n                   \
+    \         save report to <outfile>\n      --unicode             force unicode text output\n      --no-unicode          force ascii text output\n      --color               force ansi color text output\n\
+    \      --no-color            force no color text output\n\n\nThis will run `myscript.py` to completion or until you interrupt it, and \nthen output the call tree.\n\n#### Django ####\n    \nAdd `pyinstrument.middleware.ProfilerMiddleware`\
+    \ to `MIDDLEWARE_CLASSES`.\nIf you want to profile your middleware as well as your view (you probably\ndo) then put it at the start of the list.\n\n##### Per-request profiling #####\n\nAdd `?profile`\
+    \ to the end of the request URL to activate the profiler. \nInstead of seeing the output of your view, pyinstrument renders an HTML\ncall tree for the view (as in the screenshot above).\n\n##### Using\
+    \ `PYINSTRUMENT_PROFILE_DIR` #####\n\nIf you're writing an API, it's not easy to change the URL when you want\nto profile something. In this case, add \n`PYINSTRUMENT_PROFILE_DIR = 'profiles'` to your\
+    \ settings.py.\npyinstrument will profile every request and save the HTML output to the\nfolder `profiles` in your working directory.\n\n#### Python ####\n\n```python\nfrom pyinstrument import Profiler\n\
+    \nprofiler = Profiler() # or Profiler(use_signal=False), see below\nprofiler.start()\n\n# code you want to profile\n\nprofiler.stop()\n\nprint(profiler.output_text(unicode=True, color=True))\n```\n\n\
+    You can omit the `unicode` and `color` flags if your output/terminal does\nnot support them.\n\nSignal or setprofile mode?\n--------------------------\n\nOn Mac/Linux/Unix, pyinstrument can run in 'signal'\
+    \ mode. This uses \nOS-provided signals to interrupt the process every 1ms and record the stack. \nIt gives much lower overhead (and thus accurate) readings than the standard\nPython [`sys.setprofile`][setprofile]\
+    \ style profilers. However, this can\nonly profile the main thread.\n\nOn Windows and on multi-threaded applications, a `setprofile` mode is\navailable by passing `use_signal=False` to the Profiler\
+    \ constructor. It works\nexactly the same as the signal mode, but has higher overhead. See the below\ntable for an example of the amount of overhead.\n\n[setprofile]: https://docs.python.org/2/library/sys.html#sys.setprofile\n\
+    \nThis overhead is important because code that makes a lot of Python function\ncalls will appear to take longer than code that does not.\n\n                           | Django template render \xD7 4000\
+    \ | Overhead\n---------------------------|------------------------------:|---------:\nBase                       |                         1.46s | \n                           |                    \
+    \           |\npyinstrument (signal)      |                         1.84s |      26%\ncProfile                   |                         2.18s |      49%\npyinstrument (setprofile)  |            \
+    \             5.33s |     365%\nprofile                    |                        25.39s |    1739%\n\nTo run in setprofile mode:\n\n* Use flag `--setprofile` if using the command-line interface\n\
+    * Use setting `PYINSTRUMENT_USE_SIGNAL = False` in Django\n* Use argument `use_signal=False` in the constructor for the Python API\n\nKnown issues\n------------\n\n-   When profiling Django, I'd recommend\
+    \ disabling django-debug-toolbar,\n    django-devserver etc., as their instrumentation distort timings.\n    \n-   In signal mode, any calls to [`time.sleep`][pysleep] will return\n    immediately.\
+    \ This is because of an implementation detail of `time.sleep`,\n    but matches the behaviour of the C function [`sleep`][csleep].\n\n-   Some system calls can fail with `IOError` when being profiled\
+    \ in signal\n    mode. If this happens to you, your only option is to run in setprofile \n    mode.\n\n[pysleep]: https://docs.python.org/2/library/time.html#time.sleep\n[csleep]: http://pubs.opengroup.org/onlinepubs/009695399/functions/sleep.html\n\
+    \nChangelog\n---------\n\n### What's new in v0.13 ###\n\n-   `pyinstrument` command. You can now profile python scripts from the shell\n    by running `$ pyinstrument script.py`. This is now equivalent\
+    \ to \n    `python -m pyinstrument`. Thanks @asmeurer!\n\n### What's new in v0.12 ###\n\n-   Application code is highlighted in HTML traces to make it easier to spot\n\n-   Added `PYINSTRUMENT_PROFILE_DIR`\
+    \ option to the Django interface, which \n    will log profiles of all requests to a file the specified folder. Useful\n    for profiling API calls.\n    \n-   Added `PYINSTRUMENT_USE_SIGNAL` option\
+    \ to the Django interface, for use\n    when signal mode presents problems.\n\nFurther information\n===================\n\nCall stack profiling?\n---------------------\n\nThe standard Python profilers\
+    \ [`profile`][1] and [`cProfile`][2] produce\noutput where time is totalled according to the time spent in each function.\nThis is great, but it falls down when you profile code where most time is\n\
+    spent in framework code that you're not familiar with.\n\n[1]: http://docs.python.org/2/library/profile.html#module-profile\n[2]: http://docs.python.org/2/library/profile.html#module-cProfile\n\nHere's\
+    \ an example of profile output when using Django.\n\n    151940 function calls (147672 primitive calls) in 1.696 seconds\n\n       Ordered by: cumulative time\n\n       ncalls  tottime  percall  cumtime\
+    \  percall filename:lineno(function)\n            1    0.000    0.000    1.696    1.696 profile:0(<code object <module> at 0x1053d6a30, file \"./manage.py\", line 2>)\n            1    0.001    0.001\
+    \    1.693    1.693 manage.py:2(<module>)\n            1    0.000    0.000    1.586    1.586 __init__.py:394(execute_from_command_line)\n            1    0.000    0.000    1.586    1.586 __init__.py:350(execute)\n\
+    \            1    0.000    0.000    1.142    1.142 __init__.py:254(fetch_command)\n           43    0.013    0.000    1.124    0.026 __init__.py:1(<module>)\n          388    0.008    0.000    1.062\
+    \    0.003 re.py:226(_compile)\n          158    0.005    0.000    1.048    0.007 sre_compile.py:496(compile)\n            1    0.001    0.001    1.042    1.042 __init__.py:78(get_commands)\n      \
+    \    153    0.001    0.000    1.036    0.007 re.py:188(compile)\n      106/102    0.001    0.000    1.030    0.010 __init__.py:52(__getattr__)\n            1    0.000    0.000    1.029    1.029 __init__.py:31(_setup)\n\
+    \            1    0.000    0.000    1.021    1.021 __init__.py:57(_configure_logging)\n            2    0.002    0.001    1.011    0.505 log.py:1(<module>)\n\n\nWhen you're using big frameworks like\
+    \ Django, it's very hard to understand how\nyour own code relates to these traces.\n\nPyinstrument records the entire stack, so tracking expensive calls is much\neasier.\n"
+  doc_url: ''
+  dev_url: ''
+
+extra:
+  recipe-maintainers: ''
