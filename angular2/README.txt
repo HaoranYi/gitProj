@@ -16,6 +16,7 @@ template syntax
     - () for event binding
     - # for variable declaration
     - * for structure directives
+    - [(ngModel)] to do 2-way data binding
 
 organize the view into sub-componet
     - app.component should be a simple shell to host those sub-component
