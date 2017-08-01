@@ -12,7 +12,8 @@ $> sqllite3 DBFILE
     .system cmd arg1 arg2  -- run shell command
     .header on
     .dump                  -- export db as pure sql
-    .exit
+    .save
+    .exit DBFILE
 ```
 
 datetime functions:
