@@ -21,6 +21,7 @@ datetime functions:
     datetime('now', 'localtime') 
     datetime('now', 'localtime', '+60 minutes')  -- now+1hour
 ```
+sqlite datetime is stored as int64. sqlite can parse string as datetime.
 
 
 multiple databases
