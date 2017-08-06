@@ -1,1 +1,1 @@
-jupyter notebook
+start cmd /c jupyter notebook
