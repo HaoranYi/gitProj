@@ -1,0 +1,285 @@
+" vim pathogen
+execute pathogen#infect()
+
+" Copied from Jeff Olivier's .vimrc
+set nocompatible
+
+set bs=2		" allow backspacing over everything in insert mode
+set ai			" always set autoindenting on
+set tabstop=4
+set shiftwidth=4
+set expandtab
+set wm=0
+set nobackup		" do not keep a backup file, use versions instead
+set viminfo='20,\"50	" read/write a .viminfo file, don't store more
+			" than 50 lines of registers
+set history=50		" keep 50 lines of command line history
+set ruler		" show the cursor position all the time
+set is
+set tw=78
+set colorcolumn=80
+set gfn=Consolas:h10 "use small font 
+
+set winaltkeys=yes
+set encoding=utf-8  " The encoding displayed.
+set fileencoding=utf-8  " The encoding written to file.
+set fillchars=stl:-,stlnc:-,vert:\| " vim split bar fillins
+set guicursor+=a:blinkon0 " disable blinking cursor
+
+" For Win32 GUI: remove 't' flag from 'guioptions': no tearoff menu entries
+" let &guioptions = substitute(&guioptions, "t", "", "g")
+
+" Don't use Ex mode, use Q for formatting
+map Q gq
+
+"converts a page to html with syntax highlighting.
+map :web :so $VIMRUNTIME/syntax/2html.vim
+
+" Make p in Visual mode replace the selected text with the "" register.
+vnoremap p <Esc>:let current_reg = @"<CR>gvdi<C-R>=current_reg<CR><Esc>
+
+" Switch syntax highlighting on, when the terminal has colors
+" Also switch on highlighting the last used search pattern.
+if &t_Co > 2 || has("gui_running")
+  syntax on
+  set hlsearch
+endif
+
+" Only do this part when compiled with support for autocommands.
+if has("autocmd")
+
+ " In text files, always limit the width of text to 78 characters
+ autocmd BufRead *.txt set tw=78
+
+ augroup cprog
+  " Remove all cprog autocommands
+  au!
+
+  " When starting to edit a file:
+  "   For C and C++ files set formatting of comments and set C-indenting on.
+  "   For other files switch it off.
+  "   Don't change the order, it's important that the line with * comes first.
+  autocmd FileType *      set formatoptions=tcql nocindent comments&
+  autocmd FileType c,cpp  set formatoptions=croql cindent comments=sr:/*,mb:*,el:*/,://
+ augroup END
+
+ augroup gzip
+  " Remove all gzip autocommands
+  au!
+
+  " Enable editing of gzipped files
+  " set binary mode before reading the file
+  autocmd BufReadPre,FileReadPre	*.gz,*.bz2 set bin
+  autocmd BufReadPost,FileReadPost	*.gz call GZIP_read("gunzip")
+  autocmd BufReadPost,FileReadPost	*.bz2 call GZIP_read("bunzip2")
+  autocmd BufWritePost,FileWritePost	*.gz call GZIP_write("gzip")
+  autocmd BufWritePost,FileWritePost	*.bz2 call GZIP_write("bzip2")
+  autocmd FileAppendPre			*.gz call GZIP_appre("gunzip")
+  autocmd FileAppendPre			*.bz2 call GZIP_appre("bunzip2")
+  autocmd FileAppendPost		*.gz call GZIP_write("gzip")
+  autocmd FileAppendPost		*.bz2 call GZIP_write("bzip2")
+  
+  autocmd BufRead,BufNewFile *.go set filetype=go
+  autocmd BufRead,BufNewFile *.scala set filetype=scala
+
+  " After reading compressed file: Uncompress text in buffer with "cmd"
+  fun! GZIP_read(cmd)
+    " set 'cmdheight' to two, to avoid the hit-return prompt
+    let ch_save = &ch
+    set ch=3
+    " when filtering the whole buffer, it will become empty
+    let empty = line("'[") == 1 && line("']") == line("$")
+    let tmp = tempname()
+    let tmpe = tmp . "." . expand("<afile>:e")
+    " write the just read lines to a temp file "'[,']w tmp.gz"
+    execute "'[,']w " . tmpe
+    " uncompress the temp file "!gunzip tmp.gz"
+    execute "!" . a:cmd . " " . tmpe
+    " delete the compressed lines
+    '[,']d
+    " read in the uncompressed lines "'[-1r tmp"
+    set nobin
+    execute "'[-1r " . tmp
+    " if buffer became empty, delete trailing blank line
+    if empty
+      normal Gdd''
+    endif
+    " delete the temp file
+    call delete(tmp)
+    let &ch = ch_save
+    " When uncompressed the whole buffer, do autocommands
+    if empty
+      execute ":doautocmd BufReadPost " . expand("%:r")
+    endif
+  endfun
+
+  " After writing compressed file: Compress written file with "cmd"
+  fun! GZIP_write(cmd)
+    if rename(expand("<afile>"), expand("<afile>:r")) == 0
+      execute "!" . a:cmd . " <afile>:r"
+    endif
+  endfun
+
+  " Before appending to compressed file: Uncompress file with "cmd"
+  fun! GZIP_appre(cmd)
+    execute "!" . a:cmd . " <afile>"
+    call rename(expand("<afile>:r"), expand("<afile>"))
+  endfun
+
+ augroup END
+
+ " This is disabled, because it changes the jumplist.  Can't use CTRL-O to go
+ " back to positions in previous files more than once.
+ if 0
+  " When editing a file, always jump to the last cursor position.
+  " This must be after the uncompress commands.
+   autocmd BufReadPost * if line("'\"") && line("'\"") <= line("$") | exe "normal `\"" | endif
+ endif
+
+" Uncomment for automatic gui mode
+" Otherwise run gvim for gui mode
+" If gvim not present run vim -g
+"if $REMOTEHOST == ""
+   "gui
+"endif
+
+endif " has("autocmd")
+
+" C syntax commands
+" Sets the opening braces sw from the prevailing indent
+" Deals w/ unclosed parenthese
+" Indenting inside set of braces
+set cinkeys=0{,0},:,;,0#,!,o,O,e
+" set cino=>2s,n-1s,{1s,(0,*50,^-s:2s
+
+" Ian's Stuff
+
+" setup look and feel
+highlight normal guifg=white guibg=black 
+" set background=light 
+set background=dark
+set ruler 
+
+if has('gui_running')
+    colorscheme solarized
+else
+    colorscheme desert
+endif
+
+" line numbering on
+set nu
+
+" setup printer
+set printoptions=paper:letter,syntax:n,number:y
+
+" position the window in the upper-left corner
+" :winpos 1000000 0
+" set lines=33
+set columns=85
+
+"Smart Tab Word Completion
+function InsertTabWrapperWord()
+      let col = col('.') - 1
+      if !col || getline('.')[col - 1] !~ '\k'
+          return "\<tab>"
+      else
+          return "\<c-p>"
+      endif
+endfunction 
+imap <C-tab> <c-r>=InsertTabWrapperWord()<cr>
+
+"Smart Tab Line Completion
+function InsertTabWrapperLine()
+      let col = col('.') - 1
+      if !col || getline('.')[col - 1] !~ '\k'
+          return "\<S-tab>"
+      else
+          return "\<c-x>\<c-l>"
+      endif
+endfunction 
+imap <S-Tab> <c-r>=InsertTabWrapperLine()<cr>
+
+function TextEditModeOn()
+	set textwidth=78
+	set wrap
+	set linebreak
+	set spell
+	syn spell toplevel
+endfunction
+
+function TextEditModeOff()
+	set nowrap
+	set nolinebreak
+	set nospell	
+endfunction
+map <F9> <Esc>:call TextEditModeOn()<CR>
+map <S-F9> <Esc>:call TextEditModeOff()<CR>
+map <F10> <Esc>:set gfn=Consolas:h10<CR>
+map <S-F10> <Esc>:set gfn=<CR>
+
+"Highlight search toggle
+"nmap <F4> :set nohls!<CR>:set nohls?<CR> 
+nmap <F4> :let &hls=!&hls<CR>
+
+"Change background mode to light
+nmap <F3> :set background=light<CR>
+nmap <S-F3> :set background=dark<CR>
+
+"Line Numbering
+nmap <f5> :let &nu=!&nu<CR>
+
+"Multiple File Movement
+map <F7> :w<CR>:prev<CR>
+map <F8> :w<CR>:next<CR>
+map <S-F7> :w<CR>:bp<CR>
+map <S-F8> :w<CR>:bn<CR>
+map <M-f> :simalt f<CR>
+map <S-l> i<CR><ESC>
+
+" F2 open the NERDTree file explorer
+map <F2> :NERDTreeToggle<CR>
+
+"Tab movement"
+nnoremap <silent> <C-n> :tabnext<CR>
+nnoremap <silent> <C-p> :tabprevious<CR>
+
+filetype plugin on
+set grepprg=grep\ -nH\ $*
+
+set noerrorbells visualbell t_vb=
+autocmd GUIEnter * set visualbell t_vb=
+
+"au BufNewFile,BufRead *.HSX_s,*.HS_s setf ia64 
+
+" remove menu and toolbar
+set guioptions-=m
+set guioptions-=T
+
+filetype indent on
+
+"inoremap jj <esc>
+"inoremap kj <esc>
+
+map <C-j> <C-W>j
+map <C-k> <C-W>k
+map <C-h> <C-W>h
+map <C-l> <C-W>l
+
+" use flake for py syntastic check
+let g:syntastic_python_checkers=['flake8']
+let g:syntastic_python_flake8_args='--ignore="E501,E302,E261,E701,E241,E126,E127,E128,W801"'
+
+" turn of syntastic
+let g:syntastic_mode_map = { 'mode': 'passive',
+	\ 'active_filetypes': [],
+	\ 'passive_filetypes': ['html', 'java'] }
+
+" disable markdown folding
+let g:vim_markdown_folding_disabled=0
+
+" map markdown command
+nmap <leader>md :%! perl D:\workshop\HBKNote\learnJS\VimPlugin\Markdown_1.0.1\Markdown.pl --html4tags <cr>
+
+" clang-format
+map <C-I> :pyf D:\LLVM\share\clang\clang-format.py<cr>
+imap <C-I> <ESC>:pyf D:\LLVM\share\clang\clang-format.py<cr>
