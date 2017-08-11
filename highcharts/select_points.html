@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang = "en-US">
+<head>
+<meta charset = "UTF-8">
+
+<title>Select Points </title>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<link rel="stylesheet" type="text/css" href="t.css" />
+</head>
+
+<body>
+<div id="container" style="height: 400px"></div>
+<button id="button" class="autocompare">Get selected points</button>
+</body>
+<script type="text/javascript">
+
+var chart = Highcharts.chart('container', {
+    xAxis: {
+        categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+    },
+    plotOptions: {
+        series: {
+            allowPointSelect: true
+        }
+    },
+    series: [{
+        data: [29.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4]
+    }]
+});
+
+
+// the button action
+$('#button').click(function () {
+    var selectedPoints = chart.getSelectedPoints();
+
+    if (chart.lbl) {
+        chart.lbl.destroy();
+    }
+    chart.lbl = chart.renderer.label('You selected ' + selectedPoints.length + ' points', 100, 60)
+        .attr({
+            padding: 10,
+            r: 5,
+            fill: Highcharts.getOptions().colors[1],
+            zIndex: 5
+        })
+        .css({
+            color: 'white'
+        })
+        .add();
+});
+
+</script>
+
+</html>
+
+

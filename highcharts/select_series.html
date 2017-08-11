@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang = "en-US">
+<head>
+<meta charset = "UTF-8">
+
+<title>Select Points </title>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<link rel="stylesheet" type="text/css" href="t.css" />
+</head>
+
+<body>
+<div id="container" style="height: 400px"></div>
+<button id="button" class="autocompare">Get selected points</button>
+</body>
+<script type="text/javascript">
+
+
+var chart = Highcharts.chart('container', {
+
+    xAxis: {
+        categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+    },
+    plotOptions: {
+        series: {
+            showCheckbox: true
+        }
+    },
+    series: [{
+        data: [29.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4]
+    }, {
+        data: [194.1, 95.6, 54.4, 9.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4]
+    }]
+});
+
+// the button action
+$('#button').click(function () {
+    var selectedSeries = chart.getSelectedSeries();
+    alert('You selected ' + selectedSeries.length + ' series');
+});
+
+</script>
+
+</html>
+
+
