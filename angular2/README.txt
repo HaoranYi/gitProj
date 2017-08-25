@@ -59,5 +59,16 @@ GET api/heroes.json/42  // ignores the ".json"
     - module
 
 jquery like web element selection and update
-    @ViewChild('<myElementId>') myElement: ElementRef;
+    // use @ViewChild to get the html element
+    @ViewChild('<myElementId>') myElement: ElementRef; 
+    // apply js library on the element 
     Plotyly.newPlot(this.myElement, data, layout, config);
+
+
+When making http call through restful api, the server have to enable cors, which
+is a filter that add headers on the request:
+    Access-Control-Allow-Origin,
+    Access-Control-Allow-Methods, 
+    Access-Control-Max-Age,
+    Access-Control-Allow-Headers
+This can be implemented as python decroator for flask.
