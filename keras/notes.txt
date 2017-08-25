@@ -43,3 +43,15 @@ model.summary()  # print all layers and their output shape
 - LTSM
 stateful: means the states from samples of each batch will be reused as
 initial sates for the sample in the next batch
+
+
+build complex graph: 
+    - model is a collection of layers
+    - model can be nested inside layers
+    - concat will join layers togeter
+
+
+build your own network layer
+    - inherit from layers.Layer 
+    - implement: compute_output_shape() 
+    - call() input to generate output
