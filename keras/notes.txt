@@ -1,0 +1,45 @@
+python -c 'import theano; print(theano.config)' | less
+
+To overwrite default config, create the following file:
+    $home/.theanorc
+
+- check the layer shape
+    model.layers[...].input_shape
+    model.layers[...].output_shape 
+model.layers is only accessible once the model is instantiated.
+use .keras_shape on the output instantiated layer to get the output shape of
+your tensor
+    
+- output of intermediate layer
+
+# METHOD 1 create a new model with the layers that you are interested in 
+from keras.models import Model
+model = ...
+layer_name = 'my_layer'
+intermediate_layer_model = Model(inputs=model.input, 
+                                 outputs=model.get_layer(layer_name).output)
+intermediate_output = intermediate_layer_model.predit(data)
+
+# METHOD 2 build keras function return the output of ceterian layer given
+# certain input 
+from keras import backend as K
+get_3rd_layer_output = K.function([model.layers[0].input],
+                                   model.layers[3].output])
+layer_output = get_3rd_layer_output([x])[0]
+
+
+get_3rd_layer_output = K.function([model.layers[0].input, K.learning_phase()]
+                                   model.layers[3].output])
+# output in test mode=0
+layer_output = get_3rd_layer_output([x, 0])[0]
+# output in train mode=1
+layer_output = get_3rd_layer_output([x, 1])[0]
+
+
+# METHOD 3
+model.summary()  # print all layers and their output shape
+
+
+- LTSM
+stateful: means the states from samples of each batch will be reused as
+initial sates for the sample in the next batch

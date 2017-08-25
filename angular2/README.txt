@@ -57,3 +57,7 @@ GET api/heroes.json/42  // ignores the ".json"
     - structral type
     - namespace
     - module
+
+jquery like web element selection and update
+    @ViewChild('<myElementId>') myElement: ElementRef;
+    Plotyly.newPlot(this.myElement, data, layout, config);
