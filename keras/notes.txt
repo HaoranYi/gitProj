@@ -55,3 +55,14 @@ build your own network layer
     - inherit from layers.Layer 
     - implement: compute_output_shape() 
     - call() input to generate output
+
+
+numpy resources:
+- numpy 100 exercises: 
+    https://github.com/rougier/numpy-100/blob/master/100%20Numpy%20exercises.md
+- numpy quick start    
+    https://docs.scipy.org/doc/numpy-dev/user/quickstart.html
+- numpy tutorial
+    http://www.labri.fr/perso/nrougier/teaching/numpy/numpy.html
+- numpy nd array indexing
+    https://docs.scipy.org/doc/numpy-1.13.0/reference/arrays.indexing.html
