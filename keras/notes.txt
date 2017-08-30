@@ -66,3 +66,14 @@ numpy resources:
     http://www.labri.fr/perso/nrougier/teaching/numpy/numpy.html
 - numpy nd array indexing
     https://docs.scipy.org/doc/numpy-1.13.0/reference/arrays.indexing.html
+
+theano
+    - numpy + symbolic math
+    - decalre variable, build expr for the computation graph
+    - use T.grad to compute gradient, jacobi, hessian (auto differentiation)
+    - use shared, reduce, can to for recurrent net 
+    -
+    
+TO LEARN:    
+    Torch/TensorFlow
+
