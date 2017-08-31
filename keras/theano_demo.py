@@ -1,5 +1,7 @@
 from theano import *
 import theano.tensor as T
+import numpy as np
+import time
 
 print("Adding two scalars ...")
 a = T.dscalar()          # declare variable
@@ -119,3 +121,92 @@ y = x**2
 J, updates = theano.scan(lambda i, y, x : T.grad(y[i], x), sequences=T.arange(y.shape[0]), non_sequences=[y, x])
 f = theano.function([x], J, updates=updates)
 print(f([4, 4]))
+
+print('Computing hessian ...')
+x = T.dvector('x')
+y = x**2
+cost = y.sum()
+gy = T.grad(cost, x)
+H, updates = theano.scan(lambda i, gy, x: T.grad(gy[i], x), 
+                         sequences = T.arange(gy.shape[0]),
+                         non_sequences = [gy, x])
+print(f([4,4]))
+
+print('fast jacobian times a vector with R-op and L-op ...')
+W = T.dmatrix('W')
+V = T.dmatrix('V')
+x = T.vector('x')
+y = T.dot(x, W)
+JV = T.Rop(y, W, V)
+f = function([W, V, x], JV)
+r = f([[1,1],[1,1]],
+      [[2,2],[2,2]],
+      [0,1])
+print(r)
+
+W = T.dmatrix('W')
+V = T.vector('V')
+x = T.vector('x')
+y = T.dot(x, W)
+VJ = T.Lop(y, W, V)
+f = function([V, x], VJ)
+r = f([2,3],
+      [0,1])
+print(r)
+
+print('hessian times a vector ...')
+x = T.dvector('x')
+v = T.dvector('v')
+y = T.sum(x**2)
+gy = T.grad(y,x)
+vH = T.grad(T.sum(gy*v),x)
+f = function([x,v], vH)
+print(f([4,4], [2, 2]))
+
+Hv = T.Rop(gy, x, v)
+f = function([x,v], Hv)
+print(f([4,4], [2, 2]))
+
+print('ifelse lazy eval ...')
+from theano.ifelse import ifelse
+a,b = T.scalars('a', 'b')
+x,y = T.matrices('x', 'y')
+z_switch = T.switch(T.lt(a,b), T.mean(x), T.mean(y))
+z_lazy = ifelse(T.lt(a,b), T.mean(x), T.mean(y))
+
+f_switch = function([a,b,x,y], z_switch, mode=Mode(linker='vm'))
+f_lazyifelse = function([a,b,x,y], z_lazy, mode=Mode(linker='vm'))
+val1 = 0
+val2 = 1
+big_mat1= np.ones((10000, 10000))
+big_mat2= np.ones((10000, 10000))
+n_times = 10
+tic = time.clock()
+for i in range(n_times):
+    f_switch(val1, val2, big_mat1, big_mat2)
+print('time for unlazye: ', time.clock()-tic, 's')
+
+tic = time.clock()
+for i in range(n_times):
+    f_lazyifelse(val1, val2, big_mat1, big_mat2)
+print('time for lazye: ', time.clock()-tic, 's')
+
+print('scan ... ')
+# defining the tensor variables
+X = T.matrix("X")
+W = T.matrix("W")
+b_sym = T.vector("b_sym")
+
+results, updates = scan(lambda v: T.tanh(T.dot(v, W) + b_sym), sequences=X)
+compute_elementwise = function(inputs=[X, W, b_sym], outputs=results)
+
+# test values
+x = np.eye(2, dtype=theano.config.floatX)
+w = np.ones((2, 2), dtype=theano.config.floatX)
+b = np.ones((2), dtype=theano.config.floatX)
+b[1] = 2
+
+print(compute_elementwise(x, w, b))
+
+# comparison with numpy
+print(np.tanh(x.dot(w) + b))
