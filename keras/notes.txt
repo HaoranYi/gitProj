@@ -72,7 +72,15 @@ theano
     - decalre variable, build expr for the computation graph
     - use T.grad to compute gradient, jacobi, hessian (auto differentiation)
     - use shared, reduce, can to for recurrent net 
-    -
+    - steps: 
+        1. use theano.tensor (T) to define variables
+        2. define expression with the variables 
+        3. use theano.function to define the function to be compiled
+        4. invoke the function
+            6. use shared variable to modify state
+            7. use scan to unroll loop compuation
+            8. use normal python function as subgraph to compose the expression graph
+
     
 TO LEARN:    
     Torch/TensorFlow
