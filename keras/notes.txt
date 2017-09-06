@@ -81,7 +81,41 @@ theano
             7. use scan to unroll loop compuation
             8. use normal python function as subgraph to compose the expression graph
 
+sparse matrix
+    - CSC: slice(indptr[i], indptr[i+1]) data for the ith col
+        - for tall matrix
+        - CSC is good for V'*M
+        - not good for adding/deleting element
+    - CSR: slice(indptr[i], indptr[i+1]) data for the ith row
+        - for wide matrix
+        - CSR is good for M*V
+        - not good for adding/deleting element
+    - structured_op: computation only for non-zero elements in the matrix
+
+convlution net
+    - filter bank
+    - padding
+    - stride
+    - convolution as trapzoid matrix 
+    - down sampling
+    - forward/backward properation ~ W/W.T 
+        ~ convolution/convolution back
+
+GPU
+    - .theanorc
+        [global]
+        device = cuda
+        floatx = float32
+    - libgpuarry for GpuArray backend
+    - cuda toolchain
+    - dev (1) with C CUDA api; (2) with pyCUDA
+    - multiple gpus with "config.contexts" map
     
+debugging tips
+    - attach x.tag.test_value to debug input/output dim mismatch
+    - theano.pp(), theano.printing.debugprint() to print the graph
+
+
 TO LEARN:    
     Torch/TensorFlow
 
