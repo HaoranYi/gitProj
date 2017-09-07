@@ -114,7 +114,23 @@ GPU
 debugging tips
     - attach x.tag.test_value to debug input/output dim mismatch
     - theano.pp(), theano.printing.debugprint() to print the graph
+    - pydotprint() dump the computation graph as dot file
+    - use theano.printing.Print('x')(x) to print out intermediate values
+    - use MonintorMode to inspect input/output of compiled function
 
+dealing with NaN
+    - lower learning weight
+    - set penalty term properly
+    - initialize the weights properly
+    - run in NanGuardMode, DebugMode, MonitorMode
+
+profiling
+    - passing profile=True to theano.function. and call f.profile.summary()
+      for a single function
+
+graph strucutre
+    - op, variable, owner
+    - apply node (accessed by owner field)
 
 TO LEARN:    
     Torch/TensorFlow
