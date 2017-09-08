@@ -132,6 +132,24 @@ graph strucutre
     - op, variable, owner
     - apply node (accessed by owner field)
 
+loading/saving
+    - all theano object are picklable
+    - cPickle, compared with pickle, is faster because it is written in C.
+    - use __getstate__(self): pass  __setstate__(self): pass to control which
+      fields are serialized.
+
+memory usage
+    - python basic types use more memory than C datatypes
+    - use "borrow=True", "return_internal_structure=True" to inplace memory
+    - @profile from memory_profiler to profile memory usage per statement
+    - pickle will double the memory usage
+        - consider use plain txt file
+        - use numpy (or pytables) arrays
+
+Parallelization on CPU
+    - blas: OMP_NUM_THREADS
+    - set openmp flag to true
+
 TO LEARN:    
     Torch/TensorFlow
 
