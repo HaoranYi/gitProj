@@ -1,0 +1,87 @@
+-------------------------------------------------------------------------------
+video chatting
+
+https://www.tutorialspoint.com/webrtc/webrtc_video_demo.htm
+
+webrtc the protocol for video chatting
+    - signal server
+        - login
+        - offer
+        - answer
+        - leave
+stun server (google)
+
+third party library:
+openTock
+    fee: 10/month for 2000 mins
+    OpenTok Cloud
+pubnub
+
+core architecture
+    client: javascript library to get session_id, token from appserver
+        connection to session in video clound using token
+        publish/subscribe video streams
+        process session events
+    app sever:
+        talks to opentok cloud
+        create sessions in the cloud
+        serve tokens for the client
+        send session ids and tokens to client
+    third party cloud:
+        manage video session, i.e. archieving
+        connect to client
+        manage audio/video stream
+        send events to clients
+
+price: $20-30K
+
+
+-------------------------------------------------------------------------------
+heroku
+    free account
+    work flow with heroku cli
+        $>heroku login
+            ... log in ...
+        $>cd your_proj
+            ... go to proj ...
+        $>heroku create
+            ... create app on heroku ...
+        $>git push heroku master
+            ... deploying by push master to heroku ...
+        $>heroku ps:scale web=1
+            ... lauch one instance of your app ...
+        $>heroku open
+            ... see your app ...
+        $>heroku logs --tail
+            ... check logs ...
+    Procfile: defines command to start your app
+        $>heroku ps
+            ... list the running dynos
+
+$>heroku apps:info
+    ... current local git apps ...
+$>heroku ps:exec
+$>heroku ps:exec --dyno=web.1
+    ... ssh into a dyno ...
+    ... run 'top' to see performance of the code
+
+cli commands for dyno managment
+$>heroku ps                  # list dynos for an app
+$>heroku ps:scale web=1      # start web dynos
+$>heroku ps:stop web.1       # stop web dyno
+$>heroku ps:restart          # restart web dyno
+$>heroku ps:restart web.1
+$>heroku ps:resize worker=standard-2x  # use bugger dynos
+$>heroku run bash            # one-off dyno runs bash in a console (this can
+                               be used to run tests. debug program)
+$>heroku run worker          # lauch
+$>heroku logs                # show logs
+$>heroku logs --tail
+
+$>heroku run python dowork.py  # run python as a one-off dyno
+    ... initializing database, run a console or repel, one-time scripts
+$>heroku run:detached rake db:migrate
+    ... run the script in background ...
+$>heroku ps:stop run.1
+    ... stop the background script ...
+
