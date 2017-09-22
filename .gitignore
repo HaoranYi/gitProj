@@ -2,3 +2,9 @@
 .ipynb_checkpoints
 .Rproj.user
 .Rhistory
+
+keras/keras-git/*
+keras/log
+notebook/Untitled.ipynb
+*.gz
+
