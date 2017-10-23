@@ -107,6 +107,10 @@ Satellite types:
 
 
 Operators: map, filter, reduce, every etc.
+    - are methods on Observable type. when called, they do not change the
+      existing Observable Instance. Instead, they return a new Observable,
+      whose subscription logic is based on the first Observable.
+    - they are like pipes of observable
 
 Use rxjs/add/... to add more functionality to Observable.
 Use |async to access Observable in html template
