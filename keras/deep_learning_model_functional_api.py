@@ -1,5 +1,9 @@
 """ A collection of examples that demonstrate the usage of function api to
 build a deep learning model.
+
+TAKE-AWAYS: layers, models are essentially a function (i.e. callable) that
+take an input tensor(s) and return output tensor(s). A model is a graph of
+such functions.
 """
 from keras.layers import Input, Dense
 from keras.models import Model
