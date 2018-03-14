@@ -86,12 +86,31 @@ Core type:
     - Observable: callable future values or events
 Satellite types:
     - Observer: callbacks that listen to values delivered by Observable
+        var observer = {
+            next: x=>console.log(...);
+            error: err=>console.error(...);
+        };
     - Subscription: exec of an observable
         - call .Subscribe() to execute an observable
     - Subject: eventEmitter multicast a value/event to multiple Observers
+        - a special kind of observable that support multicasting
+            var subject = new Rx.Subject();
+            subject.subscribe({next:(v)=>console.log('observerA: ' + v)})
+            subject.subscribe({next:(v)=>console.log('observerB: ' + v)})
+            subject.next(1);
+            subject.next(2);
+        - it's also an Observer (i.e. responds to next(), error(), complete())
+            var observable=Rx.Observable.from([1,2,3]);
+            observable.subscribe(subject);
     - Scheduler: centralized dispatcher to control concurrency, i.e.
       setTimeout/requestAnimationFrame
+
+
 Operators: map, filter, reduce, every etc.
+    - are methods on Observable type. when called, they do not change the
+      existing Observable Instance. Instead, they return a new Observable,
+      whose subscription logic is based on the first Observable.
+    - they are like pipes of observable
 
 Use rxjs/add/... to add more functionality to Observable.
 Use |async to access Observable in html template
@@ -102,6 +121,9 @@ Array-like operations on Observable
     - switchMap: discard old Observable and jump to new ones
     - deboundTime: wait certain ms after key stroke event
     - distinctUntilChanged: ignore same value
+
+* use operation to chain observable. It is like a pipe.*
+
 An operation is a function with creates a new Observable based on the current
 Observable. This is a pure operation: the previous Observable stays
 unmodified. Subscribing the output Observable will also subscribe to the input

@@ -1,0 +1,3 @@
++interface Component<P = {}, S = {}> extends ComponentLifecycle<P, S> { }
+-class Component<P, S> extends ComponentLifecycle<P, S> {
++class Component<P, S> {
