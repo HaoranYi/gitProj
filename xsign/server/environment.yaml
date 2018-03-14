@@ -4,3 +4,4 @@ dependencies:
   - flask
   - requests
   - sqlalchemy
+  - pycrypto
