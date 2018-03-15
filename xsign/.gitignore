@@ -5,3 +5,5 @@ __pycache__/
 
 # vim tmp files
 *.swp
+
+node_modules
