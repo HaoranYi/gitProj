@@ -31,7 +31,15 @@ export class SignComponent implements OnInit {
     this.xsignService.sign(vendor, produce, quantity, date)
       .subscribe(result => {
         console.log(result);
-        this.result = JSON.parse(result).signature;
+        let x = JSON.parse(result).signature;
+        let s = 0;
+        var sliced = [];
+        while (s + 40 < x.length) {
+          sliced.push(x.slice(s, s+40));
+          s +=40;
+        }
+        this.result = sliced;
+        console.log(this.result);
       }
       );
   }
