@@ -21,19 +21,19 @@ export class SignComponent implements OnInit {
   createForm() {
     this.angForm = this.fb.group({
       vendor: ['', Validators.required ],
-      name: ['', Validators.required ],
-      price: ['', Validators.required ]
+      produce: ['', Validators.required ],
+      quantity: ['', Validators.required ]
+      date: ['', Validators.required ]
    });
   }
 
-  sign(vendor, name, price) {
-    //this.route.params.subscribe(params => {
-    //this.service.updateCoin(name, price, params['id']);
-    //this.router.navigate(['index']);
-    //});
-    //this.result = vendor + "-" + name + "-" + price;
-    this.xsignService.sign(vendor, name, price)
-      .subscribe(result => this.result= result);
+  sign(vendor, produce, quantity, date) {
+    this.xsignService.sign(vendor, produce, quantity, date)
+      .subscribe(result => {
+        console.log(result);
+        this.result = JSON.parse(result).signature;
+      }
+      );
   }
 
   ngOnInit() {

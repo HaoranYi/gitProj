@@ -4,6 +4,7 @@ import json
 
 dat = {
     'vendor': 'ZZZ',
+    'produce': 'apple',
     'quantity': 10,
     'date': datetime.datetime(2018, 1, 1, 3, 30).isoformat()
     }
@@ -18,6 +19,7 @@ print(sign)
 print('-----------------Verify (Valid)-----------------------')
 dat2 = {
     'vendor': 'ZZZ',
+    'produce': 'apple',
     'signature': sign['signature'],
     'obj': dat
     }
@@ -32,6 +34,7 @@ dat2 = {
     'signature': sign['signature'],
     'obj': {
       'vendor': 'ZZZ',
+      'produce': 'apple',
       'quantity': 11,
       'date': datetime.datetime(2018, 1, 1, 3, 30).isoformat()
       }
@@ -47,6 +50,7 @@ dat2 = {
     'signature': sign['signature'],
     'obj': {
       'vendor': 'YYY',
+      'produce': 'apple',
       'quantity': 11,
       'date': datetime.datetime(2018, 1, 1, 3, 30).isoformat()
       }

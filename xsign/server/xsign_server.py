@@ -7,24 +7,31 @@ from uuid import uuid4
 import requests
 from flask import Flask, jsonify, request
 from blockchain import *
+from crossdomain import *
 import json
 
 # Instantiate the app
 app = Flask(__name__)
 
+REQUIRED = ['vendor', 'produce', 'quantity', 'date']
+
 def obj2array(values):
-  required = ['vendor', 'quantity', 'date']
-  if not all(k in values for k in required):
+  if not all(k in values for k in REQUIRED):
     return 'Missing values', 400
   vendor = values['vendor']
-  return [values[n] for n in required]
+  return [values[n] for n in REQUIRED]
 
-@app.route('/sign', methods=['POST'])
+@app.route('/sign', methods=['POST', 'OPTIONS'])
+@crossdomain(origin="*", methods=['POST', 'OPTIONS'],
+    headers="Content-Type, Access-Control-Allow-Headers")
 def sign():
-  values = json.loads(request.get_json())
-
-  required = ['vendor', 'quantity', 'date']
-  if not all(k in values for k in required):
+  jj = request.get_json()
+  if isinstance(jj, str):
+    values = json.loads(request.get_json())
+  else:
+    values = jj
+  REQUIRED = ['vendor', 'quantity', 'date']
+  if not all(k in values for k in REQUIRED):
     return 'Missing values', 400
   vendor = values['vendor']
   obj = obj2array(values)
@@ -33,7 +40,8 @@ def sign():
   response = {'signature': sign.decode() }
   return jsonify(response), 201
 
-@app.route('/verify', methods=['POST'])
+@app.route('/verify', methods=['POST', 'OPTIONS'])
+#@crossdomain(origin="*", methods=['POST', 'OPTIONS'])
 def verify():
   values = json.loads(request.get_json())
 
