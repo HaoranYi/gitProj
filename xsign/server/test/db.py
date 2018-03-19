@@ -13,11 +13,12 @@ class Vendor(Base):
     name = Column(String)
     uniqid = Column(String)
     pubkey = Column(String)
+    prvkey = Column(String)
     created = Column(DateTime)
 
-    def __repr__(self): 
-        return "<vendor(name='%s', uniqid='%s', pubkey='%s')>" % (self.name, 
-                self.uniqid, self.pubkey) 
+    def __repr__(self):
+        return "<vendor(name='%s', uniqid='%s', pubkey='%s')>" % (self.name,
+                self.uniqid, self.pubkey)
 
 
 Base.metadata.create_all(engine)
@@ -32,6 +33,6 @@ v = Vendor(name='BBB', uniqid=uuid.uuid4().hex, pubkey='key',
 session = Session()
 session.add(v)
 session.commit()
-        
+
 for x in session.query(Vendor).order_by(Vendor.id):
     print(x)
