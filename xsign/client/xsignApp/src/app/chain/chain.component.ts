@@ -13,7 +13,7 @@ import {BlockData } from '../block-data';
 export class ChainComponent implements OnInit {
   title = "Verify chain"
   angForms: FormGroup[] = [];
-  blockdata: BlockData[] = [];
+  //blockdata: BlockData[] = [];
 
   result: any;
 
@@ -29,14 +29,14 @@ export class ChainComponent implements OnInit {
       date: ['', Validators.required ],
       signature: ['', Validators.required ]
     }));
-    this.blockdata.push(new BlockData());
+    //this.blockdata.push(new BlockData());
   }
 
   deleteForm(form:FormGroup):void {
     const index: number = this.angForms.indexOf(form);
     if (index !== -1) {
       this.angForms.splice(index, 1);
-      this.blockdata.splice(index, 1);
+      //this.blockdata.splice(index, 1);
     }
   }
 
@@ -49,8 +49,12 @@ export class ChainComponent implements OnInit {
     return true;
   }
 
-  verify() {
-    console.log(this.blockdata.vendor);
+  verify():void {
+    for (let angForm of this.angForms) {
+      console.log(angForm.value);
+    }
+
+    //console.log(this.blockdata[].vendor);
     //this.xsignService.verify(vendor, produce, quantity, date, signature)
     //   .subscribe(result => this.result = JSON.parse(result));
   }
