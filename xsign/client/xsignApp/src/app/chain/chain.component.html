@@ -3,56 +3,69 @@
     {{ title }}
   </div>
   <div class="panel-body">
-    <form [formGroup]="angForm" novalidate>
-      <div class="form-group">
-        <label class="col-xs-4">Vendor name</label>
-        <input type="text" class="form-control" formControlName="vendor" #vendor/>
-      </div>
-      <div *ngIf="angForm.controls['vendor'].invalid && (angForm.controls['vendor'].dirty || angForm.controls['vendor'].touched)" class="alert alert-danger">
-        <div *ngIf="angForm.controls['vendor'].errors.required">
-          Vendor name is required.
+    <!-- add a row -->
+    <div class="form-group" style="text-align:right">
+      <button (click)="addForm()" class="btn btn-primary">Add</button>
+    </div>
+
+    <div *ngFor="let angForm of angForms; let i=index">
+      <form [formGroup]="angForm" novalidate>
+        <div class="form-group" style="text-align:center">
+          <label>Chain {{i}}</label>
         </div>
-      </div>
-      <div class="form-group">
-        <label class="col-xs-4">Produce name</label>
-        <input type="text" class="form-control" formControlName="produce" #produce/>
-      </div>
-      <div *ngIf="angForm.controls['produce'].invalid && (angForm.controls['produce'].dirty || angForm.controls['produce'].touched)" class="alert alert-danger">
-        <div *ngIf="angForm.controls['produce'].errors.required">
-          Produce is required.
+        <div class="form-group">
+          <label class="col-xs-4">Vendor name</label>
+          <input type="text" class="form-control" formControlName="vendor" #blockdata[i].vendor/>
         </div>
-      </div>
-      <div class="form-group">
-        <label class="col-xs-4">Produce quantity</label>
-        <input type="text" class="form-control" formControlName="quantity" #quantity/>
-      </div>
-      <div *ngIf="angForm.controls['quantity'].invalid && (angForm.controls['quantity'].dirty || angForm.controls['quantity'].touched)" class="alert alert-danger">
-        <div *ngIf="angForm.controls['quantity'].errors.required">
-          Quantity is required.
+        <div *ngIf="angForm.controls['vendor'].invalid && (angForm.controls['vendor'].dirty || angForm.controls['vendor'].touched)" class="alert alert-danger">
+          <div *ngIf="angForm.controls['vendor'].errors.required">
+            Vendor name is required.
+          </div>
         </div>
-      </div>
-      <div class="form-group">
-        <label class="col-xs-4">Transaction date</label>
-        <input type="date" class="form-control" formControlName="date" #date/>
-      </div>
-      <div *ngIf="angForm.controls['date'].invalid && (angForm.controls['date'].dirty || angForm.controls['date'].touched)" class="alert alert-danger">
-        <div *ngIf="angForm.controls['date'].errors.required">
-          Date is required.
+        <div class="form-group">
+          <label class="col-xs-4">Produce name</label>
+          <input type="text" class="form-control" formControlName="produce" #blockdata[i].produce/>
         </div>
-      </div>
-      <div class="form-group">
-        <label class="col-xs-4">Signature</label>
-        <input type="text" class="form-control" formControlName="signature" #signature/>
-      </div>
-      <div *ngIf="angForm.controls['signature'].invalid && (angForm.controls['signature'].dirty || angForm.controls['signature'].touched)" class="alert alert-danger">
-        <div *ngIf="angForm.controls['signature'].errors.required">
-          Signature is required.
+        <div *ngIf="angForm.controls['produce'].invalid && (angForm.controls['produce'].dirty || angForm.controls['produce'].touched)" class="alert alert-danger">
+          <div *ngIf="angForm.controls['produce'].errors.required">
+            Produce is required.
+          </div>
         </div>
-      </div>
-      <div class="form-group" style="text-align:right">
-        <button (click)="verify(vendor.value, produce.value, quantity.value, date.value, signature.value)" [disabled]="angForm.pristine || angForm.invalid" class="btn btn-primary">Verify</button>
-      </div>
-    </form>
+        <div class="form-group">
+          <label class="col-xs-4">Produce quantity</label>
+          <input type="text" class="form-control" formControlName="quantity" #blockdata[i].quantity/>
+        </div>
+        <div *ngIf="angForm.controls['quantity'].invalid && (angForm.controls['quantity'].dirty || angForm.controls['quantity'].touched)" class="alert alert-danger">
+          <div *ngIf="angForm.controls['quantity'].errors.required">
+            Quantity is required.
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-xs-4">Transaction date</label>
+          <input type="date" class="form-control" formControlName="date" #blockdata[i].date/>
+        </div>
+        <div *ngIf="angForm.controls['date'].invalid && (angForm.controls['date'].dirty || angForm.controls['date'].touched)" class="alert alert-danger">
+          <div *ngIf="angForm.controls['date'].errors.required">
+            Date is required.
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-xs-4">Signature</label>
+          <input type="text" class="form-control" formControlName="signature" #blockdata[i].signature/>
+        </div>
+        <div *ngIf="angForm.controls['signature'].invalid && (angForm.controls['signature'].dirty || angForm.controls['signature'].touched)" class="alert alert-danger">
+          <div *ngIf="angForm.controls['signature'].errors.required">
+            Signature is required.
+          </div>
+        </div>
+        <div class="form-group" style="text-align:right">
+          <button (click)="deleteForm(angForm)" class="btn btn-primary">Delete</button>
+        </div>
+      </form>
+    </div> <!-- endof ngFor !-->
+    <div class="form-group" style="text-align:right">
+        <button (click)="verify()" [disabled]="!isFormValid()" class="btn btn-primary">Verify</button>
+    </div>
   </div>
   <div class="panel-heading"> Result </div>
   <div class="panel-body">
