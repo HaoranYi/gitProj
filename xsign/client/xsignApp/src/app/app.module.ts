@@ -8,12 +8,14 @@ import { SignComponent } from './sign/sign.component';
 import { VerifyComponent } from './verify/verify.component';
 import { AppRoutingModule } from './/app-routing.module';
 import { XsignService } from './xsign.service';
+import { ChainComponent } from './chain/chain.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SignComponent,
-    VerifyComponent
+    VerifyComponent,
+    ChainComponent
   ],
   imports: [
     BrowserModule,
