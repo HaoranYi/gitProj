@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
-import { environment } from '@env/environment';
+import { environment } from '../environments/environment';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
 const httpOptions = {
@@ -21,6 +21,6 @@ export class XsignService {
         'date': date
     };
 
-    return this.http.post('http://localhost:5000/sign', JSON.stringify(data),  { headers: httpOptions.headers, responseType: 'text'});
+    return this.http.post(environment.apiUri+'/sign', JSON.stringify(data),  { headers: httpOptions.headers, responseType: 'text'});
   }
 }

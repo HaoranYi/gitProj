@@ -6,9 +6,15 @@ from uuid import uuid4
 
 import requests
 from flask import Flask, jsonify, request
+from flask import send_from_directory
 from blockchain import *
 from crossdomain import *
 import json
+
+import pyqrcode
+import io
+import uuid 
+
 
 # Instantiate the app
 app = Flask(__name__)
@@ -20,6 +26,11 @@ def obj2array(values):
     return 'Missing values', 400
   vendor = values['vendor']
   return [values[n] for n in REQUIRED]
+
+@app.route('/images/<path:path>')
+def send_js(path):
+    return send_from_directory('images', path)
+
 
 @app.route('/sign', methods=['POST', 'OPTIONS'])
 @crossdomain(origin="*", methods=['POST', 'OPTIONS'],
@@ -37,11 +48,17 @@ def sign():
   obj = obj2array(values)
 
   sign = gen_block_data(vendor, obj)
-  response = {'signature': sign.decode() }
+  qrimg = pyqrcode.create(sign.decode(), error='L', version=27, mode='binary') 
+  fn = str(uuid.uuid1())
+  qrimg.svg('images/{}.svg'.format(fn), scale=8)
+  response = {'signature': sign.decode(),
+      'svg': 'images/{}.svg'.format(fn) 
+      }
   return jsonify(response), 201
 
 @app.route('/verify', methods=['POST', 'OPTIONS'])
-#@crossdomain(origin="*", methods=['POST', 'OPTIONS'])
+@crossdomain(origin="*", methods=['POST', 'OPTIONS'],
+    headers="Content-Type, Access-Control-Allow-Headers")
 def verify():
   values = json.loads(request.get_json())
 

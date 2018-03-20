@@ -5,3 +5,5 @@ dependencies:
   - requests
   - sqlalchemy
   - pycrypto
+  - pip:
+    - pyqrcode
