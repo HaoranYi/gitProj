@@ -20,7 +20,18 @@ export class XsignService {
         'quantity': quantity,
         'date': date
     };
-
     return this.http.post(environment.apiUri+'/sign', JSON.stringify(data),  { headers: httpOptions.headers, responseType: 'text'});
   }
+
+  verify(vendor:string, produce:string, quantity:number, date:string, signature:string): Observable<string> {
+    const data = {
+        'vendor': vendor,
+        'produce': produce,
+        'quantity': quantity,
+        'date': date,
+        'signature': signature
+    };
+    return this.http.post(environment.apiUri+'/verify', JSON.stringify(data),  { headers: httpOptions.headers, responseType: 'text'});
+  }
+
 }

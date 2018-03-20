@@ -9,11 +9,9 @@ import { XsignService } from '../xsign.service';
   styleUrls: ['./sign.component.css']
 })
 export class SignComponent implements OnInit {
-  coin: any;
-  angForm: FormGroup;
   title = "Sign Product";
-  result: string = "";
-  svg: string = "";
+  angForm: FormGroup;
+  result: any;
 
   constructor(private route: ActivatedRoute, private router: Router, private fb: FormBuilder, private xsignService: XsignService) {
     this.createForm();
@@ -30,22 +28,7 @@ export class SignComponent implements OnInit {
 
   sign(vendor, produce, quantity, date) {
     this.xsignService.sign(vendor, produce, quantity, date)
-      .subscribe(result => {
-        console.log(result);
-        this.result = JSON.parse(result);
-        //this.result = jj.signature;
-        //this.svg = jj.svg;
-        //let x = JSON.parse(result).signature;
-        //let s = 0;
-        //var sliced = [];
-        //while (s + 40 < x.length) {
-        //  sliced.push(x.slice(s, s+40));
-        //  s +=40;
-        //}
-        //this.result = sliced;
-        //console.log(this.result);
-      }
-      );
+      .subscribe(result => this.result = JSON.parse(result));
   }
 
   ngOnInit() {

@@ -13,7 +13,7 @@ import json
 
 import pyqrcode
 import io
-import uuid 
+import uuid
 
 
 # Instantiate the app
@@ -33,8 +33,7 @@ def send_js(path):
 
 
 @app.route('/sign', methods=['POST', 'OPTIONS'])
-@crossdomain(origin="*", methods=['POST', 'OPTIONS'],
-    headers="Content-Type, Access-Control-Allow-Headers")
+@crossdomain(origin="*", methods=['POST', 'OPTIONS'], headers="Content-Type, Access-Control-Allow-Headers")
 def sign():
   jj = request.get_json()
   if isinstance(jj, str):
@@ -48,26 +47,28 @@ def sign():
   obj = obj2array(values)
 
   sign = gen_block_data(vendor, obj)
-  qrimg = pyqrcode.create(sign.decode(), error='L', version=27, mode='binary') 
+  qrimg = pyqrcode.create(sign.decode(), error='L', version=27, mode='binary')
   fn = str(uuid.uuid1())
   qrimg.svg('images/{}.svg'.format(fn), scale=8)
   response = {'signature': sign.decode(),
-      'svg': 'images/{}.svg'.format(fn) 
+      'svg': 'images/{}.svg'.format(fn)
       }
   return jsonify(response), 201
 
 @app.route('/verify', methods=['POST', 'OPTIONS'])
-@crossdomain(origin="*", methods=['POST', 'OPTIONS'],
-    headers="Content-Type, Access-Control-Allow-Headers")
+@crossdomain(origin="*", methods=['POST', 'OPTIONS'], headers="Content-Type, Access-Control-Allow-Headers")
 def verify():
-  values = json.loads(request.get_json())
-
-  required = ['vendor', 'signature', 'obj']
+  jj = request.get_json()
+  if isinstance(jj, str):
+    values = json.loads(request.get_json())
+  else:
+    values = jj
+  required =  ['signature'] + ['vendor', 'produce', 'quantity', 'date']
   if not all(k in values for k in required):
     return 'Missing values', 400
   vendor = values['vendor']
   signature = values['signature']
-  obj = obj2array(values['obj'])
+  obj = obj2array(values)
 
   (res, msg) = verify_block_data(vendor, obj, signature)
   response = {'result': res, 'message': msg }

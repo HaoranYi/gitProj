@@ -49,10 +49,12 @@
   <div class="panel-body">
     <div class="row">
       <div class="col-xs-9">
-        <textarea cols="80" rows="10" readonly>{{result.signature}}</textarea>
+        <div *ngIf="result && result.svg">
+          <textarea cols="80" rows="10" readonly>{{result.signature}}</textarea>
+        </div>
       </div>
       <div class="col-xs-3">
-        <div *ngIf="result.svg">
+        <div *ngIf="result && result.svg">
           <img src="http://localhost:5000/{{result.svg}}" width=200 height=200 alt="QR Code"> <br>
           <a href="http://localhost:5000/{{result.svg}}">Download</a>
         </div>
