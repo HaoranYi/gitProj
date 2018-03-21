@@ -54,6 +54,10 @@ export class ChainComponent implements OnInit {
       console.log(angForm.value);
     }
 
+    let args = this.angForms.map((x)=> x.value);
+    console.log(args);
+
+
     //console.log(this.blockdata[].vendor);
     //this.xsignService.verify(vendor, produce, quantity, date, signature)
     //   .subscribe(result => this.result = JSON.parse(result));

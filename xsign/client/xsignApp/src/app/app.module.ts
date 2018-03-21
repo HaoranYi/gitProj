@@ -10,6 +10,8 @@ import { AppRoutingModule } from './/app-routing.module';
 import { XsignService } from './xsign.service';
 import { ChainComponent } from './chain/chain.component';
 
+import { TRANSLATION_PROVIDERS, TranslatePipe, TranslateService } from './translate';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,10 +22,11 @@ import { ChainComponent } from './chain/chain.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule, 
+    HttpClientModule,
     ReactiveFormsModule
   ],
-  providers: [XsignService],
+  providers: [XsignService, TRANSLATION_PROVIDERS, TranslateService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
