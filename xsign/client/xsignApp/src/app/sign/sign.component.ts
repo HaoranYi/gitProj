@@ -9,7 +9,7 @@ import { XsignService } from '../xsign.service';
   styleUrls: ['./sign.component.css']
 })
 export class SignComponent implements OnInit {
-  title = "Sign Product";
+  title = "Sign product";
   angForm: FormGroup;
   result: any;
 

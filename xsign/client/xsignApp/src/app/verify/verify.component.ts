@@ -11,7 +11,7 @@ import { XsignService } from '../xsign.service';
   styleUrls: ['./verify.component.css']
 })
 export class VerifyComponent implements OnInit {
-  title = "Verify Product"
+  title = "Verify product"
   angForm: FormGroup;
   result: any;
 

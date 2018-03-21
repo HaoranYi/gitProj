@@ -1,20 +1,20 @@
 <div class="panel panel-primary"style="text-align:left">
   <div class="panel-heading">
-    {{ title }}
+    {{ title | translate }}
   </div>
   <div class="panel-body">
     <!-- add a row -->
     <div class="form-group" style="text-align:right">
-      <button (click)="addForm()" class="btn btn-primary">Add</button>
+      <button (click)="addForm()" class="btn btn-primary">{{ 'Add' | translate }}</button>
     </div>
 
     <div *ngFor="let angForm of angForms; let i=index">
       <form [formGroup]="angForm" novalidate>
         <div class="form-group" style="text-align:center">
-          <label>Chain {{i+1}}</label>
+          <label>{{ 'Chain' | translate}} {{' '}} {{i+1}}</label>
         </div>
         <div class="form-group">
-          <label class="col-xs-4">Vendor name</label>
+          <label class="col-xs-4">{{'Vendor name' | translate}}</label>
           <input type="text" class="form-control" formControlName="vendor" #blockdata[i].vendor/>
         </div>
         <div *ngIf="angForm.controls['vendor'].invalid && (angForm.controls['vendor'].dirty || angForm.controls['vendor'].touched)" class="alert alert-danger">
@@ -23,7 +23,7 @@
           </div>
         </div>
         <div class="form-group">
-          <label class="col-xs-4">Produce name</label>
+          <label class="col-xs-4">{{ 'Produce name' | translate }}</label>
           <input type="text" class="form-control" formControlName="produce" #blockdata[i].produce/>
         </div>
         <div *ngIf="angForm.controls['produce'].invalid && (angForm.controls['produce'].dirty || angForm.controls['produce'].touched)" class="alert alert-danger">
@@ -32,7 +32,7 @@
           </div>
         </div>
         <div class="form-group">
-          <label class="col-xs-4">Produce quantity</label>
+          <label class="col-xs-4">{{ 'Produce quantity' | translate }}</label>
           <input type="text" class="form-control" formControlName="quantity" #blockdata[i].quantity/>
         </div>
         <div *ngIf="angForm.controls['quantity'].invalid && (angForm.controls['quantity'].dirty || angForm.controls['quantity'].touched)" class="alert alert-danger">
@@ -41,7 +41,7 @@
           </div>
         </div>
         <div class="form-group">
-          <label class="col-xs-4">Transaction date</label>
+          <label class="col-xs-4">{{ 'Transaction date' | translate }}</label>
           <input type="date" class="form-control" formControlName="date" #blockdata[i].date/>
         </div>
         <div *ngIf="angForm.controls['date'].invalid && (angForm.controls['date'].dirty || angForm.controls['date'].touched)" class="alert alert-danger">
@@ -50,7 +50,7 @@
           </div>
         </div>
         <div class="form-group">
-          <label class="col-xs-4">Signature</label>
+          <label class="col-xs-4">{{ 'Signature' | translate }}</label>
           <input type="text" class="form-control" formControlName="signature" #blockdata[i].signature/>
         </div>
         <div *ngIf="angForm.controls['signature'].invalid && (angForm.controls['signature'].dirty || angForm.controls['signature'].touched)" class="alert alert-danger">
@@ -59,22 +59,22 @@
           </div>
         </div>
         <div class="form-group" style="text-align:right">
-          <button (click)="deleteForm(angForm)" class="btn btn-primary">Delete</button>
+          <button (click)="deleteForm(angForm)" class="btn btn-primary"> {{ 'Delete' | translate }}</button>
         </div>
       </form>
     </div> <!-- endof ngFor !-->
     <div class="form-group" style="text-align:right">
-        <button (click)="verify()" [disabled]="!isFormValid()" class="btn btn-primary">Verify</button>
+      <button (click)="verify()" [disabled]="!isFormValid()" class="btn btn-primary">{{'Verify' | translate}}</button>
     </div>
   </div>
-  <div class="panel-heading"> Result </div>
+  <div class="panel-heading"> {{ 'Result' | translate }} </div>
   <div class="panel-body">
     <div *ngIf="result">
       <div *ngIf="result.result">
-        <div class="alert alert-success"> <strong>Success!</strong></div>
+        <div class="alert alert-success"> <strong>{{ 'Success' | translate }}!</strong></div>
       </div>
       <div *ngIf="!result.result">
-        <div class="alert alert-danger"><strong>Faiure!</strong>{{result.message}} </div>
+        <div class="alert alert-danger"><strong>{{ 'Faiure' | translate}}!</strong>{{result.message}} </div>
       </div>
     </div>
   </div>

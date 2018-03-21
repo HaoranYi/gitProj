@@ -14,6 +14,7 @@ import { TRANSLATION_PROVIDERS, TranslatePipe, TranslateService } from './transl
 
 @NgModule({
   declarations: [
+    TranslatePipe,
     AppComponent,
     SignComponent,
     VerifyComponent,
