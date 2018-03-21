@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup,  FormBuilder,  Validators } from '@angular/forms';
+import { forkJoin } from 'rxjs/observable/forkJoin';
 import { XsignService } from '../xsign.service';
 import {BlockData } from '../block-data';
 
@@ -13,9 +14,8 @@ import {BlockData } from '../block-data';
 export class ChainComponent implements OnInit {
   title = "Verify chain"
   angForms: FormGroup[] = [];
-  //blockdata: BlockData[] = [];
 
-  result: any;
+  results: any;
 
   constructor(private route: ActivatedRoute, private router: Router, private fb: FormBuilder, private xsignService: XsignService) {
     this.addForm();
@@ -29,14 +29,18 @@ export class ChainComponent implements OnInit {
       date: ['', Validators.required ],
       signature: ['', Validators.required ]
     }));
-    //this.blockdata.push(new BlockData());
+    if (this.results) {
+      this.results = null;
+    }
   }
 
   deleteForm(form:FormGroup):void {
     const index: number = this.angForms.indexOf(form);
     if (index !== -1) {
       this.angForms.splice(index, 1);
-      //this.blockdata.splice(index, 1);
+    }
+    if (this.results) {
+      this.results = null;
     }
   }
 
@@ -50,17 +54,10 @@ export class ChainComponent implements OnInit {
   }
 
   verify():void {
-    for (let angForm of this.angForms) {
-      console.log(angForm.value);
-    }
-
-    let args = this.angForms.map((x)=> x.value);
-    console.log(args);
-
-
-    //console.log(this.blockdata[].vendor);
-    //this.xsignService.verify(vendor, produce, quantity, date, signature)
-    //   .subscribe(result => this.result = JSON.parse(result));
+    forkJoin(
+      this.angForms.map((x)=> x.value)
+      .map(x=>{return this.xsignService.verify(x.vendor, x.produce, x.quantity, x.date, x.signature) })
+    ).subscribe(x => {this.results = x.map(y=>JSON.parse(y));});
   }
 
   ngOnInit() {

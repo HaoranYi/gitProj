@@ -3,6 +3,7 @@ import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 import { environment } from '../environments/environment';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import {BlockData } from './block-data';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -33,5 +34,4 @@ export class XsignService {
     };
     return this.http.post(environment.apiUri+'/verify', JSON.stringify(data),  { headers: httpOptions.headers, responseType: 'text'});
   }
-
 }

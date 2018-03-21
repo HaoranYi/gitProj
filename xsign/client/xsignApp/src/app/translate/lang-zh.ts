@@ -7,7 +7,7 @@ export const LANG_ZH_TRANS = {
   'Welcome to': '欢迎使用',
   'Please select': '请选择',
   'Sign product': '产品加密',
-  'Verify': '加密',
+  'Verify': '验证',
   'Verify product': '产品验证',
   'Verify chain': '产品链验证',
   'Sign': '加密',

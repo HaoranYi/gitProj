@@ -19,7 +19,7 @@
         </div>
         <div *ngIf="angForm.controls['vendor'].invalid && (angForm.controls['vendor'].dirty || angForm.controls['vendor'].touched)" class="alert alert-danger">
           <div *ngIf="angForm.controls['vendor'].errors.required">
-            Vendor name is required.
+            {{ 'Vendor name' | translate }}{{ ' is required' | translate }}
           </div>
         </div>
         <div class="form-group">
@@ -28,7 +28,7 @@
         </div>
         <div *ngIf="angForm.controls['produce'].invalid && (angForm.controls['produce'].dirty || angForm.controls['produce'].touched)" class="alert alert-danger">
           <div *ngIf="angForm.controls['produce'].errors.required">
-            Produce is required.
+            {{ 'Produce name' | translate }}{{ ' is required' | translate }}
           </div>
         </div>
         <div class="form-group">
@@ -37,7 +37,7 @@
         </div>
         <div *ngIf="angForm.controls['quantity'].invalid && (angForm.controls['quantity'].dirty || angForm.controls['quantity'].touched)" class="alert alert-danger">
           <div *ngIf="angForm.controls['quantity'].errors.required">
-            Quantity is required.
+            {{ 'Produce quantity' | translate }}{{ ' is required' | translate }}
           </div>
         </div>
         <div class="form-group">
@@ -46,7 +46,7 @@
         </div>
         <div *ngIf="angForm.controls['date'].invalid && (angForm.controls['date'].dirty || angForm.controls['date'].touched)" class="alert alert-danger">
           <div *ngIf="angForm.controls['date'].errors.required">
-            Date is required.
+            {{ 'Transaction date' | translate }}{{ ' is required' | translate }}
           </div>
         </div>
         <div class="form-group">
@@ -55,7 +55,16 @@
         </div>
         <div *ngIf="angForm.controls['signature'].invalid && (angForm.controls['signature'].dirty || angForm.controls['signature'].touched)" class="alert alert-danger">
           <div *ngIf="angForm.controls['signature'].errors.required">
-            Signature is required.
+            {{ 'Signature' | translate }}{{ ' is required' | translate }}
+          </div>
+        </div>
+
+        <div *ngIf="results">
+          <div *ngIf="results[i].result">
+            <div class="alert alert-success"> <strong>{{ 'Success' | translate }}!</strong></div>
+          </div>
+          <div *ngIf="!results[i].result">
+            <div class="alert alert-danger"><strong>{{ 'Failure' | translate}}!</strong>{{results[i].message}} </div>
           </div>
         </div>
         <div class="form-group" style="text-align:right">
@@ -65,17 +74,6 @@
     </div> <!-- endof ngFor !-->
     <div class="form-group" style="text-align:right">
       <button (click)="verify()" [disabled]="!isFormValid()" class="btn btn-primary">{{'Verify' | translate}}</button>
-    </div>
-  </div>
-  <div class="panel-heading"> {{ 'Result' | translate }} </div>
-  <div class="panel-body">
-    <div *ngIf="result">
-      <div *ngIf="result.result">
-        <div class="alert alert-success"> <strong>{{ 'Success' | translate }}!</strong></div>
-      </div>
-      <div *ngIf="!result.result">
-        <div class="alert alert-danger"><strong>{{ 'Faiure' | translate}}!</strong>{{result.message}} </div>
-      </div>
     </div>
   </div>
 </div>
