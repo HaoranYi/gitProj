@@ -28,7 +28,7 @@ export class SignComponent implements OnInit {
 
   sign(vendor, produce, quantity, date) {
     this.xsignService.sign(vendor, produce, quantity, date)
-      .subscribe(result => this.result = JSON.parse(result));
+      .subscribe(result => this.result = result); 
   }
 
   ngOnInit() {

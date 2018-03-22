@@ -4,4 +4,4 @@ export interface BlockData {
   quantity: number;
   date: string;
   signature: string;
-}
+};

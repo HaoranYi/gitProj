@@ -57,7 +57,7 @@ export class ChainComponent implements OnInit {
     forkJoin(
       this.angForms.map((x)=> x.value)
       .map(x=>{return this.xsignService.verify(x.vendor, x.produce, x.quantity, x.date, x.signature) })
-    ).subscribe(x => {this.results = x.map(y=>JSON.parse(y));});
+    ).subscribe(x => {this.results = x);
   }
 
   ngOnInit() {

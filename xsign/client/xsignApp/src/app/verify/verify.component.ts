@@ -31,7 +31,7 @@ export class VerifyComponent implements OnInit {
 
   verify(vendor, produce, quantity, date, signature) {
     this.xsignService.verify(vendor, produce, quantity, date, signature)
-      .subscribe(result => this.result = JSON.parse(result));
+    .subscribe(result => this.result = result);
   }
 
   ngOnInit() {
