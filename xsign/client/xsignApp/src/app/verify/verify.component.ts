@@ -19,6 +19,7 @@ export class VerifyComponent implements OnInit {
     this.createForm();
   }
 
+  // TODO: make it a dynamic form
   createForm() {
     this.angForm = this.fb.group({
       vendor: ['', Validators.required ],

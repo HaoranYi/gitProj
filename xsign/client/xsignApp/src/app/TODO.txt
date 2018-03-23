@@ -1,0 +1,9 @@
+dynamic/configurable form
+
+https://juristr.com/blog/2017/10/demystify-dynamic-angular-forms/
+https://toddmotto.com/angular-dynamic-components-forms
+
+https://github.com/formly-js/ngx-formly (easy to use)
+https://github.com/udos86/ng-dynamic-forms
+
+https://github.com/angular/material2
