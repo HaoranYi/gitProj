@@ -1,0 +1,53 @@
+use typescript to code nodejs server app
+
+1. pure manual with grunt/tsc/nodejs
+
+package required:
+  nodejs
+  npm:
+    typescript
+      $> npm install typescript --save-dev
+    grunt  //use grunt task runner to compile typescript code
+      $> npm install grunt --save-dev
+      $> npm install grunt-contrib-copy --save-dev
+      $> npm install grunt-ts --save-dev
+      $> npm install grunt-constrib-watch --save-dev
+      gruntfile.js
+      $> npm install body-parser --save-dev
+      $> npm install coookie-parser --save-dev
+      $> npm install morgan-parser --save-dev         // logging
+      $> npm install errorhandler --save-dev
+      $> npm install method-override --save-dev
+      $> npm install @types/body-parser --save-dev
+      $> npm install @types/coookie-parser --save-dev
+      $> npm install @types/morgan-parser --save-dev
+      $> npm install @types/errorhandler --save-dev
+      $> npm install @types/method-override --save-dev
+
+morgan vs winston logger for nodejs
+  morgan: middelware
+  winston: more like log4j; level based logging
+
+method-override: use http header to override the method such as put/delete
+
+
+2. with ts-node (preferred)
+  $ npm install -g ts-node
+  $ npm install --save express @types/express body-parser  --install types
+
+myapp/
+  dist/  -- generate by the build process
+    app.js
+    server.js
+  lib/
+    app.ts
+    server.js
+  node_modules/
+  tsconfig.json  -- setup compilation pipeline
+  package.json   -- define shortcut commands to run
+
+
+3. use Nest.js
+A modern web framework with good cli and injectable classes
+typeorm to access database
+  entity -> repository -> connection
