@@ -1,4 +1,4 @@
-xsign adapt the blockchain technology to track the buy and sell of a product.
+mtrack adapt the blockchain technology to track the buy and sell of a medicine.
 
-xsign allows the consumer to trace the item's original productor and all the
+mtrack allows the consumer to trace the item's original productor and all the
 intermediate distributor of the item. 

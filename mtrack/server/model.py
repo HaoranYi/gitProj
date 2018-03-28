@@ -18,3 +18,26 @@ class Vendor(Base):
                 self.uniqid, self.pubkey)
 
 
+
+class Medicine(Base):
+    __tablename__ = 'tbMedicine'
+    id = Column(Integer, primary_key=True)
+    name = Column(String)
+    # TODO (hyi) ...
+
+
+    def __repr__(self):
+        return "<medicine(name='%s', uniqid='%s', pubkey='%s')>" % (self.name,
+                self.uniqid, self.pubkey)
+
+
+class Transaction(Base):
+    __tablename__ = 'tbTransaction'
+    id = Column(Integer, primary_key=True)
+    # TODO (hyi) ...
+
+
+
+    def __repr__(self):
+        return "<transaction(name='%s', uniqid='%s', pubkey='%s')>" % (self.name,
+                self.uniqid, self.pubkey)
