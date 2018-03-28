@@ -1,0 +1,68 @@
+<div class="panel panel-primary"style="text-align:left">
+  <div class="panel-heading">
+    {{ title | translate }}
+  </div>
+  <div class="panel-body">
+    <form [formGroup]="angForm" novalidate>
+      <div class="form-group">
+        <label class="col-xs-4">{{'Vendor name' | translate}}</label>
+        <input type="text" class="form-control" formControlName="vendor" #vendor/>
+      </div>
+      <div *ngIf="angForm.controls['vendor'].invalid && (angForm.controls['vendor'].dirty || angForm.controls['vendor'].touched)" class="alert alert-danger">
+        <div *ngIf="angForm.controls['vendor'].errors.required">
+          {{ 'Vendor name' | translate }}{{ ' is required' | translate }}
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-xs-4">{{ 'Produce name' | translate }}</label>
+        <input type="text" class="form-control" formControlName="produce" #produce/>
+      </div>
+      <div *ngIf="angForm.controls['produce'].invalid && (angForm.controls['produce'].dirty || angForm.controls['produce'].touched)" class="alert alert-danger">
+        <div *ngIf="angForm.controls['produce'].errors.required">
+          {{ 'Produce name' | translate }}{{ ' is required' | translate }}
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-xs-4">{{ 'Produce quantity' | translate }}</label>
+        <input type="text" class="form-control" formControlName="quantity" #quantity/>
+      </div>
+      <div *ngIf="angForm.controls['quantity'].invalid && (angForm.controls['quantity'].dirty || angForm.controls['quantity'].touched)" class="alert alert-danger">
+        <div *ngIf="angForm.controls['quantity'].errors.required">
+          {{ 'Produce quantity' | translate }}{{ ' is required' | translate }}
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-xs-4">{{ 'Transaction date' | translate }}</label>
+        <input type="date" class="form-control" formControlName="date" #date/>
+      </div>
+      <div *ngIf="angForm.controls['date'].invalid && (angForm.controls['date'].dirty || angForm.controls['date'].touched)" class="alert alert-danger">
+        <div *ngIf="angForm.controls['date'].errors.required">
+          {{ 'Transaction date' | translate }}{{ ' is required' | translate }}
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-xs-4">{{ 'Signature' | translate }}</label>
+        <input type="text" class="form-control" formControlName="signature" #signature/>
+      </div>
+      <div *ngIf="angForm.controls['signature'].invalid && (angForm.controls['signature'].dirty || angForm.controls['signature'].touched)" class="alert alert-danger">
+        <div *ngIf="angForm.controls['signature'].errors.required">
+          {{ 'Signature' | translate }}{{ ' is required' | translate }}
+        </div>
+      </div>
+      <div class="form-group" style="text-align:right">
+        <button (click)="verify(vendor.value, produce.value, quantity.value, date.value, signature.value)" [disabled]="angForm.pristine || angForm.invalid" class="btn btn-primary">{{ 'Verify' | translate }}</button>
+      </div>
+    </form>
+  </div>
+  <div class="panel-heading"> {{ 'Result' | translate }} </div>
+  <div class="panel-body">
+    <div *ngIf="result">
+      <div *ngIf="result.result">
+        <div class="alert alert-success"> <strong>{{ 'Success' | translate }}!</strong></div>
+      </div>
+      <div *ngIf="!result.result">
+        <div class="alert alert-danger"><strong>{{ 'Failure' | translate }}!</strong>{{result.message}} </div>
+      </div>
+    </div>
+  </div>
+</div>
