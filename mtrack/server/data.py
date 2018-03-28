@@ -6,8 +6,14 @@ from trans_state import TransState
 
 DB = 'sqlite:///database.db'
 
-
 def get_holds(name):
+  """ return the items that vendor holds (including pending sales)
+
+  Args:
+    name(str): vendor name
+  Returns:
+    list
+  """
   try:
     engine = create_engine(DB, echo=False)
     Session = sessionmaker(bind=engine)
@@ -21,6 +27,11 @@ def get_holds(name):
     engine.dispose()
 
 def get_pending_confirm(name):
+  """ return the items that vendor's buyer confirmation
+
+  Args:
+    name(str): vendor name
+  """
   try:
     engine = create_engine(DB, echo=True)
     Session = sessionmaker(bind=engine)
@@ -40,6 +51,13 @@ def get_pending_confirm(name):
     engine.dispose()
 
 def get_history_transactions(hold_id):
+  """ return the history for transactions for a hold
+
+  Args:
+    hold_id(int): hold id (tbHolds)
+  Returns:
+    list
+  """
   try:
     engine = create_engine(DB, echo=False)
     Session = sessionmaker(bind=engine)
@@ -72,6 +90,12 @@ def get_medicine(name):
     engine.dispose()
 
 def add_transaction(hold_id, buyer_id):
+  """ Add a new transction for the hold
+
+  Args:
+    hold_id(int): hold id (tbHolds)
+    buyer_id(int): buyer id (tbVendors)
+  """
   try:
     engine = create_engine(DB, echo=False)
     Session = sessionmaker(bind=engine)
@@ -96,6 +120,11 @@ def add_transaction(hold_id, buyer_id):
     engine.dispose()
 
 def confirm_transaction(hold_id):
+  """ Confirm a pending sale (update both tbTransactions and tbHolds)
+
+  Args:
+    hold_id(int): hold id (tbHolds)
+  """
   try:
     engine = create_engine(DB, echo=False)
     Session = sessionmaker(bind=engine)
