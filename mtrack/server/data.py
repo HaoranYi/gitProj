@@ -41,7 +41,7 @@ def get_pending_confirm(name):
 
 def get_history_transactions(hold_id):
   try:
-    engine = create_engine(DB, echo=True)
+    engine = create_engine(DB, echo=False)
     Session = sessionmaker(bind=engine)
     session = Session()
     return [repr(t) for (h, t) in session.query(Hold, Transaction).\
