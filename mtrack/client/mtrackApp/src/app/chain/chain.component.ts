@@ -57,7 +57,7 @@ export class ChainComponent implements OnInit {
   verify():void {
     forkJoin(
       this.angForms.map((x)=> x.value)
-      .map(x=>this.xsignService.verify(x.vendor, x.produce, x.quantity, x.date, x.signature))
+        .map(x=>this.xsignService.verify(x.vendor, x.produce, x.quantity, x.date, x.signature))
     ).subscribe(x => { this.results = x; });
   }
 

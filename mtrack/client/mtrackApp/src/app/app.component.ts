@@ -8,7 +8,7 @@ import { TranslateService } from './translate';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  title = 'xSign';
+  title = 'mTrack';
   public translatedText: string;
   public supportedLangs: any[];
 

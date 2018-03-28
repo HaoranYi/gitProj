@@ -8,6 +8,7 @@ import { SignComponent } from './sign/sign.component';
 import { VerifyComponent } from './verify/verify.component';
 import { AppRoutingModule } from './/app-routing.module';
 import { XsignService } from './xsign.service';
+
 import { ChainComponent } from './chain/chain.component';
 
 import { TRANSLATION_PROVIDERS, TranslatePipe, TranslateService } from './translate';
