@@ -2,56 +2,45 @@ import requests
 import datetime
 import json
 
+print('-----------------holds-----------------------')
 dat = {
-    'vendor': 'ZZZ',
-    'produce': 'apple',
-    'quantity': 10,
-    'date': datetime.datetime(2018, 1, 1, 3, 30).isoformat()
+    'name': 'Vendor_A',
     }
-
-print('-----------------Sign-----------------------')
 print(dat)
-r = requests.post('http://localhost:5000/sign', json=json.dumps(dat))
-sign = json.loads(r.text)
-print(sign)
-
-
-print('-----------------Verify (Valid)-----------------------')
-dat2 = {
-    'vendor': 'ZZZ',
-    'produce': 'apple',
-    'signature': sign['signature'],
-    'vendor': 'ZZZ',
-    'produce': 'apple',
-    'quantity': 10,
-    'date': datetime.datetime(2018, 1, 1, 3, 30).isoformat(),
-    }
-print(dat2)
-r = requests.post('http://localhost:5000/verify', json=json.dumps(dat2))
+r = requests.post('http://localhost:5000/holds', json=json.dumps(dat))
 print(r.text)
 
 
-print('-----------------Verify (invalid data)-----------------------')
-dat2 = {
-    'vendor': 'ZZZ',
-    'produce': 'apple',
-    'quantity': 11,
-    'date': datetime.datetime(2018, 1, 1, 3, 30).isoformat(),
-    'signature': sign['signature'],
+print('-----------------pendings-----------------------')
+dat = {
+    'name': 'Vendor_B',
     }
-print(dat2)
-r = requests.post('http://localhost:5000/verify', json=json.dumps(dat2))
+print(dat)
+r = requests.post('http://localhost:5000/pendings', json=json.dumps(dat))
 print(r.text)
 
-
-print('-----------------Verify (invalid vendor)-----------------------')
-dat2 = {
-    'vendor': 'YYY',
-    'signature': sign['signature'],
-    'produce': 'apple',
-    'quantity': 11,
-    'date': datetime.datetime(2018, 1, 1, 3, 30).isoformat(),
+print('-----------------transhistory-----------------------')
+dat = {
+    'medicine_id': 1,
     }
-print(dat2)
-r = requests.post('http://localhost:5000/verify', json=json.dumps(dat2))
+print(dat)
+r = requests.post('http://localhost:5000/transhistory', json=json.dumps(dat))
 print(r.text)
+
+print('-----------------addTrans-----------------------')
+dat = {
+    'hold_id': 1,
+    'buyer_id': 3
+    }
+print(dat)
+r = requests.post('http://localhost:5000/addtrans', json=json.dumps(dat))
+print(r.text)
+
+print('-----------------confirmTrans-----------------------')
+dat = {
+    'hold_id': 1,
+    }
+print(dat)
+#r = requests.post('http://localhost:5000/confirmtrans', json=json.dumps(dat))
+#print(r.text)
+

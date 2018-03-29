@@ -11,9 +11,12 @@ from blockchain import *
 from crossdomain import *
 import json
 
+import data
+
 import pyqrcode
 import io
 import uuid
+import traceback
 
 # Instantiate the app
 app = Flask(__name__)
@@ -72,6 +75,47 @@ def verify():
   (res, msg) = verify_block_data(vendor, obj, signature)
   response = {'result': res, 'message': msg }
   return jsonify(response), 201
+
+def server_wrapper(fn):
+  try:
+    jj = request.get_json()
+    if isinstance(jj, str):
+      values = json.loads(request.get_json())
+    else:
+      values = jj
+    rr = fn(**values)
+    return jsonify(rr), 201
+  except Exception as e:
+    print('print_exc():')
+    traceback.print_exc()
+    print('Exception: {}'.format(str(e)))
+    return jsonify({'error': str(e)}), 404
+
+
+@app.route('/holds', methods=['POST', 'OPTIONS'])
+@crossdomain(origin="*", methods=['POST', 'OPTIONS'], headers="Content-Type, Access-Control-Allow-Headers")
+def get_holds():
+  return server_wrapper(data.get_holds)
+
+@app.route('/pendings', methods=['POST', 'OPTIONS'])
+@crossdomain(origin="*", methods=['POST', 'OPTIONS'], headers="Content-Type, Access-Control-Allow-Headers")
+def get_pendings():
+  return server_wrapper(data.get_pendings)
+
+@app.route('/transhistory', methods=['POST', 'OPTIONS'])
+@crossdomain(origin="*", methods=['POST', 'OPTIONS'], headers="Content-Type, Access-Control-Allow-Headers")
+def get_trans_history():
+  return server_wrapper(data.get_trans_history)
+
+@app.route('/addtrans', methods=['POST', 'OPTIONS'])
+@crossdomain(origin="*", methods=['POST', 'OPTIONS'], headers="Content-Type, Access-Control-Allow-Headers")
+def add_trans():
+  return server_wrapper(data.add_trans)
+
+@app.route('/confirmtrans', methods=['POST', 'OPTIONS'])
+@crossdomain(origin="*", methods=['POST', 'OPTIONS'], headers="Content-Type, Access-Control-Allow-Headers")
+def confirm_trans():
+  return server_wrapper(data.confirm_trans)
 
 
 if __name__ == '__main__':

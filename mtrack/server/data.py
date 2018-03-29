@@ -6,6 +6,19 @@ from trans_state import TransState
 
 DB = 'sqlite:///database.db'
 
+def get_vendor(name):
+  try:
+    engine = create_engine(DB, echo=False)
+    Session = sessionmaker(bind=engine)
+    session = Session()
+    return session.query(Vendor).filter(Vendor.name == name).one()
+  except Exception as e:
+    print('can not find vendor {}'.format(name))
+    return None
+  finally:
+    session.close()
+    engine.dispose()
+
 def get_holds(name):
   """ return the items that vendor holds (including pending sales)
 
@@ -26,7 +39,7 @@ def get_holds(name):
     session.close()
     engine.dispose()
 
-def get_pending_confirm(name):
+def get_pendings(name):
   """ return the items that vendor's buyer confirmation
 
   Args:
@@ -50,7 +63,7 @@ def get_pending_confirm(name):
     session.close()
     engine.dispose()
 
-def get_history_transactions(hold_id):
+def get_trans_history(medicine_id):
   """ return the history for transactions for a hold
 
   Args:
@@ -62,9 +75,8 @@ def get_history_transactions(hold_id):
     engine = create_engine(DB, echo=False)
     Session = sessionmaker(bind=engine)
     session = Session()
-    return [repr(t) for (h, t) in session.query(Hold, Transaction).\
-                      filter(Hold.id == hold_id).\
-                      filter(Hold.medicine_id == Transaction.medicine_id).\
+    return [repr(t) for t in session.query(Transaction).\
+                      filter(medicine_id == Transaction.medicine_id).\
                       order_by(Transaction.id.desc()).\
                       all()]
   except Exception as e:
@@ -89,12 +101,15 @@ def get_medicine(name):
     session.close()
     engine.dispose()
 
-def add_transaction(hold_id, buyer_id):
+def add_trans(hold_id, buyer_id):
   """ Add a new transction for the hold
 
   Args:
     hold_id(int): hold id (tbHolds)
     buyer_id(int): buyer id (tbVendors)
+
+  Returns:
+    boolean
   """
   try:
     engine = create_engine(DB, echo=False)
@@ -112,18 +127,21 @@ def add_transaction(hold_id, buyer_id):
           state=TransState.PENDING.value , parent_trans_id=hold.last_trans_id)
     hold.is_pending = True
     session.commit()
+    return True
   except Exception as e:
-    print('exeption: ' + e)
+    print('exeption: {}'.format(e))
     raise e
   finally:
     session.close()
     engine.dispose()
 
-def confirm_transaction(hold_id):
+def confirm_trans(hold_id):
   """ Confirm a pending sale (update both tbTransactions and tbHolds)
 
   Args:
     hold_id(int): hold id (tbHolds)
+  Returns:
+    boolean
   """
   try:
     engine = create_engine(DB, echo=False)
@@ -138,6 +156,7 @@ def confirm_transaction(hold_id):
     hold.holder_id = hold.last_trans.buyer_id
     hold.is_pending = False
     session.commit()
+    return True
   except Exception as e:
     print('exeption: ' + e)
     raise e
