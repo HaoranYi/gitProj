@@ -1,11 +1,20 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div class="container-fluid" style="text-align:center">
+  <select required [(ngModel)]='selectedVendor' (ngModelChange)="selectVendor($event)">
+    <option *ngFor="let v of vendors" value= {{v}}>
+      {{v}}
+    </option>
+  </select>
+
   <h1>
     <div class="btn-group" class="text-right">
       <button *ngFor="let lang of supportedLangs" (click)="selectLang(lang.value)" class="btn btn-default" [class.btn-primary]="isCurrentLang(lang.value)"> {{ lang.display }} </button>
     </div>
     {{'Welcome to' | translate}} xTrack
   </h1>
+  {{selectedVendor}}
+  <app-track [vendor]="selectedVendor"></app-track>
+<!--
   <div class="row flex row">
     <div class="col-xs-3">
       <div class="panel panel-primary">
@@ -31,4 +40,5 @@
       <h4><router-outlet></router-outlet></h4>
     </div>
   </div>
+-->
 </div>

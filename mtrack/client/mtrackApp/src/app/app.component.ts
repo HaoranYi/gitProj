@@ -11,6 +11,8 @@ export class AppComponent implements OnInit {
   title = 'mTrack';
   public translatedText: string;
   public supportedLangs: any[];
+  public selectedVendor: string;
+  public vendors: any[];
 
   constructor(private _translate: TranslateService) { }
 
@@ -20,6 +22,14 @@ export class AppComponent implements OnInit {
       { display: '中文', value: 'zh' },
       { display: 'English', value: 'en' },
     ];
+
+    this.vendors = [
+      'Vendor_A',
+      'Vendor_B',
+      'Vendor_C'
+    ];
+
+    this.selectedVendor = 'Vendor_A';
 
     // set current langage
     this.selectLang('zh');
@@ -39,5 +49,9 @@ export class AppComponent implements OnInit {
   refreshText() {
     // refresh translation when language change
     this.translatedText = this._translate.instant('hello world');
+  }
+
+  selectVendor(vendor: string) {
+    console.log(vendor);
   }
 }

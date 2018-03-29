@@ -1,0 +1,71 @@
+<div class="panel panel-primary"style="text-align:left">
+  <div class="panel-heading">
+    {{ title | translate }}
+  </div>
+  <div class="panel-body">
+    <div *ngFor="let x of medicines">
+
+      <div *ngIf="x.pending">
+        <div class="alert alert-warning" role="alert">
+          <div class="row">
+            {{ x.name }} (pending)
+            <div class="btn-group" class="text-right">
+              <button (click)="sell(x.name)" [disabled]="x.pending" class="btn btn-primary">{{ 'Sell' | translate }}</button>
+              <button (click)="track(x.name)" class="btn btn-primary">{{ 'track' | translate }}</button>
+            </div>
+          </div>
+        </div> <!--end of alert -->
+      </div> <!--end of ngif pending-->
+
+      <div *ngIf="!x.pending">
+        <div class="alert alert-success" role="alert">
+          <div class="row">
+            {{ x.name }}
+            <div class="btn-group" class="text-right">
+              <button (click)="sell(x.name)" [disabled]="x.pending" class="btn btn-primary">{{ 'Sell' | translate }}</button>
+              <button (click)="track(x.name)" class="btn btn-primary">{{ 'track' | translate }}</button>
+            </div>
+          </div>
+        </div> <!--end of alert -->
+      </div> <!--end of ngIf not pending-->
+    </div> <!-- end of ngFor -->
+  </div>
+
+  <div class="panel-heading"> {{ 'To confirm' | translate }}</div>
+  <div class="panel-body">
+    <div *ngFor="let x of pendings">
+      <div class="alert alert-success" role="alert">
+        <div class="row">
+          {{ x.name }}
+          <div class="btn-group" class="text-right">
+            <button (click)="do_confirm(x.name)" [disabled]="x.confirmed" class="btn btn-primary">{{ 'Confirm' | translate }}</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel-heading"> {{ 'Transactions History' | translate }}</div>
+  <div class="panel-body">
+    {{transactions}}
+    <table class="table">
+      <tr>
+        <th *ngFor="let col of trans_column_names">
+          {{col}}
+        </th>
+      </tr>
+
+      <tr *ngFor="let x of transactions" [ngClass]="x.pending ? 'alert-success' : 'alert-warning'" role="alert">
+          <td *ngFor="let col of trans_columns">
+            {{x[col]}}
+          </td>
+          <td>
+            <div *ngIf="x.pending"> {{'Pending' | translate}} </div>
+            <div *ngIf="!x.pending"> {{'Confirmed' | translate}} </div>
+          </td>
+      </tr>
+
+    </table>
+  </div>
+</div>
+
