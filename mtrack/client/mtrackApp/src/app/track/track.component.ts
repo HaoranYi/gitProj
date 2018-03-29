@@ -16,8 +16,8 @@ export class TrackComponent implements OnInit {
   public transactions: any[];
   public pendings: any[];
 
-  public trans_column_names = ["Name", "Seller", "Buyer", "State"];
-  public trans_columns = ["name", "seller", "buyer"];
+  public trans_column_names = ["Name", "Seller", "Buyer", "Date", "State"];
+  public trans_columns = ["name", "seller", "buyer", "date"];
 
   constructor() {
     this.medicines = [
@@ -26,8 +26,8 @@ export class TrackComponent implements OnInit {
     ];
 
     this.transactions = [
-      { name: "MedA", seller: "VendorA", buyer: "VendorB", pending: false },
-      { name: "MedA", seller: "VendorB", buyer: "VendorC", pending: true},
+      { name: "MedA", seller: "VendorB", buyer: "VendorC", date: '2018-01-02' pending: true},
+      { name: "MedA", seller: "VendorA", buyer: "VendorB", date: '2018-01-01', pending: false },
     ];
 
     this.pendings = [
