@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from './translate';
+import { VendorService } from './vendor.service';
 
 
 @Component({
@@ -14,7 +15,7 @@ export class AppComponent implements OnInit {
   public selectedVendor: string;
   public vendors: any[];
 
-  constructor(private _translate: TranslateService) { }
+  constructor(private _translate: TranslateService, private vendorSvc: VendorService) { }
 
   ngOnInit() {
     // standing data
@@ -53,5 +54,6 @@ export class AppComponent implements OnInit {
 
   selectVendor(vendor: string) {
     console.log(vendor);
+    this.vendorSvc.changeVendor(vendor);
   }
 }

@@ -9,11 +9,15 @@ import { SignComponent } from './sign/sign.component';
 import { VerifyComponent } from './verify/verify.component';
 import { AppRoutingModule } from './/app-routing.module';
 import { XsignService } from './xsign.service';
+import { VendorService } from './vendor.service';
 
 import { ChainComponent } from './chain/chain.component';
 
 import { TRANSLATION_PROVIDERS, TranslatePipe, TranslateService } from './translate';
 import { TrackComponent } from './track/track.component';
+import { SellComponent } from './sell/sell.component';
+import { ConfirmComponent } from './confirm/confirm.component';
+import { HistoryComponent } from './history/history.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +26,10 @@ import { TrackComponent } from './track/track.component';
     SignComponent,
     VerifyComponent,
     ChainComponent,
-    TrackComponent
+    TrackComponent,
+    SellComponent,
+    ConfirmComponent,
+    HistoryComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +39,7 @@ import { TrackComponent } from './track/track.component';
     FormsModule
 
   ],
-  providers: [XsignService, TRANSLATION_PROVIDERS, TranslateService],
+  providers: [XsignService, VendorService, TRANSLATION_PROVIDERS, TranslateService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
