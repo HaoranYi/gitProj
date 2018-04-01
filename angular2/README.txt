@@ -140,3 +140,10 @@ category of operations:
     - mulitcasting (with subject)
     - utility operations
     - aggregate operations
+
+
+Routing in angular 4
+  - define RouteMap which map url to component
+  - <route-outlet> element is where the router component are shown
+  - <route-link> link in html to link to the router component
+  - use router.navigate() in code to navigate to the route component
