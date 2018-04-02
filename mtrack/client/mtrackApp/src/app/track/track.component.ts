@@ -51,6 +51,7 @@ export class TrackComponent implements OnInit {
 
   do_confirm(name:string):void {
     console.log('do_confirm ' + name);
+    this.router.navigate(['/confirm',  { id: 1, name: name, seller:this.vendor, date:'2018-01-01' } ]);
   }
 
   ngOnInit() {

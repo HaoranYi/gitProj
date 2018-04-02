@@ -1,3 +1,25 @@
-<p>
-  confirm works!
-</p>
+<div class="panel panel-primary"style="text-align:left">
+  <div class="panel-heading">
+    {{ title | translate }} {{name}}
+  </div>
+  <div class="panel-body">
+    <form [formGroup]="angForm" novalidate>
+      <div class="form-group">
+        <label class="col-xs-4">{{'Medicine' | translate}} </label>
+        <input type="text" class="form-control" [disabled]=true value={{name}}/>
+      </div>
+      <div class="form-group">
+        <label class="col-xs-4">{{ 'Seller' | translate }}</label>
+        <input type="text" class="form-control" [disabled]=true value={{seller}}/>
+      </div>
+      <div class="form-group">
+        <label class="col-xs-4">{{ 'Transaction date' | translate }}</label>
+        <input type="date" class="form-control" [disabled]=true value={{date}} />
+      </div>
+      <div class="form-group" style="text-align:right">
+        <button (click)="confirm()" class="btn btn-primary">{{ 'Confirm' | translate }}</button>
+        <button (click)="cancel()" class="btn btn-primary">{{ 'Cancel' | translate }}</button>
+      </div>
+    </form>
+  </div>
+</div>
