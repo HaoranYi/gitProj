@@ -46,7 +46,7 @@ export class TrackComponent implements OnInit {
 
   track(name:string):void {
     console.log('track ' + name);
-
+    this.router.navigate(['/history',  { id: 1, name: name } ]);
   }
 
   do_confirm(name:string):void {
@@ -57,5 +57,4 @@ export class TrackComponent implements OnInit {
   ngOnInit() {
     this.vendorSvc.currentVendor.subscribe(vendor=> this.vendor= vendor);
   }
-
 }
