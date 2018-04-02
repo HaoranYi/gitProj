@@ -1,16 +1,19 @@
 <div class="panel panel-primary"style="text-align:left">
-    {{vendor}}
   <div class="panel-heading">
     {{ title | translate }}
   </div>
   <div class="panel-body">
 
     <div *ngFor="let x of medicines">
-      <div [ngClass]= "!x.pending ? ' alert-success' : 'alert-warning'">
-        {{ x.name }}  {{x.pending ? "(Pending)":"" }}
-        <div class="btn-group" class="text-right">
-          <button (click)="sell(x.name)" [disabled]="x.pending" class="btn btn-primary">{{ 'Sell' | translate }}</button>
-          <button (click)="track(x.name)" class="btn btn-primary">{{ 'track' | translate }}</button>
+      <div [ngClass]= "!x.pending ? ['alert', 'alert-info'] : ['alert', 'alert-danger']" role="alert">
+        <div class="row">
+          <div class="col-xs-6"> {{ x.name }}  {{x.pending ? "(Pending)":"" }} </div>
+          <div class="col-xs-6">
+            <div class="btn-group" class="text-right">
+              <button (click)="sell(x.name)" [disabled]="x.pending" class="btn btn-primary">{{ 'Sell' | translate }}</button>
+              <button (click)="track(x.name)" class="btn btn-primary">{{ 'track' | translate }}</button>
+            </div>
+          </div>
         </div>
       </div>
     </div><!-- end of ngFor -->
@@ -19,17 +22,19 @@
   <div class="panel-heading"> {{ 'To Confirm' | translate }}</div>
   <div class="panel-body">
     <div *ngFor="let x of pendings">
-      <div class="alert alert-success" role="alert">
+      <div class="alert alert-info" role="alert">
         <div class="row">
-          {{ x.name }}
-          <div class="btn-group" class="text-right">
-            <button (click)="do_confirm(x.name)" [disabled]="x.confirmed" class="btn btn-primary">{{ 'Confirm' | translate }}</button>
+          <div class="col-xs-6"> {{ x.name }} </div>
+          <div class="col-xs-6">
+            <div class="btn-group" class="text-right">
+              <button (click)="do_confirm(x.name)" [disabled]="x.confirmed" class="btn btn-primary">{{ 'Confirm' | translate }}</button>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-
+<!--
   <div class="panel-heading"> {{ 'Transactions History' | translate }}</div>
   <div class="panel-body">
     <table class="table">
@@ -50,5 +55,6 @@
 
     </table>
   </div>
+-->
 </div>
 

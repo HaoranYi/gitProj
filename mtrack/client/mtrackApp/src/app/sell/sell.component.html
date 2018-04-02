@@ -8,9 +8,17 @@
         <label class="col-xs-4">{{'Medicine' | translate}} </label>
         <input type="text" class="form-control" [disabled]=true value={{name}}/>
       </div>
+<!--
       <div class="form-group">
         <label class="col-xs-4">{{ 'Buyer' | translate }}</label>
         <input type="text" class="form-control" formControlName="buyer" #buyer/>
+      </div>
+-->
+      <div class="form-group">
+        <label class="col-xs-4">{{ 'Buyer' | translate }}</label>
+        <select type="text" class="form-control" formControlName="buyer" #buyer >
+          <option *ngFor="let v of vendors" [value]="v">{{v}}</option>
+        </select>
       </div>
       <div *ngIf="angForm.controls['buyer'].invalid && (angForm.controls['buyer'].dirty || angForm.controls['buyer'].touched)" class="alert alert-danger">
         <div *ngIf="angForm.controls['buyer'].errors.required">

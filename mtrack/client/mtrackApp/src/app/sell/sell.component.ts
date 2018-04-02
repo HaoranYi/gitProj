@@ -16,6 +16,8 @@ export class SellComponent implements OnInit, OnDestroy {
   name: string;
   buyer: string;
   private sub: any;
+  public vendors = ["Vendor_A", "Vendor_B", "Vendor_C"];
+
 
   angForm: FormGroup;
 
