@@ -91,6 +91,11 @@ def server_wrapper(fn):
     print('Exception: {}'.format(str(e)))
     return jsonify({'error': str(e)}), 404
 
+@app.route('/vendors', methods=['POST', 'OPTIONS'])
+@crossdomain(origin="*", methods=['POST', 'OPTIONS'], headers="Content-Type, Access-Control-Allow-Headers")
+def get_all_vendors():
+  return server_wrapper(data.get_all_vendors)
+
 
 @app.route('/holds', methods=['POST', 'OPTIONS'])
 @crossdomain(origin="*", methods=['POST', 'OPTIONS'], headers="Content-Type, Access-Control-Allow-Headers")

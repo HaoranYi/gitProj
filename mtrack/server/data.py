@@ -19,6 +19,20 @@ def get_vendor(name):
     session.close()
     engine.dispose()
 
+def get_all_vendors():
+  try:
+    engine = create_engine(DB, echo=False)
+    Session = sessionmaker(bind=engine)
+    session = Session()
+    return [name[0] for name in session.query(Vendor.name)]
+  except Exception as e:
+    print('Exception:{}'.format(e))
+    return None
+  finally:
+    session.close()
+    engine.dispose()
+
+
 def get_holds(name):
   """ return the items that vendor holds (including pending sales)
 
@@ -31,7 +45,7 @@ def get_holds(name):
     engine = create_engine(DB, echo=False)
     Session = sessionmaker(bind=engine)
     session = Session()
-    return [x.medicine.name for x in session.query(Vendor).filter(Vendor.name == name).one().holds]
+    return [{"name":x.medicine.name} for x in session.query(Vendor).filter(Vendor.name == name).one().holds]
   except Exception as e:
     print('Exception:{}'.format(e))
     return None
@@ -49,7 +63,7 @@ def get_pendings(name):
     engine = create_engine(DB, echo=True)
     Session = sessionmaker(bind=engine)
     session = Session()
-    return [(h.id, h.medicine.name) for (v, h, t) in session.query(Vendor, Hold, Transaction).\
+    return [{'id':h.id, 'name': h.medicine.name} for (v, h, t) in session.query(Vendor, Hold, Transaction).\
                       filter(Vendor.name == name).\
                       filter(Vendor.id == Transaction.buyer_id).\
                       filter(Hold.holder_id == Transaction.seller_id).\
@@ -75,7 +89,16 @@ def get_trans_history(medicine_id):
     engine = create_engine(DB, echo=False)
     Session = sessionmaker(bind=engine)
     session = Session()
-    return [repr(t) for t in session.query(Transaction).\
+    return [{ 
+        'id': t.id,
+        'medicine_id':t.medicine_id,
+        'buyer_id':t.buyer_id,
+        'seller_id':t.seller_id,
+        'created':t.created,
+        'last_update':t.last_update,
+        'state': t.state,
+        'parent_trans_id':t.parent_trans_id,
+        } for t in session.query(Transaction).\
                       filter(medicine_id == Transaction.medicine_id).\
                       order_by(Transaction.id.desc()).\
                       all()]
@@ -127,7 +150,7 @@ def add_trans(hold_id, buyer_id):
           state=TransState.PENDING.value , parent_trans_id=hold.last_trans_id)
     hold.is_pending = True
     session.commit()
-    return True
+    return {'result':True}
   except Exception as e:
     print('exeption: {}'.format(e))
     raise e
@@ -156,7 +179,7 @@ def confirm_trans(hold_id):
     hold.holder_id = hold.last_trans.buyer_id
     hold.is_pending = False
     session.commit()
-    return True
+    return {'result':True}
   except Exception as e:
     print('exeption: ' + e)
     raise e

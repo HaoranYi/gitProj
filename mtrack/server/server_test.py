@@ -2,6 +2,13 @@ import requests
 import datetime
 import json
 
+print('-----------------all vendors-----------------------')
+dat = { }
+print(dat)
+r = requests.post('http://localhost:5000/vendors', json=json.dumps(dat))
+print(r.text)
+
+
 print('-----------------holds-----------------------')
 dat = {
     'name': 'Vendor_A',
@@ -33,7 +40,7 @@ dat = {
     'buyer_id': 3
     }
 print(dat)
-r = requests.post('http://localhost:5000/addtrans', json=json.dumps(dat))
+#r = requests.post('http://localhost:5000/addtrans', json=json.dumps(dat))
 print(r.text)
 
 print('-----------------confirmTrans-----------------------')
