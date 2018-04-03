@@ -45,7 +45,7 @@ def get_holds(name):
     engine = create_engine(DB, echo=False)
     Session = sessionmaker(bind=engine)
     session = Session()
-    return [{"name":x.medicine.name} for x in session.query(Vendor).filter(Vendor.name == name).one().holds]
+    return [{"name":x.medicine.name, "m_id":x.medicine.id} for x in session.query(Vendor).filter(Vendor.name == name).one().holds]
   except Exception as e:
     print('Exception:{}'.format(e))
     return None
@@ -63,7 +63,7 @@ def get_pendings(name):
     engine = create_engine(DB, echo=True)
     Session = sessionmaker(bind=engine)
     session = Session()
-    return [{'id':h.id, 'name': h.medicine.name} for (v, h, t) in session.query(Vendor, Hold, Transaction).\
+    return [{'id':h.id, 'name': h.medicine.name, 'm_id':h.medicine.id} for (v, h, t) in session.query(Vendor, Hold, Transaction).\
                       filter(Vendor.name == name).\
                       filter(Vendor.id == Transaction.buyer_id).\
                       filter(Hold.holder_id == Transaction.seller_id).\
@@ -89,15 +89,13 @@ def get_trans_history(medicine_id):
     engine = create_engine(DB, echo=False)
     Session = sessionmaker(bind=engine)
     session = Session()
-    return [{ 
+    return [{
         'id': t.id,
-        'medicine_id':t.medicine_id,
-        'buyer_id':t.buyer_id,
-        'seller_id':t.seller_id,
-        'created':t.created,
-        'last_update':t.last_update,
-        'state': t.state,
-        'parent_trans_id':t.parent_trans_id,
+        'name':t.medicine.name,
+        'buyer':t.buyer.name,
+        'seller':t.seller.name,
+        'date':t.created,
+        'pending': t.state == TransState.PENDING.value
         } for t in session.query(Transaction).\
                       filter(medicine_id == Transaction.medicine_id).\
                       order_by(Transaction.id.desc()).\

@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup,  FormBuilder,  Validators } from '@angular/forms';
 import { XsignService } from '../xsign.service';
 import { VendorService } from '../vendor.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-track',
@@ -13,6 +14,7 @@ export class TrackComponent implements OnInit {
   title = "My Medicine";
   //@Input() vendor: string;
   public vendor: string;
+  public id:number;
 
   public medicines: any[];
   public transactions: any[];
@@ -21,16 +23,16 @@ export class TrackComponent implements OnInit {
   public trans_column_names = ["Name", "Seller", "Buyer", "Date", "State"];
   public trans_columns = ["name", "seller", "buyer", "date"];
 
-  constructor(private router: Router, private vendorSvc: VendorService, private xsignService: XsignService) {
+  constructor(private router: Router, private vendorSvc: VendorService, private xsignService: XsignService, private datepipe: DatePipe) {
     //this.medicines = [
     //  { name: "MedA", pending: false },
     //  { name: "MedB", pending: true },
     //];
 
-    this.transactions = [
-      { name: "MedA", seller: "VendorB", buyer: "VendorC", date: '2018-01-02', pending: true},
-      { name: "MedA", seller: "VendorA", buyer: "VendorB", date: '2018-01-01', pending: false },
-    ];
+    //this.transactions = [
+    //  { name: "MedA", seller: "VendorB", buyer: "VendorC", date: '2018-01-02', pending: true},
+    //   { name: "MedA", seller: "VendorA", buyer: "VendorB", date: '2018-01-01', pending: false },
+    //];
 
     //this.pendings = [
     //  { name: "MedC" , confirmed: false},
@@ -45,14 +47,17 @@ export class TrackComponent implements OnInit {
     this.router.navigate(['/sell',  { id: 1, name: name } ]);
   }
 
-  track(name:string):void {
+  track(name:string, id:number):void {
     console.log('track ' + name);
-    this.router.navigate(['/history',  { id: 1, name: name } ]);
+    this.router.navigate(['/history',  { id: id, name: name } ]);
   }
 
-  do_confirm(name:string):void {
+  do_confirm(name:string, id:number):void {
     console.log('do_confirm ' + name);
-    this.router.navigate(['/confirm',  { id: 1, name: name, seller:this.vendor, date:'2018-01-01' } ]);
+
+    var date = new Date();
+    var d2 = this.datepipe.transform(date,"yyyy-MM-dd");
+    this.router.navigate(['/confirm',  { id: id, name: name, seller:this.vendor, date:d2 }]);
   }
 
   ngOnInit() {

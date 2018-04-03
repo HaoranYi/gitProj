@@ -18,6 +18,7 @@ import { TrackComponent } from './track/track.component';
 import { SellComponent } from './sell/sell.component';
 import { ConfirmComponent } from './confirm/confirm.component';
 import { HistoryComponent } from './history/history.component';
+import {DatePipe} from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,7 @@ import { HistoryComponent } from './history/history.component';
     FormsModule
 
   ],
-  providers: [XsignService, VendorService, TRANSLATION_PROVIDERS, TranslateService],
+  providers: [DatePipe, XsignService, VendorService, TRANSLATION_PROVIDERS, TranslateService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

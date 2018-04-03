@@ -24,10 +24,10 @@ export class HistoryComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, private vendorSvc: VendorService,
     private fb: FormBuilder, private xsignService: XsignService, private router: Router) {
-      this.transactions = [
-      { name: "MedA", seller: "VendorB", buyer: "VendorC", date: '2018-01-02', pending: true},
-      { name: "MedA", seller: "VendorA", buyer: "VendorB", date: '2018-01-01', pending: false },
-    ];
+    //this.transactions = [
+    //  { name: "MedA", seller: "VendorB", buyer: "VendorC", date: '2018-01-02', pending: true},
+    //  { name: "MedA", seller: "VendorA", buyer: "VendorB", date: '2018-01-01', pending: false },
+    //];
 
 
   }

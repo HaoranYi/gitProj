@@ -48,12 +48,14 @@ export class ConfirmComponent implements OnInit {
     this.sub.unsubscribe();
   }
 
-  confirm(buyer:string, date:string):void{
+  confirm():void{
     console.log(this.name);
     console.log(this.seller);
     console.log(this.buyer);
-    console.log(date);
-    this.router.navigate(['/']);
+    this.xsignService.confirm_transactions(this.id).subscribe(result => {
+      console.log(result);
+      this.router.navigate(['/']);
+    });
   }
 
   cancel():void {
