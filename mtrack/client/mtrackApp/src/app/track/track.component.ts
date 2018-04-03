@@ -21,21 +21,22 @@ export class TrackComponent implements OnInit {
   public trans_column_names = ["Name", "Seller", "Buyer", "Date", "State"];
   public trans_columns = ["name", "seller", "buyer", "date"];
 
-  constructor(private router: Router, private vendorSvc: VendorService) {
-    this.medicines = [
-      { name: "MedA", pending: false },
-      { name: "MedB", pending: true },
-    ];
+  constructor(private router: Router, private vendorSvc: VendorService, private xsignService: XsignService) {
+    //this.medicines = [
+    //  { name: "MedA", pending: false },
+    //  { name: "MedB", pending: true },
+    //];
 
     this.transactions = [
       { name: "MedA", seller: "VendorB", buyer: "VendorC", date: '2018-01-02', pending: true},
       { name: "MedA", seller: "VendorA", buyer: "VendorB", date: '2018-01-01', pending: false },
     ];
 
-    this.pendings = [
-      { name: "MedC" , confirmed: false},
-      { name: "MedD" , confirmed: false},
-    ];
+    //this.pendings = [
+    //  { name: "MedC" , confirmed: false},
+    //  { name: "MedD" , confirmed: false},
+    //];
+
 
   }
 
@@ -55,6 +56,11 @@ export class TrackComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.vendorSvc.currentVendor.subscribe(vendor=> this.vendor= vendor);
+    this.vendorSvc.currentVendor.subscribe(vendor=>
+      {
+        this.vendor = vendor;
+        this.xsignService.get_holds(this.vendor).subscribe(result => { console.log(result); this.medicines=result });
+        this.xsignService.get_pendings(this.vendor).subscribe(result => { console.log(result); this.pendings=result });
+      });
   }
 }

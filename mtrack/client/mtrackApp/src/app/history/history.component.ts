@@ -36,6 +36,7 @@ export class HistoryComponent implements OnInit {
     this.sub = this.route.params.subscribe(params => {
       this.id = +params['id'];
       this.name = params['name'];
+      this.xsignService.get_transactions(this.id).subscribe(result => { console.log(result); this.transactions =result });
     });
     this.vendorSvc.currentVendor.subscribe(vendor=> this.vendor= vendor);
   }
