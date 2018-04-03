@@ -37,6 +37,12 @@ export class XsignService {
     return this.http.post<VerifyResult>(environment.apiUri+'/verify', JSON.stringify(data),  { headers: httpOptions.headers });
   }
 
+
+  get_vendor_id(vendor:string): Observable<number> {
+    const data = { 'name': vendor };
+    return this.http.post<number>(environment.apiUri+'/vendorid', JSON.stringify(data),  { headers: httpOptions.headers });
+  }
+
   get_all_vendors(): Observable<string[]> {
     const data = { };
     return this.http.post<string[]>(environment.apiUri+'/vendors', JSON.stringify(data),  { headers: httpOptions.headers });

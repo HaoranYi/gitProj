@@ -12,6 +12,7 @@ export interface VerifyResult {
 export interface Hold {
   m_id: number
   name: string;
+  pending:boolean;
 };
 
 export interface Pending {

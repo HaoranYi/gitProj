@@ -15,6 +15,7 @@ export class SellComponent implements OnInit, OnDestroy {
   id: number;
   name: string;
   buyer: string;
+  date: string;
   private sub: any;
   public vendors:string[];
 
@@ -26,19 +27,20 @@ export class SellComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
-      this.id = +params['id'];
+      this.id = +params['id']; // hold_id
       this.name = params['name'];
+      this.date = params['date'];
     });
     this.vendorSvc.currentVendor.subscribe(vendor=> this.vendor= vendor);
-    this.createForm();
     this.xsignService.get_all_vendors().subscribe(result => this.vendors=result);
+    this.createForm();
   }
 
   // TODO: make it a dynamic form
   createForm() {
     this.angForm = this.fb.group({
       buyer: ['', Validators.required ],
-      date: ['', Validators.required ]
+      date: [this.date, Validators.required ]
    });
   }
 
@@ -52,7 +54,16 @@ export class SellComponent implements OnInit, OnDestroy {
     console.log(this.name);
     console.log(buyer);
     console.log(date);
-    this.router.navigate(['/']);
+
+    this.xsignService.get_vendor_id(buyer).subscribe(buyer_id => {
+      console.log(this.id);
+      console.log(buyer_id);
+      this.xsignService.add_transactions(this.id, buyer_id).subscribe(result => {
+        console.log(result);
+        this.router.navigate(['/']);
+      });
+    });
+
   }
 
   cancel():void {

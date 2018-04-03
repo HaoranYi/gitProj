@@ -19,6 +19,21 @@ def get_vendor(name):
     session.close()
     engine.dispose()
 
+
+def get_vendor_id(name):
+  try:
+    engine = create_engine(DB, echo=False)
+    Session = sessionmaker(bind=engine)
+    session = Session()
+    return session.query(Vendor).filter(Vendor.name == name).one().id
+  except Exception as e:
+    print('can not find vendor {}'.format(name))
+    return None
+  finally:
+    session.close()
+    engine.dispose()
+
+
 def get_all_vendors():
   try:
     engine = create_engine(DB, echo=False)
@@ -45,7 +60,7 @@ def get_holds(name):
     engine = create_engine(DB, echo=False)
     Session = sessionmaker(bind=engine)
     session = Session()
-    return [{"name":x.medicine.name, "m_id":x.medicine.id} for x in session.query(Vendor).filter(Vendor.name == name).one().holds]
+    return [{"name":x.medicine.name, "m_id":x.medicine.id, "pending":x.is_pending} for x in session.query(Vendor).filter(Vendor.name == name).one().holds]
   except Exception as e:
     print('Exception:{}'.format(e))
     return None

@@ -44,7 +44,9 @@ export class TrackComponent implements OnInit {
 
   sell(name:string):void {
     console.log('sell ' + name);
-    this.router.navigate(['/sell',  { id: 1, name: name } ]);
+    var date = new Date();
+    var d2 = this.datepipe.transform(date,"yyyy-MM-dd");
+    this.router.navigate(['/sell',  { id: 1, name: name, date:d2 } ]);
   }
 
   track(name:string, id:number):void {
