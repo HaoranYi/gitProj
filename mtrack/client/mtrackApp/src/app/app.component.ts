@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from './translate';
 import { VendorService } from './vendor.service';
+import { XsignService } from './xsign.service';
 
 
 @Component({
@@ -13,9 +14,9 @@ export class AppComponent implements OnInit {
   public translatedText: string;
   public supportedLangs: any[];
   public selectedVendor: string;
-  public vendors: any[];
+  public vendors: string[];
 
-  constructor(private _translate: TranslateService, private vendorSvc: VendorService) { }
+  constructor(private _translate: TranslateService, private vendorSvc: VendorService, private xsignService: XsignService) { }
 
   ngOnInit() {
     // standing data
@@ -24,13 +25,14 @@ export class AppComponent implements OnInit {
       { display: 'English', value: 'en' },
     ];
 
-    this.vendors = [
-      'Vendor_A',
-      'Vendor_B',
-      'Vendor_C'
-    ];
+    //this.vendors = [
+    //  'Vendor_A',
+    //  'Vendor_B',
+    //  'Vendor_C'
+    //];
 
     this.selectedVendor = 'Vendor_A';
+    this.xsignService.get_all_vendors().subscribe(result => this.vendors=result);
 
     // set current langage
     this.selectLang('zh');

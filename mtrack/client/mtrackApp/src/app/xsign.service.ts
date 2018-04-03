@@ -5,7 +5,7 @@ import { environment } from '../environments/environment';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import {BlockData } from './block-data';
 import {SignResult, VerifyResult} from './server-response'
-import {Hold, Pending, Transaction} from './server-response'
+import {Hold, Pending, Transaction, ActionResult} from './server-response'
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -38,22 +38,22 @@ export class XsignService {
   }
 
   get_all_vendors(): Observable<string[]> {
-    const data = { }; 
+    const data = { };
     return this.http.post<string[]>(environment.apiUri+'/vendors', JSON.stringify(data),  { headers: httpOptions.headers });
   }
 
   get_holds(vendor:string): Observable<Hold[]> {
-    const data = { 'name': vendor }; 
+    const data = { 'name': vendor };
     return this.http.post<Hold[]>(environment.apiUri+'/holds', JSON.stringify(data),  { headers: httpOptions.headers });
   }
 
   get_pendings(vendor:string): Observable<Pending[]> {
-    const data = { 'name': vendor }; 
+    const data = { 'name': vendor };
     return this.http.post<Pending[]>(environment.apiUri+'/pendings', JSON.stringify(data),  { headers: httpOptions.headers });
   }
 
   get_transactions(id:number): Observable<Transaction[]> {
-    const data = { 'medicine_id': id}; 
+    const data = { 'medicine_id': id};
     return this.http.post<Transaction[]>(environment.apiUri+'/transhistory', JSON.stringify(data),  { headers: httpOptions.headers });
   }
 

@@ -16,7 +16,7 @@ export class SellComponent implements OnInit, OnDestroy {
   name: string;
   buyer: string;
   private sub: any;
-  public vendors = ["Vendor_A", "Vendor_B", "Vendor_C"];
+  public vendors:string[];
 
 
   angForm: FormGroup;
@@ -31,6 +31,7 @@ export class SellComponent implements OnInit, OnDestroy {
     });
     this.vendorSvc.currentVendor.subscribe(vendor=> this.vendor= vendor);
     this.createForm();
+    this.xsignService.get_all_vendors().subscribe(result => this.vendors=result);
   }
 
   // TODO: make it a dynamic form
