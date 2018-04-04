@@ -147,3 +147,13 @@ Routing in angular 4
   - <route-outlet> element is where the router component are shown
   - <route-link> link in html to link to the router component
   - use router.navigate() in code to navigate to the route component
+
+services in angular 4
+  - create the service
+      @injectable
+  - register the service
+      providers: [...]
+        - module level: available to all components
+        - component level
+  - injiect the service and use
+      through constructor and the call the method on the service to get data
