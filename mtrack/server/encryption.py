@@ -18,3 +18,6 @@ def decrypt(vendor, obj):
   r = key.decrypt(obj)
   return (r[:32], r[32:])
 
+def encrypt_s(vendor, s='mysecret'):
+  key = RSA.importKey(vendor.pubkey)
+  return key.encrypt(vendor.uniqid.encode() + s, 32)

@@ -3,6 +3,9 @@ from sqlalchemy.orm import sessionmaker
 from model import Vendor, Medicine, Transaction, Hold
 import datetime
 from trans_state import TransState
+import encryption
+import random
+
 
 DB = 'sqlite:///database.db'
 
@@ -110,7 +113,8 @@ def get_trans_history(medicine_id):
         'buyer':t.buyer.name,
         'seller':t.seller.name,
         'date':t.created,
-        'pending': t.state == TransState.PENDING.value
+        'pending': t.state == TransState.PENDING.value,
+        'secret': t.secret,
         } for t in session.query(Transaction).\
                       filter(medicine_id == Transaction.medicine_id).\
                       order_by(Transaction.id.desc()).\
@@ -194,11 +198,89 @@ def confirm_trans(hold_id):
     session.commit()
     return {'result':True}
   except Exception as e:
-    print('exeption: ' + e)
+    print('exeption:{}'.format(e))
     raise e
   finally:
     session.close()
     engine.dispose()
 
+## encryption
+
+def add_trans_encrypt(hold_id, buyer_id):
+  """ Add a new transction for the hold
+
+  Args:
+    hold_id(int): hold id (tbHolds)
+    buyer_id(int): buyer id (tbVendors)
+
+  Returns:
+    boolean
+  """
+  try:
+    engine = create_engine(DB, echo=False)
+    Session = sessionmaker(bind=engine)
+    session = Session()
+    hold = session.query(Hold).filter(Hold.id == hold_id).one()
+    seller = session.query(Vendor).filter(Vendor.id == buyer_id).one()
+    secret = ''.join(random.sample('abcdefghijklmnopqrstuvwxyz', 5))
+    enc_data = encryption.encrypt_s(seller, secret.encode())
+    if hold.is_pending:
+      raise Exception('pending transactions.')
+    if buyer_id == hold.holder_id:
+      raise Exception('same buyer and seller.')
+    # Add transaction
+    hold.last_trans = Transaction(medicine_id=hold.medicine_id, seller_id=hold.holder_id, buyer_id=buyer_id,
+          created=datetime.datetime.now(), last_update=datetime.datetime.now(),
+          state=TransState.PENDING.value , parent_trans_id=hold.last_trans_id,
+          secret=secret.encode())
+    hold.is_pending = True
+    session.commit()
+    return {'result':True, 'enc':enc_data}
+  except Exception as e:
+    print('exeption: {}'.format(e))
+    raise e
+  finally:
+    session.close()
+    engine.dispose()
+
+
+
+def confirm_trans_decrypt(hold_id, enc_data):
+  """ Confirm a pending sale (update both tbTransactions and tbHolds)
+
+  Args:
+    hold_id(int): hold id (tbHolds)
+  Returns:
+    boolean
+  """
+  try:
+    engine = create_engine(DB, echo=False)
+    Session = sessionmaker(bind=engine)
+    session = Session()
+    hold = session.query(Hold).filter(Hold.id == hold_id).one()
+    if not hold.is_pending:
+      raise Exception('not a pending transactions.')
+
+    buyer = hold.last_trans.buyer
+    (r1, r2) = encryption.decrypt(buyer, enc_data)
+    if r1 != buyer.uniqid.encode():
+      print(r1, buyer.uniqid.encode())
+      raise Exception('unmatched buyer id')
+    if r2 != hold.last_trans.secret:
+      print(r2, hold.last_trans.secret)
+      raise Exception('unmatched secret')
+    # Add transaction
+    hold.last_trans.state = TransState.CONFIRMED
+    hold.last_trans.last_update = datetime.datetime.now()
+    hold.holder_id = hold.last_trans.buyer_id
+    hold.is_pending = False
+    session.commit()
+    return {'result':True}
+  except Exception as e:
+    print('exeption:{0}'.format(e))
+    raise e
+  finally:
+    session.close()
+    engine.dispose()
 
 

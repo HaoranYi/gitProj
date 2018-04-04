@@ -50,6 +50,7 @@ class Transaction(Base):
   last_update = Column(DateTime)
   state = Column(Integer)  ## see TransState (trans_state.py)
   parent_trans_id = Column(Integer)
+  secret = Column(String)
 
   seller = relationship("Vendor", foreign_keys="Transaction.seller_id", back_populates='sell_transactions')
   buyer = relationship("Vendor", foreign_keys="Transaction.buyer_id", back_populates='buy_transactions')
@@ -57,9 +58,9 @@ class Transaction(Base):
 
   def __repr__(self):
     return "<transaction(id='%d', medicine_id='%d', buyer_id='%d',"       \
-      "seller_id=%d, careted=%s, laste_updated=%s, state=%s, parent_trans_id=%d)>" %(self.id, \
+      "seller_id=%d, created=%s, laste_updated=%s, state=%s, parent_trans_id=%d, secret=%s)>" %(self.id, \
           self.medicine_id, self.buyer_id, self.seller_id, self.created,  \
-          self.last_update, self.state, self.parent_trans_id)
+          self.last_update, self.state, self.parent_trans_id, self.secret)
 
 class Hold(Base):
   __tablename__ = 'tbHolds'
