@@ -72,6 +72,8 @@ class Hold(Base):
   #created = Column(DateTime)
   #last_update = Column(DateTime)
   is_pending = Column(Boolean)
+  enc_data = Column(String)
+
 
   last_trans = relationship("Transaction")
   medicine = relationship("Medicine", back_populates='holds')

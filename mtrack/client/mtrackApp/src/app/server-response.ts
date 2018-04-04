@@ -32,5 +32,6 @@ export interface Transaction {
 
 export interface ActionResult {
   result: boolean;
+  data?:any;
 };
 

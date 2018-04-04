@@ -114,7 +114,7 @@ def get_trans_history(medicine_id):
         'seller':t.seller.name,
         'date':t.created,
         'pending': t.state == TransState.PENDING.value,
-        'secret': t.secret,
+        'secret': t.secret if isinstance(t.secret, str) else t.secret.decode(),
         } for t in session.query(Transaction).\
                       filter(medicine_id == Transaction.medicine_id).\
                       order_by(Transaction.id.desc()).\
@@ -234,8 +234,9 @@ def add_trans_encrypt(hold_id, buyer_id):
           state=TransState.PENDING.value , parent_trans_id=hold.last_trans_id,
           secret=secret.encode())
     hold.is_pending = True
+    hold.enc_data = b''.join(enc_data)
     session.commit()
-    return {'result':True, 'enc':enc_data}
+    return {'result':True}
   except Exception as e:
     print('exeption: {}'.format(e))
     raise e
@@ -245,7 +246,7 @@ def add_trans_encrypt(hold_id, buyer_id):
 
 
 
-def confirm_trans_decrypt(hold_id, enc_data):
+def confirm_trans_decrypt(hold_id):
   """ Confirm a pending sale (update both tbTransactions and tbHolds)
 
   Args:
@@ -262,7 +263,7 @@ def confirm_trans_decrypt(hold_id, enc_data):
       raise Exception('not a pending transactions.')
 
     buyer = hold.last_trans.buyer
-    (r1, r2) = encryption.decrypt(buyer, enc_data)
+    (r1, r2) = encryption.decrypt(buyer, hold.enc_data)
     if r1 != buyer.uniqid.encode():
       print(r1, buyer.uniqid.encode())
       raise Exception('unmatched buyer id')

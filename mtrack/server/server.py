@@ -121,12 +121,12 @@ def get_trans_history():
 @app.route('/addtrans', methods=['POST', 'OPTIONS'])
 @crossdomain(origin="*", methods=['POST', 'OPTIONS'], headers="Content-Type, Access-Control-Allow-Headers")
 def add_trans():
-  return server_wrapper(data.add_trans)
+  return server_wrapper(data.add_trans_encrypt)
 
 @app.route('/confirmtrans', methods=['POST', 'OPTIONS'])
 @crossdomain(origin="*", methods=['POST', 'OPTIONS'], headers="Content-Type, Access-Control-Allow-Headers")
 def confirm_trans():
-  return server_wrapper(data.confirm_trans)
+  return server_wrapper(data.confirm_trans_decrypt)
 
 
 if __name__ == '__main__':
