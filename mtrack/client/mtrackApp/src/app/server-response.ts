@@ -35,3 +35,7 @@ export interface ActionResult {
   data?:any;
 };
 
+export interface EncryptData {
+  data:string;
+};
+

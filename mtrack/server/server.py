@@ -128,6 +128,13 @@ def add_trans():
 def confirm_trans():
   return server_wrapper(data.confirm_trans_decrypt)
 
+@app.route('/encrdata', methods=['POST', 'OPTIONS'])
+@crossdomain(origin="*", methods=['POST', 'OPTIONS'], headers="Content-Type, Access-Control-Allow-Headers")
+def get_encrypt_data():
+  return server_wrapper(data.get_encrypt_data)
+
+
+
 
 if __name__ == '__main__':
   from argparse import ArgumentParser

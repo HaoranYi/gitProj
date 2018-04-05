@@ -15,8 +15,16 @@ from data import *
 
 #confirm_trans(1)
 
-x = add_trans_encrypt(1,1)
-print(x)
+#x = add_trans_encrypt(1,1)
+#print(x)
+#
+#y=confirm_trans_decrypt(1)
+#print(y)
 
-y=confirm_trans_decrypt(1)
+z = get_encrypt_data(1)
+print(z)
+
+y=confirm_trans_decrypt(1, z['data'])
 print(y)
+
+

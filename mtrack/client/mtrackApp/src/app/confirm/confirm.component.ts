@@ -17,6 +17,7 @@ export class ConfirmComponent implements OnInit {
   buyer: string;
   date: string;
   id: number;
+  encr_data: string;
   private sub: any;
 
   angForm: FormGroup;
@@ -30,6 +31,7 @@ export class ConfirmComponent implements OnInit {
       this.name = params['name'];
       this.date = params['date'];
       this.seller= params['seller'];
+      this.encr_data = params['data'];
     });
     this.vendorSvc.currentVendor.subscribe(vendor=> this.buyer= vendor);
     this.createForm();
@@ -52,7 +54,7 @@ export class ConfirmComponent implements OnInit {
     console.log(this.name);
     console.log(this.seller);
     console.log(this.buyer);
-    this.xsignService.confirm_transactions(this.id).subscribe(result => {
+    this.xsignService.confirm_transactions(this.id, this.encr_data).subscribe(result => {
       console.log(result);
       this.router.navigate(['/']);
     });

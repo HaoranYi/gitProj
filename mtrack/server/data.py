@@ -5,6 +5,7 @@ import datetime
 from trans_state import TransState
 import encryption
 import random
+import binascii
 
 
 DB = 'sqlite:///database.db'
@@ -246,7 +247,7 @@ def add_trans_encrypt(hold_id, buyer_id):
 
 
 
-def confirm_trans_decrypt(hold_id):
+def confirm_trans_decrypt(hold_id, data=None):
   """ Confirm a pending sale (update both tbTransactions and tbHolds)
 
   Args:
@@ -263,7 +264,11 @@ def confirm_trans_decrypt(hold_id):
       raise Exception('not a pending transactions.')
 
     buyer = hold.last_trans.buyer
-    (r1, r2) = encryption.decrypt(buyer, hold.enc_data)
+    if not data:
+      enc_data = hold.enc_data
+    else:
+      enc_data = binascii.unhexlify(data)
+    (r1, r2) = encryption.decrypt(buyer, enc_data)
     if r1 != buyer.uniqid.encode():
       print(r1, buyer.uniqid.encode())
       raise Exception('unmatched buyer id')
@@ -277,6 +282,20 @@ def confirm_trans_decrypt(hold_id):
     hold.is_pending = False
     session.commit()
     return {'result':True}
+  except Exception as e:
+    print('exeption:{0}'.format(e))
+    raise e
+  finally:
+    session.close()
+    engine.dispose()
+
+def get_encrypt_data(hold_id):
+  try:
+    engine = create_engine(DB, echo=False)
+    Session = sessionmaker(bind=engine)
+    session = Session()
+    hold = session.query(Hold).filter(Hold.id == hold_id).one()
+    return { 'data': binascii.hexlify(hold.enc_data).decode() }
   except Exception as e:
     print('exeption:{0}'.format(e))
     raise e

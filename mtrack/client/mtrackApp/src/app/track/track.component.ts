@@ -59,7 +59,11 @@ export class TrackComponent implements OnInit {
 
     var date = new Date();
     var d2 = this.datepipe.transform(date,"yyyy-MM-dd");
-    this.router.navigate(['/confirm',  { id: id, name: name, seller:this.vendor, date:d2 }]);
+    this.xsignService.get_encrypt_data(id).subscribe(result =>
+      {
+        console.log(result);
+        this.router.navigate(['/confirm',  { id: id, name: name, seller:this.vendor, date:d2, data: result.data }]);
+      });
   }
 
   ngOnInit() {

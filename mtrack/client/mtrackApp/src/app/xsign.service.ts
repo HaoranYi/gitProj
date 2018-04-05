@@ -5,7 +5,7 @@ import { environment } from '../environments/environment';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import {BlockData } from './block-data';
 import {SignResult, VerifyResult} from './server-response'
-import {Hold, Pending, Transaction, ActionResult} from './server-response'
+import {Hold, Pending, Transaction, ActionResult, EncryptData} from './server-response'
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -68,8 +68,13 @@ export class XsignService {
     return this.http.post<ActionResult>(environment.apiUri+'/addtrans', JSON.stringify(data),  { headers: httpOptions.headers });
   }
 
-  confirm_transactions(hold_id:number): Observable<ActionResult> {
-    const data = { 'hold_id': hold_id };
+  confirm_transactions(hold_id:number, enc_data:string): Observable<ActionResult> {
+    const data = { 'hold_id': hold_id, 'data': enc_data };
     return this.http.post<ActionResult>(environment.apiUri+'/confirmtrans', JSON.stringify(data),  { headers: httpOptions.headers });
+  }
+
+  get_encrypt_data(hold_id:number): Observable<EncryptData> {
+    const data = { 'hold_id': hold_id };
+    return this.http.post<EncryptData>(environment.apiUri+'/encrdata', JSON.stringify(data),  { headers: httpOptions.headers });
   }
 }
