@@ -155,5 +155,5 @@ services in angular 4
       providers: [...]
         - module level: available to all components
         - component level
-  - injiect the service and use
+  - inject the service and use
       through constructor and the call the method on the service to get data
