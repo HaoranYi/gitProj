@@ -19,6 +19,10 @@ import { SellComponent } from './sell/sell.component';
 import { ConfirmComponent } from './confirm/confirm.component';
 import { HistoryComponent } from './history/history.component';
 import {DatePipe} from '@angular/common';
+import { AdministratorComponent } from './administrator/administrator.component';
+import { ManufacturerComponent } from './manufacturer/manufacturer.component';
+import { DealerComponent } from './dealer/dealer.component';
+import { ConsumerComponent } from './consumer/consumer.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +34,11 @@ import {DatePipe} from '@angular/common';
     TrackComponent,
     SellComponent,
     ConfirmComponent,
-    HistoryComponent
+    HistoryComponent,
+    AdministratorComponent,
+    ManufacturerComponent,
+    DealerComponent,
+    ConsumerComponent
   ],
   imports: [
     BrowserModule,
