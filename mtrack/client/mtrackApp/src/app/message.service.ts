@@ -6,7 +6,7 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 @Injectable()
 export class MessageService {
   private messageSource = new BehaviorSubject<string>("");
-  public currentMessage = this.vendorSource.asObservable();
+  public currentMessage = this.messageSource.asObservable();
 
   constructor() { }
 
