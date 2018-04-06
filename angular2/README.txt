@@ -157,3 +157,19 @@ services in angular 4
         - component level
   - inject the service and use
       through constructor and the call the method on the service to get data
+
+Guards in Angualar 4
+  - nothing but logic, code which are executed before the route is loaded or
+    the one is learning the route
+      - CanActivate
+      - CanActivateChild
+      - CanDeactivate (prompt for unsaved changes)
+      - Resolve
+      - CanLoad
+Implement the guard interface, also as an @injectable
+register to the provider
+added to routes table
+
+child route: routes only accessible within other routes
+  - define nested child routes in the route map
+  - use <router-outlet> inside parent html to show child html
