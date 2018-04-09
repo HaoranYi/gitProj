@@ -1,3 +1,30 @@
 <p>
   manufacturer works!
 </p>
+
+<div class="row flex row">
+  <div class="col-xs-3">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3>{{ title | translate }} </h3>
+      </div>
+      <div class="panel-body">
+        <ul class="list-group">
+          <li class="list-group-item">
+          <h4><a routerLink="track"> {{ 'Track product' | translate }}</a></h4>
+          </li>
+          <li class="list-group-item">
+          <h4><a routerLink="sell"> {{ 'Sell product' | translate }}</a></h4>
+          </li>
+          <li class="list-group-item">
+          <h4><a routerLink="history">{{ 'Query product' | translate }}</a></h4>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="col-xs-9">
+    <h4><router-outlet></router-outlet></h4>
+  </div>
+</div>
+

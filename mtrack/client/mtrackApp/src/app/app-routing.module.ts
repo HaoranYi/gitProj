@@ -16,6 +16,7 @@ import { DealerComponent } from './dealer/dealer.component';
 import { ManufacturerComponent } from './manufacturer/manufacturer.component';
 import { ConsumerComponent } from './consumer/consumer.component';
 import { AdministratorComponent } from './administrator/administrator.component';
+import { CertificateComponent } from './certificate/certificate.component';
 
 const routes: Routes = [
   { path: 'sign', component: SignComponent },
@@ -29,10 +30,38 @@ const routes: Routes = [
   { path: 'history', component: HistoryComponent },
 
   { path: 'login', component: LoginComponent },
-  { path: 'dealer', component: DealerComponent },
-  { path: 'consumer', component: ConsumerComponent },
-  { path: 'manufacturer', component: ManufacturerComponent },
-  { path: 'administrator', component: AdministratorComponent },
+  { path: 'dealer', component: DealerComponent,
+    children:[
+      { path: '', redirectTo: 'track', pathMatch: 'full' },
+      { path: 'track', component: TrackComponent },
+      { path: 'sell', component: SellComponent },
+      { path: 'confirm', component: ConfirmComponent },
+      { path: 'history', component: HistoryComponent },
+    ]
+  },
+  { path: 'consumer', component: ConsumerComponent,
+    children:[
+      { path: '', redirectTo: 'track', pathMatch: 'full' },
+      { path: 'track', component: TrackComponent },
+      { path: 'confirm', component: ConfirmComponent },
+      { path: 'history', component: HistoryComponent },
+    ]
+  },
+  { path: 'manufacturer', component: ManufacturerComponent,
+    children:[
+      { path: '', redirectTo: 'track', pathMatch: 'full' },
+      { path: 'track', component: TrackComponent },
+      { path: 'sell', component: SellComponent },
+      { path: 'history', component: HistoryComponent },
+    ]
+  },
+  { path: 'administrator', component: AdministratorComponent,
+    children:[
+      { path: '', redirectTo: 'track', pathMatch: 'full' },
+      { path: 'certificate', component: CertificateComponent },
+      { path: 'track', component: TrackComponent },
+    ]
+  },
 ];
 
 @NgModule({

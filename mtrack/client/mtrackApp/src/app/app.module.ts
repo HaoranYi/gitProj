@@ -24,6 +24,7 @@ import { ManufacturerComponent } from './manufacturer/manufacturer.component';
 import { DealerComponent } from './dealer/dealer.component';
 import { ConsumerComponent } from './consumer/consumer.component';
 import { LoginComponent } from './login/login.component';
+import { CertificateComponent } from './certificate/certificate.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { LoginComponent } from './login/login.component';
     ManufacturerComponent,
     DealerComponent,
     ConsumerComponent,
-    LoginComponent
+    LoginComponent,
+    CertificateComponent
   ],
   imports: [
     BrowserModule,
