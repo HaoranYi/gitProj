@@ -23,6 +23,7 @@ import { AdministratorComponent } from './administrator/administrator.component'
 import { ManufacturerComponent } from './manufacturer/manufacturer.component';
 import { DealerComponent } from './dealer/dealer.component';
 import { ConsumerComponent } from './consumer/consumer.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { ConsumerComponent } from './consumer/consumer.component';
     AdministratorComponent,
     ManufacturerComponent,
     DealerComponent,
-    ConsumerComponent
+    ConsumerComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,34 @@
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    {{ title | translate }}
+  </div>
+  <div class="panel-body" style="text-align:left">
+    <form [formGroup]="angForm" novalidate>
+      <div class="form-group">
+        <label class="col-xs-4">{{'User' | translate}} </label>
+        <input type="text" class="form-control" formControlName="user" #user/>
+      </div>
+      <div *ngIf="angForm.controls['user'].invalid && (angForm.controls['user'].dirty || angForm.controls['user'].touched)" class="alert alert-danger">
+        <div *ngIf="angForm.controls['user'].errors.required">
+          {{ 'User' | translate }}{{ ' is required' | translate }}
+        </div>
+      </div>
+
+
+      <div class="form-group">
+        <label class="col-xs-4">{{'Password' | translate}} </label>
+        <input type="password" class="form-control" formControlName="pwd" #pwd/>
+      </div>
+
+      <div *ngIf="angForm.controls['pwd'].invalid && (angForm.controls['pwd'].dirty || angForm.controls['pwd'].touched)" class="alert alert-danger">
+        <div *ngIf="angForm.controls['pwd'].errors.required">
+          {{ 'Password' | translate }}{{ ' is required' | translate }}
+        </div>
+      </div>
+
+      <div class="form-group" style="text-align:right">
+        <button (click)="signIn(user.value, pwd.value)" [disabled]="angForm.pristine || angForm.invalid" class="btn btn-primary">{{ 'Sign in' | translate }}</button>
+      </div>
+    </form>
+  </div>
+</div>

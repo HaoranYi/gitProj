@@ -11,15 +11,28 @@ import { SellComponent } from './sell/sell.component';
 import { ConfirmComponent } from './confirm/confirm.component';
 import { HistoryComponent } from './history/history.component';
 
+import { LoginComponent } from './login/login.component';
+import { DealerComponent } from './dealer/dealer.component';
+import { ManufacturerComponent } from './manufacturer/manufacturer.component';
+import { ConsumerComponent } from './consumer/consumer.component';
+import { AdministratorComponent } from './administrator/administrator.component';
+
 const routes: Routes = [
   { path: 'sign', component: SignComponent },
   { path: 'verify', component: VerifyComponent },
   { path: 'chain', component: ChainComponent },
+
   { path: '', redirectTo: '/track', pathMatch: 'full'},
   { path: 'track', component: TrackComponent },
   { path: 'sell', component: SellComponent },
   { path: 'confirm', component: ConfirmComponent },
   { path: 'history', component: HistoryComponent },
+
+  { path: 'login', component: LoginComponent },
+  { path: 'dealer', component: DealerComponent },
+  { path: 'consumer', component: ConsumerComponent },
+  { path: 'manufacturer', component: ManufacturerComponent },
+  { path: 'administrator', component: AdministratorComponent },
 ];
 
 @NgModule({
