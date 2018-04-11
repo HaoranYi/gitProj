@@ -13,6 +13,8 @@ Use guard on routes to guard route url on client
 Use jwt token to guard on the server
 Use HttpInterceptor to add jwt token to http header
   >(add "useClass" for service provider)
+Use FakeBackendInterceptor implements HttpInterceptor
+  > add to provider; in client code calls /api/authenticate
 
 use ngForm for two way binding
 
