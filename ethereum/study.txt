@@ -1,0 +1,14 @@
+Ethereum
+
+Blockchain network
+
+smart contracts to efficiently and securely process information in a
+decentralized manner
+
+information held on a blockchain exists as shared and continually reconciled -
+database.
+
+
+https://blockgeeks.com/guides/ethereum/
+
+http://ethdocs.org/en/latest/network/
