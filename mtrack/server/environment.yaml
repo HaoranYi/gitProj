@@ -1,9 +1,0 @@
-name: xsign
-dependencies:
-  - python=3.6
-  - flask
-  - requests
-  - sqlalchemy
-  - pycrypto
-  - pip:
-    - pyqrcode

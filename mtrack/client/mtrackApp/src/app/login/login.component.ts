@@ -11,6 +11,7 @@ import { XsignService } from '../xsign.service';
 export class LoginComponent implements OnInit {
 
   title = "Sign in";
+  roles = ["Administrator", "Manufacturer", "Vendor", "Consumer"];
   angForm: FormGroup;
   result: any;
 
@@ -23,12 +24,14 @@ export class LoginComponent implements OnInit {
     this.angForm = this.fb.group({
       user: ['', Validators.required ],
       pwd: ['', Validators.required ],
+      role: ['', Validators.required],
    });
   }
 
-  signIn(user, pwd) {
+  signIn(user, pwd, role) {
     // TODO
-    console.log(user, pwd);
+    console.log(user, pwd, role);
+    // redirect to different page based on role 
   }
 
   ngOnInit() {
