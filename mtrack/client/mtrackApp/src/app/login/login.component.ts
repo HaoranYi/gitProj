@@ -31,7 +31,21 @@ export class LoginComponent implements OnInit {
   signIn(user, pwd, role) {
     // TODO
     console.log(user, pwd, role);
-    // redirect to different page based on role 
+    if (role == "Administrator"){
+      this.router.navigate(['/administrator', user])
+    } 
+    else if (role == "Manufacturer")
+    {
+      this.router.navigate(['/manufacturer', user])
+    }
+    else if (role == "Vendor")
+    {
+      this.router.navigate(['/vendor', user])
+    }
+    else if (role == "Consumer")
+    {
+      this.router.navigate(['/consumer', user])
+    }
   }
 
   ngOnInit() {
