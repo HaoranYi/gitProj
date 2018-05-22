@@ -1,3 +1,38 @@
 <p>
   certficate works!
 </p>
+
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    {{ title | translate }}
+  </div>
+  <div class="panel-body" style="text-align:left">
+    <form [formGroup]="angForm" novalidate>
+      <div class="form-group">
+        <label class="col-xs-4">{{'Company' | translate}} </label>
+        <input type="text" class="form-control" formControlName="company" #company />
+      </div>
+      <div *ngIf="angForm.controls['company'].invalid && (angForm.controls['company'].dirty || angForm.controls['company'].touched)" class="alert alert-danger">
+        <div *ngIf="angForm.controls['company'].errors.required">
+          {{ 'Company' | translate }}{{ ' is required' | translate }}
+        </div>
+      </div>
+
+
+      <div class="form-group">
+        <label class="col-xs-4">{{'Public Key' | translate}} </label>
+        <input type="text" class="form-control" formControlName="pubkey" #pubkey/>
+      </div>
+
+      <div *ngIf="angForm.controls['pubkey'].invalid && (angForm.controls['pubkey'].dirty || angForm.controls['pubkey'].touched)" class="alert alert-danger">
+        <div *ngIf="angForm.controls['pubkey'].errors.required">
+          {{ 'Public Key' | translate }}{{ ' is required' | translate }}
+        </div>
+      </div>
+
+      <div class="form-group" style="text-align:right">
+        <button (click)="add(company.value, pubkey.value)" [disabled]="angForm.pristine || angForm.invalid" class="btn btn-primary">{{ 'Add' | translate }}</button>
+      </div>
+    </form>
+  </div>
+</div>
