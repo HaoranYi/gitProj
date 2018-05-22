@@ -17,6 +17,7 @@ import { ManufacturerComponent } from './manufacturer/manufacturer.component';
 import { ConsumerComponent } from './consumer/consumer.component';
 import { AdministratorComponent } from './administrator/administrator.component';
 import { CertificateComponent } from './certificate/certificate.component';
+import { MedicineComponent } from './medicine/medicine.component';
 
 const routes: Routes = [
   { path: 'sign', component: SignComponent },
@@ -49,7 +50,8 @@ const routes: Routes = [
   },
   { path: 'manufacturer', component: ManufacturerComponent,
     children:[
-      { path: '', redirectTo: 'track', pathMatch: 'full' },
+      { path: '', redirectTo: 'medicine', pathMatch: 'full' },
+      { path: 'medicine', component: MedicineComponent },
       { path: 'track', component: TrackComponent },
       { path: 'sell', component: SellComponent },
       { path: 'history', component: HistoryComponent },
@@ -57,7 +59,7 @@ const routes: Routes = [
   },
   { path: 'administrator', component: AdministratorComponent,
     children:[
-      { path: '', redirectTo: 'track', pathMatch: 'full' },
+      { path: '', redirectTo: 'certificate', pathMatch: 'full' },
       { path: 'certificate', component: CertificateComponent },
       { path: 'track', component: TrackComponent },
     ]

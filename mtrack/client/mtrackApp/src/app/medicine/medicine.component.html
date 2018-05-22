@@ -1,0 +1,51 @@
+<p>
+  medicine works!
+</p>
+
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    {{ title | translate }}
+  </div>
+  <div class="panel-body" style="text-align:left">
+    <form [formGroup]="angForm" novalidate>
+      <div class="form-group">
+        <label class="col-xs-4">{{'Name' | translate}} </label>
+        <input type="text" class="form-control" formControlName="name" #name/>
+      </div>
+      <div *ngIf="angForm.controls['name'].invalid && (angForm.controls['name'].dirty || angForm.controls['name'].touched)" class="alert alert-danger">
+        <div *ngIf="angForm.controls['name'].errors.required">
+          {{ 'Name' | translate }}{{ ' is required' | translate }}
+        </div>
+      </div>
+
+
+      <div class="form-group">
+        <label class="col-xs-4">{{'Quantity' | translate}} </label>
+        <input type="text" class="form-control" formControlName="qty" #qty/>
+      </div>
+
+      <div *ngIf="angForm.controls['qty'].invalid && (angForm.controls['qty'].dirty || angForm.controls['qty'].touched)" class="alert alert-danger">
+        <div *ngIf="angForm.controls['qty'].errors.required">
+          {{ 'Quantity ' | translate }}{{ ' is required' | translate }}
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-xs-4">{{'Serial No.' | translate}} </label>
+        <input type="text" class="form-control" formControlName="sn" #sn/>
+      </div>
+
+      <div *ngIf="angForm.controls['sn'].invalid && (angForm.controls['sn'].dirty || angForm.controls['sn'].touched)" class="alert alert-danger">
+        <div *ngIf="angForm.controls['sn'].errors.required">
+          {{ 'Serial No.' | translate }}{{ ' is required' | translate }}
+        </div>
+      </div>
+
+
+
+      <div class="form-group" style="text-align:right">
+        <button (click)="add(name.value, qty.value, sn.value)" [disabled]="angForm.pristine || angForm.invalid" class="btn btn-primary">{{ 'Add' | translate }}</button>
+      </div>
+    </form>
+  </div>
+</div>
