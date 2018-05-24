@@ -1,0 +1,12 @@
+1. ASP.NET MVC
+2. React.MVC (Nuget package)
+3. ASP.NET web api
+
+Visual Studio: File=>New=>Project
+    Web=>ASP.NET web application (.Net framework)
+    Empty, WebAPI
+    Add model and controller
+
+Use ASP.NET as the backend server
+Use ReactJS as the front end
+Use axio as the http client to fetch the data from the server
