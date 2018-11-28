@@ -8,3 +8,7 @@ keras/log
 notebook/Untitled.ipynb
 *.gz
 
+**/Debug/
+**/ipch
+**/.vs/
+*.VC.db
