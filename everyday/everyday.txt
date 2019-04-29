@@ -8,20 +8,23 @@
 ** TODO resignation letter
 How to approach HBK resignation? What is my current strategy? The date
 they want to start 6/10. I hope HBK can have me until 6/3? That will
-be very good. 
+be very good.
 
 There are so many things going on at once. I will need to think about
-it. Need to be calm. Take it easy. Take it slow. 
+it. Need to be calm. Take it easy. Take it slow.
 I become more and more like emacs. There is a thing or two in emacs
 that I need to learn. Learn to be more efficient. Learn to work hard.
 Learn to be calm.
 
+Waiting for Ross's reply by tomorrow.
+
 ** study FPGA HLS book						    :READING:
 *** SOC book
+up to ch.12
 *** OPENCL source code
 
 
 ** chicago housing						       :HOME:
-   
+
 ** org-mode study						    :READING:
-read [[https://orgmode.org/worg/org-tutorials/org4beginners.html][tutorial]] 
+read [[https://orgmode.org/worg/org-tutorials/org4beginners.html][tutorial]]
