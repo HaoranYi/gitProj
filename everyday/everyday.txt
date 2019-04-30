@@ -12,7 +12,7 @@ be very good.
 
 There are so many things going on at once. I will need to think about
 it. Need to be calm. Take it easy. Take it slow.
-I become more and more like emacs. There is a thing or two in emacs
+I like emacs more and more. There is a thing or two in emacs
 that I need to learn. Learn to be more efficient. Learn to work hard.
 Learn to be calm.
 
@@ -21,6 +21,11 @@ Waiting for Ross's reply by tomorrow.
 ** study FPGA HLS book						    :READING:
 *** SOC book
 up to ch.12
+  barebone, FreeRTOS, linux
+  AMP (OpenAMP), SMP
+  SupervisedAMP (Hypervisor)
+
+
 *** OPENCL source code
 
 
@@ -28,3 +33,24 @@ up to ch.12
 
 ** org-mode study						    :READING:
 read [[https://orgmode.org/worg/org-tutorials/org4beginners.html][tutorial]]
+
+
+* MY DIARIES
+
+2019/4/30
+---------
+Informed HBK about my resignation
+Talked with Ross
+    Waiting for reply (by tomorrow?)
+
+2019/4/30
+---------
+Caroline math rock program
+    tansfer to Beverly school (Caroline and Charles)
+No counter offer from HBK.
+    4 weeks. will transfer other people to trading system...
+Submitted citadel's background check form.
+    Do the drug screen test after work.
+
+2019/5/1
+---------
