@@ -6,7 +6,7 @@
 * MY TODOS
 ** DONE org-mode study                                              :READING:
    CLOSED: [2019-04-30 Tue 19:56]
-read [[https://orgmode.org/worg/org-tutorials/org4beginners.html][tutorial]]
+   read [[https://orgmode.org/worg/org-tutorials/org4beginners.html][tutorial]]
 ** DONE submit mathrock form <2019-04-30 Tue>
 ** DONE citadel background test <2019-04-30 Tue>
 ** DONE drug screen test <2019-04-30 Tue>
@@ -58,17 +58,29 @@ No counter offer from HBK.
 2019/5/1
 ---------
 
-* ProgTips                                                         :COMPUTER:
+* emacs org-mode                                                   :COMPUTER:
 
+** set org-mode
+   M-x org-mode
+   "#-*- mode: org-*-"
+** config todo
+   "#+TODO: TODO IN-PROGRESS WAITING DONE"
+   (setq org-todo-keywords
+       '((sequence "TODO" "IN-PROGRESS" "WAITING" "DONE")))
 ** define shortcut key for org-agenda
-(global-set-key (kbd "C-c a") 'org-agenda)
+   (global-set-key (kbd "C-c a") 'org-agenda)
 ** add timestamps when closing TODO item 
-(setq org-log-done 'time)
+   (setq org-log-done 'time)
 ** evaluate buffer region of elisp
-M-x eval-region
+   M-x eval-region
 ** archive
-(setq org-archive-location (concat "archive/archive-"
+   (setq org-archive-location (concat "archive/archive-"
                                    (format-time-string "%Y%m" (current-time))
                                    ".org_archive::"))
-default location: <<file>>_archive.
-In buffer option setting  "#+ARCHIVE: %s_done::"
+   default location: <<file>>_archive.
+   In buffer option setting  "#+ARCHIVE: %s_done::"
+** tag
+   "#+TAGS: { @OFFICE(o) @HOME(h) } COMPUTER(c) PHONE(p) READING(r)"
+   (setq org-tag-alist '(("@work" . ?w) ("@home" . ?h) ("laptop" . ?l)))
+** export
+   C-c C-e - export menu
