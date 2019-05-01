@@ -45,6 +45,7 @@ up to ch.12
 ** TODO move to chicago
 
 ** TODO chicago housing                                                :HOME:
+   ** Naperville train(1h) to work
 
 ** Archive							    :ARCHIVE:
 *** TODO dummy
