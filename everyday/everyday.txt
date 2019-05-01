@@ -1,6 +1,6 @@
 #-*- mode: org-*-
 #+STARTUP: showall
-#+TAGS: WORK(w) HOME(h) READING(r) COMPUTER(c)
+#+TAGS: WORK(w) HOME(h) READING(r) COMPUTER(c) FINANCE(f)
 
 
 * MY TODOS
@@ -10,7 +10,9 @@
 ** DONE submit mathrock form <2019-04-30 Tue>
 ** DONE citadel background test <2019-04-30 Tue>
 ** DONE drug screen test <2019-04-30 Tue>
-** TODO resignation letter
+** TODO voting <2019-05-01 Wed>
+** TODO repair frige <2019-05-01 Wed>
+** TODO resignation letter <deadline: 2019-05-03 ping>
 How to approach HBK resignation? What is my current strategy? The date
 they want to start 6/10. I hope HBK can have me until 6/3? That will
 be very good.
@@ -22,6 +24,8 @@ that I need to learn. Learn to be more efficient. Learn to work hard.
 Learn to be calm.
 
 Waiting for Ross's reply by tomorrow.
+Stay at HBK till end of May. Start at citadel in June. 
+No defer, no prorated bonus.
 
 
 ** TODO study FPGA HLS book                                         :READING:
@@ -34,8 +38,20 @@ up to ch.12
 
 ** TODO OPENCL source code
 
+** TODO sell plano house
+   change carpet
+   replace fire alarm
+
+** TODO move to chicago
 
 ** TODO chicago housing                                                :HOME:
+
+** Archive							    :ARCHIVE:
+*** TODO dummy
+    :PROPERTIES:
+    :ARCHIVE_TIME: 2019-05-01 Wed 09:41
+    :END:
+
 
 
 * MY DIARIES
@@ -69,7 +85,7 @@ No counter offer from HBK.
        '((sequence "TODO" "IN-PROGRESS" "WAITING" "DONE")))
 ** define shortcut key for org-agenda
    (global-set-key (kbd "C-c a") 'org-agenda)
-** add timestamps when closing TODO item 
+** add timestamps when closing TODO item
    (setq org-log-done 'time)
 ** evaluate buffer region of elisp
    M-x eval-region
@@ -81,6 +97,31 @@ No counter offer from HBK.
    In buffer option setting  "#+ARCHIVE: %s_done::"
 ** tag
    "#+TAGS: { @OFFICE(o) @HOME(h) } COMPUTER(c) PHONE(p) READING(r)"
-   (setq org-tag-alist '(("@work" . ?w) ("@home" . ?h) ("laptop" . ?l)))
+   (setq org-tag-alist '(("@work" . ?w) ("@home" . ?h) ("laptop"
+   . ?l)))
+   Every headline can contain a list of tags. Tags must be preceded
+   and followed by a signle colon `:work:urgent:'
+   SubItem inherits tags from ParentItem.
+   M-x org-mode m create a global list of tags matches from agenda files
+   M-x org-mode M only TODO under tag matches
+   
 ** export
    C-c C-e - export menu
+
+* A high frequency market making algorithm			    :FINANCE:
+- limit order book
+- two sided markets for a specified list of equities
+- managing inventory, reducing risk of adverse selection by changing the rate
+  of inventory accumulation dynamicallly
+- dynamically adjusts the range of the bid-ask spread, with the aim of
+  minimizing inventory level on market close
+- make use of estimates of recent market trends and adjust the bid-offer spead
+  to lean in the direciton of the tread
+- a manual adjust factor allows the market-maker to nuge the algorithm in the
+  direction of reducing inventory.
+
+Use queuing theory to model the order arrival
+Use indifference price (parametered on the size of the book)
+
+Here is the 2008 paper on using limit order as market maker
+[[https://www.math.nyu.edu/faculty/avellane/HighFrequencyTrading.pdf][paper]]. Modelling with the limit price for profit.
