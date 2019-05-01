@@ -2,9 +2,14 @@
 #+STARTUP: showall
 #+TAGS: WORK(w) HOME(h) READING(r) COMPUTER(c)
 
+
 * MY TODOS
-
-
+** DONE org-mode study                                              :READING:
+   CLOSED: [2019-04-30 Tue 19:56]
+read [[https://orgmode.org/worg/org-tutorials/org4beginners.html][tutorial]]
+** DONE submit mathrock form <2019-04-30 Tue>
+** DONE citadel background test <2019-04-30 Tue>
+** DONE drug screen test <2019-04-30 Tue>
 ** TODO resignation letter
 How to approach HBK resignation? What is my current strategy? The date
 they want to start 6/10. I hope HBK can have me until 6/3? That will
@@ -18,7 +23,8 @@ Learn to be calm.
 
 Waiting for Ross's reply by tomorrow.
 
-** study FPGA HLS book						    :READING:
+
+** TODO study FPGA HLS book                                         :READING:
 *** SOC book
 up to ch.12
   barebone, FreeRTOS, linux
@@ -26,13 +32,10 @@ up to ch.12
   SupervisedAMP (Hypervisor)
 
 
-*** OPENCL source code
+** TODO OPENCL source code
 
 
-** chicago housing						       :HOME:
-
-** org-mode study						    :READING:
-read [[https://orgmode.org/worg/org-tutorials/org4beginners.html][tutorial]]
+** TODO chicago housing                                                :HOME:
 
 
 * MY DIARIES
@@ -54,3 +57,12 @@ Submitted citadel's background check form.
 
 2019/5/1
 ---------
+
+* ProgTips                                                         :COMPUTER:
+
+** define shortcut key for org-agenda
+(global-set-key (kbd "C-c a") 'org-agenda)
+** add timestamps when closing TODO item 
+(setq org-log-done 'time)
+** evaluate buffer region of elisp
+M-x eval-region
