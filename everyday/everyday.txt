@@ -13,6 +13,7 @@
 ** TODO voting <2019-05-01 Wed>
 ** TODO repair frige <2019-05-01 Wed>
    ordered a starter on amazon prime, arrive on Friday
+** TODO dental visit <2019-05-09 Thu>
 ** TODO prime expire <2019-05-31 Fri>
 ** TODO resignation letter <deadline: 2019-05-03 ping>
 How to approach HBK resignation? What is my current strategy? The date
@@ -26,16 +27,19 @@ that I need to learn. Learn to be more efficient. Learn to work hard.
 Learn to be calm.
 
 Waiting for Ross's reply by tomorrow.
-Stay at HBK till end of May. Start at citadel in June. 
+Stay at HBK till end of May. Start at citadel in June.
 No defer, no prorated bonus.
 
 
 ** TODO study FPGA HLS book                                         :READING:
 *** SOC book
+[https://www.zynq-mpsoc-book.com/wp-content/uploads/2019/04/MPSoC_ebook_web_v1.0.pdf][book]]
 up to ch.12
   barebone, FreeRTOS, linux
   AMP (OpenAMP), SMP
   SupervisedAMP (Hypervisor)
+  Use SDX to generete wrapper C function to the IP core
+    - xml file, data-move betweeen host and card
 
 
 ** TODO OPENCL source code
@@ -45,9 +49,16 @@ up to ch.12
    replace fire alarm
 
 ** TODO move to chicago
+    pool chemical: https://www.poolman.com/pool-services/pool-maintenance/
+    https://www.aquacleanpoolservice.com/Pool-Service.html
+    lawn mower: use charles guy???
 
 ** TODO chicago housing                                                :HOME:
    ** Naperville train(1h) to work
+      203, 204(newer)
+   ** New Trier (expensive)
+   ** Hinsdale
+   ** Stevenson
 
 ** Archive							    :ARCHIVE:
 *** TODO dummy
@@ -107,7 +118,7 @@ No counter offer from HBK.
    SubItem inherits tags from ParentItem.
    M-x org-mode m create a global list of tags matches from agenda files
    M-x org-mode M only TODO under tag matches
-   
+
 ** export
    C-c C-e - export menu
 
