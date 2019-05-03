@@ -8,7 +8,7 @@
 CC=g++
 CFLAGS=-std=c++11 -g -Wall -Werror -Wextra -I.
 
-SRC=find_last_k_node.cpp
+SRC=test_variant.cpp
 OUT=Debug/a.out
 
 $(OUT): $(SRC)

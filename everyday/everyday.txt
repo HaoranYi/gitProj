@@ -40,6 +40,12 @@ up to ch.12
   SupervisedAMP (Hypervisor)
   Use SDX to generete wrapper C function to the IP core
     - xml file, data-move betweeen host and card
+  software config (xml)
+  hardware config (xml)
+    specify signal, port connections
+  platform config (xml)
+  use template.xml as guide
+  > sdspfm -gui  // utility to gen template file
 
 
 ** TODO OPENCL source code
