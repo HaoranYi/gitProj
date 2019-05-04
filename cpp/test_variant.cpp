@@ -39,5 +39,9 @@ int main()
     y = "xyz"s;
     assert(std::holds_alternative<std::string>(y));
 
+    // TODO std::visit
+    // functor: https://www.bfilipek.com/2018/09/visit-variants.html
+    // lambda: https://en.cppreference.com/w/cpp/utility/variant/visit
+
 
 }

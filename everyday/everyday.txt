@@ -10,7 +10,7 @@
 ** DONE submit mathrock form <2019-04-30 Tue>
 ** DONE citadel background test <2019-04-30 Tue>
 ** DONE drug screen test <2019-04-30 Tue>
-** TODO voting <2019-05-04 Wed>
+** DONE voting <2019-05-04 Fri>
 ** TODO repair frige <2019-05-01 Wed>
    ordered a starter on amazon prime, arrive on Friday
    not working, ordered a new fridge <2019-05-03 Fri>
