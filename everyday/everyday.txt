@@ -10,9 +10,11 @@
 ** DONE submit mathrock form <2019-04-30 Tue>
 ** DONE citadel background test <2019-04-30 Tue>
 ** DONE drug screen test <2019-04-30 Tue>
-** TODO voting <2019-05-01 Wed>
+** TODO voting <2019-05-04 Wed>
 ** TODO repair frige <2019-05-01 Wed>
    ordered a starter on amazon prime, arrive on Friday
+   not working, ordered a new fridge <2019-05-03 Fri>
+   arrive <2019-05-08 Wed>
 ** TODO dental visit <2019-05-09 Thu>
 ** TODO prime expire <2019-05-31 Fri>
 ** TODO resignation letter <deadline: 2019-05-03 ping>
