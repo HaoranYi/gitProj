@@ -28,9 +28,9 @@ No defer, no prorated bonus.
 ** TODO repair frige <2019-05-01 Wed>
    ordered a starter on amazon prime, arrive on Friday not working, 
    ordered a new fridge <2019-05-03 Fri 9:00AM delivery>
-   arrive <2019-05-08 Wed>
 ** TODO dental visit <2019-05-09 Thu>
 ** TODO phone call with altair relocation <2019-05-09 Thu 8:00AM>
+** TODO dental visit <2019-05-09 Thu>
 ** TODO prime expire <2019-05-31 Fri>
 
 

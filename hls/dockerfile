@@ -1,0 +1,117 @@
+# example dockerfile for vivado 2018.3/unbuntu 18
+
+# setup
+FROM unbuntu:18.04 AS vivado_v2018.3
+ENV XLNX_INSTLL_LOCATION=/opt/Xilinx
+ENV DEBIAN_FRONTEND=nointerative
+
+# set bash as default shell
+RUN echo "dash dash/sh boolean false" | debconf-set-selections
+RUN DEGINAN_FRONTEND=$DEBINAN_FRONTEND dpkg-reconfig dash
+
+# dependencies
+RUN apt-get update
+RUN dpkg --add-arhitecture i386
+RUN apt-get update
+
+# petalinux base dependencies
+RUN apt-get install -y \
+                tofrodos \
+                iproute2 \
+                gawk \
+                xvfb \
+                git \
+                make \
+                net-tools\libncurse5-dev \
+                update-inetd \
+                tftpd \
+                zlib1g-dev:i386 \
+                libssl-dev \
+                flex \
+                bison \
+                libselinux1 \
+                gnupg \
+                wget \
+                diffstat \
+                chrpath \
+                socat \
+                xterm \
+                autoconf \
+                libtool \
+                libtool-bin \
+                tar \
+                unzip \
+                textinfo \
+                zlib1g-dev \
+                gcc-multilib \
+                build-essential \
+                libsdl1.2-dev \
+                libglib2.0-dev \
+                screen \
+                pax \
+                gzip \
+                python3-gui \
+                less \
+                lsb-release \
+                fakeroot \
+                libgtk2.0-0 \
+                libgtk2.0-dev \
+                cpip \
+                rsync \
+                xorg \
+                expect \
+                dos2unix \
+
+RUN apt-get install -y \
+                libboost-signal-dev \
+                google-perftools \
+                default-jre
+
+# xilinx install, you will need to download installer from xilinx and read the
+# installer guide to generate a config file right for you
+ENV XLNX_VIVADO_OFFLINE_INSTALLER=<YOUR_VIVADO_INSTALLER>.tar.gz
+ENV XLNX_VIVADO_BATCH_CONFIG_FILE=<YOUR_VIVADO_CONFIG>.config
+COPY $XLNX_VIVADO_OFFLINE_INSTALLER $XLNX_INSTLL_LOCATION/tmp/$XLNX_VIVADO_OFFLINE_INSTALLER
+COPY $XLNX_VIVADO_BATCH_CONFIG_FILE $XLNX_INSTLL_LOCATION/tmp/$XLNX_VIVADO_BATCH_CONFIG_FILE
+
+# extract installer and run setup
+RUN cd $XLNX_INSTLL_LOCATION/tmp \
+        && cat $XLNX_VIVADO_BATCH_CONFIG_FILE \
+        && tar -zxf $XLNX_VIVADO_OFFLINE_INSTALLER && ls -al \
+        && echo "cd $XLNX_INSTALL_LOCATION" >> $HOME_DIR/.bashrc \
+        && echo "export LANG-en_US.UTF-8" >> $HOME_DIR/.bashrc \
+        && export "LANG=en_US.UTF-8" \
+        && echo ". $XLNX_INSTLL_LOCATION/vivado/2018.3/setting64.sh" >> $HOME_DIR/.bashrc \
+        && echo "export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$XLNX_INSTALL_LOCATION/Vivado/2018.3/lib/lnx64.o/" >> $HOME_DIR/.bashrc
+
+RUN cd $XLNX_INSTALL_LOCATION/tmp \
+        && mv $XLNX_VIVADO_BATCH_CONFIG_FILE Xilinx_Vivado_SDK_2018.3_1207_2324/ \
+        && cd Xilinx_Vivado_SDK_2018.3_1207_2324 \
+# setup installer permissions\
+        && chmod a+x xsetup \
+# run setup in batch mode to install vivado \
+        && cd $XLNX_INSTALL_LOCATION/tmp/Xilinx_Vivado_SKD_2018.3_1207_2324 \
+        && ./xsetup \
+                --agree XilinxEULA.3rdPartyEULA.WebTalkTerms \
+                --config $XLNX_VIVADO_BATH_CONFIG_FILE \
+                --batch INSTALL \
+# clean up temporary files \
+        && cd $HOME_DIR \
+        && rm -rf $XLNX_INSTALL_LOCATION/tmp
+
+# clean up and add to library path
+# cleanup temporary install files
+RUN rm -rf $XLNX_INSTALL_LOCATION/tmp
+
+# cleanup apt cache and temporary files to reduce image size
+RUN apt-get clean
+
+RUN source $XLNX_INSTALL_LOCATION/Vivado/2018.4/setting64.sh
+RUN export
+LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$XLNX_INSTALL_LOCATION/Vivado/2018.3/lib/lnx64.o/
+
+
+
+
+
+
