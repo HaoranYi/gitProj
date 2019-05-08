@@ -65,9 +65,20 @@ up to ch.12
 ** TODO chicago housing                                                :HOME:
    ** Naperville train(1h) to work
       203, 204(newer)
-   ** New Trier (expensive)
+   ** Wilmette, New Trier (expensive)
+   ** oak brook
    ** Hinsdale
    ** Stevenson
+   ** Tower Lake, NW (40m) 500k
+   ** South Barrington, NW  (35m) 800k
+   ** Green Oaks, N(40m) 550K
+   ** Buffalo Brove, NW(35m) 300k
+   ** Naperville W(35m) 370k
+   ** Northbrook N(25m) 520K
+   ** Winnetka N(20m) 940K
+   ** Willowbrook W(20m) 210K
+   ** Deerfield N(30m) 500K
+   ** Vernon hills N(38m) 310K
 
 ** Archive							    :ARCHIVE:
 *** TODO dummy
