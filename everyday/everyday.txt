@@ -11,13 +11,7 @@
 ** DONE citadel background test <2019-04-30 Tue>
 ** DONE drug screen test <2019-04-30 Tue>
 ** DONE voting <2019-05-04 Fri>
-** TODO repair frige <2019-05-01 Wed>
-   ordered a starter on amazon prime, arrive on Friday
-   not working, ordered a new fridge <2019-05-03 Fri>
-   arrive <2019-05-08 Wed>
-** TODO dental visit <2019-05-09 Thu>
-** TODO prime expire <2019-05-31 Fri>
-** TODO resignation letter <deadline: 2019-05-03 ping>
+** DONE resignation letter <deadline: 2019-05-03 ping>
 How to approach HBK resignation? What is my current strategy? The date
 they want to start 6/10. I hope HBK can have me until 6/3? That will
 be very good.
@@ -31,6 +25,13 @@ Learn to be calm.
 Waiting for Ross's reply by tomorrow.
 Stay at HBK till end of May. Start at citadel in June.
 No defer, no prorated bonus.
+** TODO repair frige <2019-05-01 Wed>
+   ordered a starter on amazon prime, arrive on Friday not working, 
+   ordered a new fridge <2019-05-03 Fri 9:00AM delivery>
+   arrive <2019-05-08 Wed>
+** TODO dental visit <2019-05-09 Thu>
+** TODO phone call with altair relocation <2019-05-09 Thu 8:00AM>
+** TODO prime expire <2019-05-31 Fri>
 
 
 ** TODO study FPGA HLS book                                         :READING:
