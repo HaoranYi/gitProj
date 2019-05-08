@@ -25,7 +25,7 @@ Learn to be calm.
 Waiting for Ross's reply by tomorrow.
 Stay at HBK till end of May. Start at citadel in June.
 No defer, no prorated bonus.
-** TODO repair frige <2019-05-01 Wed>
+** DONE repair frige <2019-05-01 Wed>
    ordered a starter on amazon prime, arrive on Friday not working, 
    ordered a new fridge <2019-05-03 Fri 9:00AM delivery>
 ** TODO dental visit <2019-05-09 Thu>
@@ -63,6 +63,7 @@ up to ch.12
     lawn mower: use charles guy???
 
 ** TODO chicago housing                                                :HOME:
+   money: 160K+120K+50K=330K+400K=730K
    ** Naperville train(1h) to work
       203, 204(newer)
    ** Wilmette, New Trier (expensive)
@@ -91,7 +92,8 @@ up to ch.12
 * MY DIARIES
 
 2019/4/30
----------
+------------
+
 Informed HBK about my resignation
 Talked with Ross
     Waiting for reply (by tomorrow?)
