@@ -147,3 +147,10 @@ Use indifference price (parametered on the size of the book)
 
 Here is the 2008 paper on using limit order as market maker
 [[https://www.math.nyu.edu/faculty/avellane/HighFrequencyTrading.pdf][paper]]. Modelling with the limit price for profit.
+
+2019/05/07
+---------
+Altair relocation
+https://client.altairglobal.com/Account/Login?ReturnUrl=%2F
+usr: yihaoran
+pwd: Yi@123456789
