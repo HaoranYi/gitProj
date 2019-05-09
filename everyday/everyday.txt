@@ -26,7 +26,7 @@ Waiting for Ross's reply by tomorrow.
 Stay at HBK till end of May. Start at citadel in June.
 No defer, no prorated bonus.
 ** DONE repair frige <2019-05-01 Wed>
-   ordered a starter on amazon prime, arrive on Friday not working, 
+   ordered a starter on amazon prime, arrive on Friday not working,
    ordered a new fridge <2019-05-03 Fri 9:00AM delivery>
 ** TODO dental visit <2019-05-09 Thu>
 ** TODO phone call with altair relocation <2019-05-09 Thu 8:00AM>
@@ -168,3 +168,9 @@ Altair relocation
 https://client.altairglobal.com/Account/Login?ReturnUrl=%2F
 usr: yihaoran
 pwd: Yi@123456789
+
+TODO
+    * $7,500 --  check 5/15
+    * 60 days temp housing
+    * extention of sale of house
+
