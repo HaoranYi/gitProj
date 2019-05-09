@@ -11,7 +11,7 @@
 ** DONE citadel background test <2019-04-30 Tue>
 ** DONE drug screen test <2019-04-30 Tue>
 ** DONE voting <2019-05-04 Fri>
-** DONE resign from HBK <2019-05-03>
+** DONE resignation letter <deadline: 2019-05-03 ping>
 How to approach HBK resignation? What is my current strategy? The date
 they want to start 6/10. I hope HBK can have me until 6/3? That will
 be very good.
@@ -25,10 +25,11 @@ Learn to be calm.
 Waiting for Ross's reply by tomorrow.
 Stay at HBK till end of May. Start at citadel in June.
 No defer, no prorated bonus.
-** TODO repair frige <2019-05-01 Wed>
-   ordered a starter on amazon prime, arrive on Friday
-   not working, ordered a new fridge <2019-05-03 Fri>
-   arrive <2019-05-08 Wed>
+** DONE repair frige <2019-05-01 Wed>
+   ordered a starter on amazon prime, arrive on Friday not working, 
+   ordered a new fridge <2019-05-03 Fri 9:00AM delivery>
+** TODO dental visit <2019-05-09 Thu>
+** TODO phone call with altair relocation <2019-05-09 Thu 8:00AM>
 ** TODO dental visit <2019-05-09 Thu>
 ** TODO prime expire <2019-05-31 Fri>
 
@@ -62,11 +63,23 @@ up to ch.12
     lawn mower: use charles guy???
 
 ** TODO chicago housing                                                :HOME:
+   money: 160K+120K+50K=330K+400K=730K
    ** Naperville train(1h) to work
       203, 204(newer)
-   ** New Trier (expensive)
+   ** Wilmette, New Trier (expensive)
+   ** oak brook
    ** Hinsdale
    ** Stevenson
+   ** Tower Lake, NW (40m) 500k
+   ** South Barrington, NW  (35m) 800k
+   ** Green Oaks, N(40m) 550K
+   ** Buffalo Brove, NW(35m) 300k
+   ** Naperville W(35m) 370k
+   ** Northbrook N(25m) 520K
+   ** Winnetka N(20m) 940K
+   ** Willowbrook W(20m) 210K
+   ** Deerfield N(30m) 500K
+   ** Vernon hills N(38m) 310K
 
 ** Archive							    :ARCHIVE:
 *** TODO dummy
@@ -79,7 +92,8 @@ up to ch.12
 * MY DIARIES
 
 2019/4/30
----------
+------------
+
 Informed HBK about my resignation
 Talked with Ross
     Waiting for reply (by tomorrow?)
