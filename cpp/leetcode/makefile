@@ -21,7 +21,9 @@ $(OUT): $(SRC) $(SOLUTION)
 #	rm -f ./.depend
 #	$(CC) $(CFLAGS) -MM $^ -MF  ./.depend;
 #
+## contains .o dependencies
 #include .depend
+
 
 run:$(OUT)
 	$(OUT)
