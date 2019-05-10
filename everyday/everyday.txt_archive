@@ -20,3 +20,14 @@ Archived entries from file /Users/hyi/gitProj/everyday/everyday.txt
   :ARCHIVE_FILE: ~/gitProj/everyday/everyday.txt
   :ARCHIVE_CATEGORY: everyday
   :END:
+
+* DONE org-mode study						    :READING:
+  CLOSED: [2019-04-30 Tue 19:56]
+  :PROPERTIES:
+  :ARCHIVE_TIME: 2019-05-10 Fri 14:58
+  :ARCHIVE_FILE: d:/workshop/gitProj/everyday/everyday.txt
+  :ARCHIVE_OLPATH: MY TODOS
+  :ARCHIVE_CATEGORY: everyday
+  :ARCHIVE_TODO: DONE
+  :END:
+  read [[https://orgmode.org/worg/org-tutorials/org4beginners.html][tutorial]]

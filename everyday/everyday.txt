@@ -4,9 +4,6 @@
 
 
 * MY TODOS
-** DONE org-mode study                                              :READING:
-   CLOSED: [2019-04-30 Tue 19:56]
-   read [[https://orgmode.org/worg/org-tutorials/org4beginners.html][tutorial]]
 ** DONE submit mathrock form <2019-04-30 Tue>
 ** DONE citadel background test <2019-04-30 Tue>
 ** DONE drug screen test <2019-04-30 Tue>
@@ -28,13 +25,9 @@ No defer, no prorated bonus.
 ** DONE repair frige <2019-05-01 Wed>
    ordered a starter on amazon prime, arrive on Friday not working,
    ordered a new fridge <2019-05-03 Fri 9:00AM delivery>
-** TODO dental visit <2019-05-09 Thu>
-** TODO phone call with altair relocation <2019-05-09 Thu 8:00AM>
-** TODO dental visit <2019-05-09 Thu>
-** TODO prime expire <2019-05-31 Fri>
-
-
-** TODO study FPGA HLS book                                         :READING:
+** DONE dental visit <2019-05-09 Thu>
+** DONE phone call with altair relocation <2019-05-09 Thu 8:00AM>
+** DONE study FPGA HLS book					    :READING:
 *** SOC book
 [https://www.zynq-mpsoc-book.com/wp-content/uploads/2019/04/MPSoC_ebook_web_v1.0.pdf][book]]
 up to ch.12
@@ -49,7 +42,9 @@ up to ch.12
   platform config (xml)
   use template.xml as guide
   > sdspfm -gui  // utility to gen template file
+PYNQ: jupyter, python, API to hardware IP
 
+** TODO prime expire <2019-05-31 Fri>
 
 ** TODO OPENCL source code
 
@@ -178,3 +173,5 @@ TODO
 ---------
 Sprained my ankle on Wed (5/8). Soft slippper. Very painful yesterday (5/9).
 Much less pain today. Hope that the pain will be gone by tomorrow.
+
+
