@@ -25,8 +25,8 @@ Learn to be calm.
 Waiting for Ross's reply by tomorrow.
 Stay at HBK till end of May. Start at citadel in June.
 No defer, no prorated bonus.
-** TODO repair frige <2019-05-01 Wed>
-   ordered a starter on amazon prime, arrive on Friday not working, 
+** DONE repair frige <2019-05-01 Wed>
+   ordered a starter on amazon prime, arrive on Friday not working,
    ordered a new fridge <2019-05-03 Fri 9:00AM delivery>
 ** TODO dental visit <2019-05-09 Thu>
 ** TODO phone call with altair relocation <2019-05-09 Thu 8:00AM>
@@ -63,11 +63,23 @@ up to ch.12
     lawn mower: use charles guy???
 
 ** TODO chicago housing                                                :HOME:
+   money: 160K+120K+50K=330K+400K=730K
    ** Naperville train(1h) to work
       203, 204(newer)
-   ** New Trier (expensive)
+   ** Wilmette, New Trier (expensive)
+   ** oak brook
    ** Hinsdale
    ** Stevenson
+   ** Tower Lake, NW (40m) 500k
+   ** South Barrington, NW  (35m) 800k
+   ** Green Oaks, N(40m) 550K
+   ** Buffalo Brove, NW(35m) 300k
+   ** Naperville W(35m) 370k
+   ** Northbrook N(25m) 520K
+   ** Winnetka N(20m) 940K
+   ** Willowbrook W(20m) 210K
+   ** Deerfield N(30m) 500K
+   ** Vernon hills N(38m) 310K
 
 ** Archive							    :ARCHIVE:
 *** TODO dummy
@@ -80,7 +92,8 @@ up to ch.12
 * MY DIARIES
 
 2019/4/30
----------
+------------
+
 Informed HBK about my resignation
 Talked with Ross
     Waiting for reply (by tomorrow?)
@@ -148,3 +161,16 @@ Use indifference price (parametered on the size of the book)
 
 Here is the 2008 paper on using limit order as market maker
 [[https://www.math.nyu.edu/faculty/avellane/HighFrequencyTrading.pdf][paper]]. Modelling with the limit price for profit.
+
+2019/05/07
+---------
+Altair relocation
+https://client.altairglobal.com/Account/Login?ReturnUrl=%2F
+usr: yihaoran
+pwd: Yi@123456789
+
+TODO
+    * $7,500 --  check 5/15
+    * 60 days temp housing
+    * extention of sale of house
+
