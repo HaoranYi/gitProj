@@ -177,10 +177,21 @@ Much less pain today. Hope that the pain will be gone by tomorrow.
 
 2019/05/13                                                         :COMPUTER:
 ---------
-Tool that takes a json file and generate C++ classes to work with that data.
-Internall it use JsonLink libary.
+A commandline tool that takes a json file and generate C++ classes to work
+with that data.  Internall it use JsonLink libary.
+
 https://github.com/beached/json_to_cpp
 https://github.com/beached/daw_json_link
 
+paxos disbributed consensus algorithm
+proposer and acceptor
+    single acceptor: accept the earilest proposer's value
+        limitation: if acceptor is done, no progress, single point failure
+    multiple acceptor: accept the value with majority
+        cons: not efficient when scaling
+
+mull testing
+    mutant, against existing unitest, calculate score
+    if there are test failure for mutant --> good coverage
 
 
