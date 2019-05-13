@@ -47,6 +47,7 @@ PYNQ: jupyter, python, API to hardware IP
 ** TODO prime expire <2019-05-31 Fri>
 
 ** TODO OPENCL source code
+    SDAccel_Examples: https://github.com/Xilinx/SDAccel_Examples
 
 ** TODO sell plano house
    change carpet
@@ -173,5 +174,13 @@ TODO
 ---------
 Sprained my ankle on Wed (5/8). Soft slippper. Very painful yesterday (5/9).
 Much less pain today. Hope that the pain will be gone by tomorrow.
+
+2019/05/13                                                         :COMPUTER:
+---------
+Tool that takes a json file and generate C++ classes to work with that data.
+Internall it use JsonLink libary.
+https://github.com/beached/json_to_cpp
+https://github.com/beached/daw_json_link
+
 
 
