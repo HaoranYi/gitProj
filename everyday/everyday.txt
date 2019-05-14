@@ -172,8 +172,8 @@ TODO
 
 
 apartment in chicago
-https://www.zumper.com/apartments-for-rent/36126784/studio-lakeview-chicago-il
-studio lakeview $1,165
+* https://www.zumper.com/apartments-for-rent/36126784/studio-lakeview-chicago-il
+* studio lakeview $1,165
 
 
 2019/05/10
