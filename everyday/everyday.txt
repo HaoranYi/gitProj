@@ -233,9 +233,44 @@ M-x package-install RET flycheck
     :ensure t
     :init (global-flycheck-mode))
 
-use ~/.emacs.d/init.el instead of ~/.emacs
+use ~/.emacs.d/init.el instead of ~/.emacs to config your emacs
 1. no clutter $HOME dir
 2. commit init.el to github: git clone repo ~/.emacs.d
+
+
+2019/05/15                                                         :COMPUTER:
+---------
+Jenkins Pipeline (./Jenkinsfile)
+- define build stage inside Jenkinsfile
+pipeline {
+    agent any
+    stages {
+        stage('Build') {
+            steps {
+                echo 'Building ...'
+            }
+        }
+        stage('Testing') {
+            steps {
+                echo 'Testing ...'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Deploying ...'
+            }
+        }
+    }
+    post {
+        alwasy { ... }
+        sucess { ... }
+        failure { ... }
+        unstable { ... }
+        changed { ... }
+    }
+}
+https://jenkins.io/doc/pipeline
+https://github.com/jenkinsci/pipeline-examples/tree/master/pipeline-examples
 
 TODO
 lawn
