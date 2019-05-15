@@ -233,6 +233,9 @@ M-x package-install RET flycheck
     :ensure t
     :init (global-flycheck-mode))
 
+use ~/.emacs.d/init.el instead of ~/.emacs
+1. no clutter $HOME dir
+2. commit init.el to github: git clone repo ~/.emacs.d
 
 TODO
 lawn
