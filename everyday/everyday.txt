@@ -217,6 +217,23 @@ json for wavedata, java script to view the wave data
 </script>
 
 
+2019/05/15                                                         :COMPUTER:
+---------
+emacs package management
+;; add melpa package repo
+(require 'package)
+(add-to-list 'package-archives
+             '("MELPA STABLE" . "https://stable.melpa.org/packages/") t)
+(package-initialize)
+M-x list-packages
+M-x package-install RET flycheck
+
+;; use-package install and config package
+(use-package flycheck
+    :ensure t
+    :init (global-flycheck-mode))
+
+
 TODO
 lawn
     https://budgetlawncare.net/
