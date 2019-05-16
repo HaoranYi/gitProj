@@ -272,8 +272,28 @@ pipeline {
 https://jenkins.io/doc/pipeline
 https://github.com/jenkinsci/pipeline-examples/tree/master/pipeline-examples
 
+2019/05/16                                                         :COMPUTER:
+---------
+Makefile/shell tips
+- use 'filter', 'strip', 'subst', 'suffix' to manipulate string (i.e. filename)
+  in make file.
+- use 'rc=$?; if [[ $? == 0 ]] ' to check success/failure of a command
+- use 'cmd 2>/dev/null 1>&2' to ommit printing error output
+
+2019/05/16                                                         :COMPUTER:
+---------
+ctag: add .cl to langmap
+    ctag --langmap=c:+.cl -R .
+vim add tag file
+    :set tags=./tags;
+
+
+============================================================================
 TODO
 lawn
     https://budgetlawncare.net/
     https://www.trugreen.com/local-lawn-care/texas/plano?utm_source=google&utm_medium=local&utm_campaign=google-local7500200121
     https://thompson-landscape.com/lawn-care-services/lawn-mowing-services/
+pool
+    https://www.poolman.com/
+    972-221-1213
