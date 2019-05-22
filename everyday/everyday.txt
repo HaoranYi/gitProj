@@ -65,7 +65,8 @@ PYNQ: jupyter, python, API to hardware IP
    ** Wilmette, New Trier (expensive)
    ** oak brook
    ** Hinsdale
-   ** Stevenson
+   ** Vernon hills N(38m) 310K
+   ** Stevenson (lincolnshire)
    ** Tower Lake, NW (40m) 500k
    ** South Barrington, NW  (35m) 800k
    ** Green Oaks, N(40m) 550K
@@ -75,7 +76,6 @@ PYNQ: jupyter, python, API to hardware IP
    ** Winnetka N(20m) 940K
    ** Willowbrook W(20m) 210K
    ** Deerfield N(30m) 500K
-   ** Vernon hills N(38m) 310K
 
 ** Archive							    :ARCHIVE:
 *** TODO dummy
@@ -263,7 +263,7 @@ pipeline {
     }
     post {
         alwasy { ... }
-        sucess { ... }
+        success { ... }
         failure { ... }
         unstable { ... }
         changed { ... }
@@ -275,10 +275,10 @@ https://github.com/jenkinsci/pipeline-examples/tree/master/pipeline-examples
 2019/05/16                                                         :COMPUTER:
 ---------
 Makefile/shell tips
-- use 'filter', 'strip', 'subst', 'suffix' to manipulate string (i.e. filename)
-  in make file.
-- use 'rc=$?; if [[ $? == 0 ]] ' to check success/failure of a command
-- use 'cmd 2>/dev/null 1>&2' to ommit printing error output
+- use 'filter', 'strip', 'subst', 'suffix' to manipulate string (i.e. filename,
+  flag) in make file.
+- use 'rc=$?; if [[ $? == 0 ]] ' to check success/failure of the last command
+- use 'cmd 2>/dev/null 1>&2' to omit printing error output
 
 2019/05/16                                                         :COMPUTER:
 ---------
