@@ -288,15 +288,16 @@ vim add tag file
     :set tags=./tags;
 
 
-2019/05/21
+2019/05/20                                                         :TRAVEL:
 ---------
 Flight AA84 DFW-LAX 10:25PM 2019/5/20 delayed
 Missed 1:30AM 5/21 5:30AM (+1)
 Given hotel, meal and taxi voucher
-Change to AirChina 2:20PM 2019/5/21 -- 6:10PM +1
-11PM Qingdao -- Huimin (5h) 5AM 2019/5/23
+Change to CA988 AirChina 2:20PM 2019/5/21 -- 6:10PM +1
+MF3502 9:25-11:05 Qingdao (actual 10:40) -- Huimin (5h) 5AM 2019/5/23
 
-
+2019/05/21                                                        :RELOCATION:
+---------
 Ebby haliday realtors (large corop **)
 RE/Max Premier (RE/MAX) prefer
 Virgina cook realtors  (closing down)
