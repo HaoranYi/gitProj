@@ -87,22 +87,6 @@ PYNQ: jupyter, python, API to hardware IP
 
 * MY DIARIES
 
-2019/4/30
-------------
-
-Informed HBK about my resignation
-Talked with Ross
-    Waiting for reply (by tomorrow?)
-
-2019/4/30
----------
-Caroline math rock program
-    tansfer to Beverly school (Caroline and Charles)
-No counter offer from HBK.
-    4 weeks. will transfer other people to trading system...
-    Submitted citadel's background check form.
-    Do the drug screen test after work.
-
 2019/5/1
 ---------
 
@@ -176,10 +160,6 @@ apartment in chicago
 * studio lakeview $1,165
 
 
-2019/05/10
----------
-Sprained my ankle on Wed (5/8). Soft slippper. Very painful yesterday (5/9).
-Much less pain today. Hope that the pain will be gone by tomorrow.
 
 2019/05/13                                                         :COMPUTER:
 ---------
