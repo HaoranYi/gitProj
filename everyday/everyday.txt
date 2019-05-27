@@ -299,6 +299,13 @@ Geneva
     - loader to enter data
     - reporter to generate report
 
+
+2019/05/27
+---------
+booked hotel Hyatt Regency St. Louis at The Arch
+315 Chestnut St, St. Louis, MO, 63102 [6/8] $163.92 
+free cancel till 6/6 Thursday
+
 ============================================================================
 TODO
 lawn
