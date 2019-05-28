@@ -160,114 +160,6 @@ apartment in chicago
 * studio lakeview $1,165
 
 
-
-2019/05/13                                                         :COMPUTER:
----------
-A commandline tool that takes a json file and generate C++ classes to work
-with that data.  Internall it use JsonLink libary.
-
-https://github.com/beached/json_to_cpp
-https://github.com/beached/daw_json_link
-
-paxos disbributed consensus algorithm
-proposer and acceptor
-    single acceptor: accept the earilest proposer's value
-        limitation: if acceptor is done, no progress, single point failure
-    multiple acceptor: accept the value with majority
-        cons: not efficient when scaling
-
-mull testing
-    mutant, against existing unitest, calculate score
-    if there are test failure for mutant --> good coverage
-
-
-2019/05/14                                                         :COMPUTER:
----------
-wavedrom: https://wavedrom.com/tutorial.html
-json for wavedata, java script to view the wave data
-<script src="http://wavedrom.com/skins/default.js" type="text/javascript"></script>
-<script src="http://wavedrom.com/wavedrom.min.js" type="text/javascript"></script>
-<body onload="WaveDrom.ProcessAll()">
-<script type="WaveDrom">
-{ signal: [
-    { name: "clk", wave: "p......"},
-    { name: "bus", wave: "x.34.5x"}, data: "head body tail" },
-    { name: "wire", wave: "0.1..0." },
-]}
-</script>
-
-
-2019/05/15                                                         :COMPUTER:
----------
-emacs package management
-;; add melpa package repo
-(require 'package)
-(add-to-list 'package-archives
-             '("MELPA STABLE" . "https://stable.melpa.org/packages/") t)
-(package-initialize)
-M-x list-packages
-M-x package-install RET flycheck
-
-;; use-package install and config package
-(use-package flycheck
-    :ensure t
-    :init (global-flycheck-mode))
-
-use ~/.emacs.d/init.el instead of ~/.emacs to config your emacs
-1. no clutter $HOME dir
-2. commit init.el to github: git clone repo ~/.emacs.d
-
-
-2019/05/15                                                         :COMPUTER:
----------
-Jenkins Pipeline (./Jenkinsfile)
-- define build stage inside Jenkinsfile
-pipeline {
-    agent any
-    stages {
-        stage('Build') {
-            steps {
-                echo 'Building ...'
-            }
-        }
-        stage('Testing') {
-            steps {
-                echo 'Testing ...'
-            }
-        }
-        stage('Deploy') {
-            steps {
-                echo 'Deploying ...'
-            }
-        }
-    }
-    post {
-        alwasy { ... }
-        success { ... }
-        failure { ... }
-        unstable { ... }
-        changed { ... }
-    }
-}
-https://jenkins.io/doc/pipeline
-https://github.com/jenkinsci/pipeline-examples/tree/master/pipeline-examples
-
-2019/05/16                                                         :COMPUTER:
----------
-Makefile/shell tips
-- use 'filter', 'strip', 'subst', 'suffix' to manipulate string (i.e. filename,
-  flag) in make file.
-- use 'rc=$?; if [[ $? == 0 ]] ' to check success/failure of the last command
-- use 'cmd 2>/dev/null 1>&2' to omit printing error output
-
-2019/05/16                                                         :COMPUTER:
----------
-ctag: add .cl to langmap
-    ctag --langmap=c:+.cl -R .
-vim add tag file
-    :set tags=./tags;
-
-
 2019/05/20                                                         :TRAVEL:
 ---------
 Flight AA84 DFW-LAX 10:25PM 2019/5/20 delayed
@@ -303,8 +195,30 @@ Geneva
 2019/05/27
 ---------
 booked hotel Hyatt Regency St. Louis at The Arch
-315 Chestnut St, St. Louis, MO, 63102 [6/8] $163.92 
+315 Chestnut St, St. Louis, MO, 63102 [6/8] $163.92
 free cancel till 6/6 Thursday
+
+
+2019/05/28
+---------
+Contacts from HBK
+Akanimo Udoh           audo@hbk.com
+Benedict Lee           blee@hbk.com
+Dale Jensen            djensen@hbk.com
+James Thiede           jthiede@hbk.com
+Matthew Jeanes         mjeanes@hbk.com
+Nasim Mahmood          nmahmood@hbk.com
+Patrick Grafe          pgrafe@hbk.com
+Punit Chandra          pchandra@hbk.com
+James Sexton           jsexton@hbk.com
+Joe Dai                jdai@hbk.com
+Thomas Lam             tlam@hbk.com
+Brendan Wilson         bwilson@hbk.com
+Hafiz Ahsan            hahsan@hbk.com
+Keila Selders          kselders@hbk.com
+
+
+
 
 ============================================================================
 TODO
@@ -316,7 +230,7 @@ pool
     https://www.poolman.com/
     972-221-1213
 
-chicago apartment
-hinsdale
+chicago apartment finding
+hinsdale/napervill
 https://www.apartments.com/forest-hill-clarendon-hills-il/5mzflzq/
 https://www.apartments.com/acacia-lane-la-grange-il/glx8vcz/

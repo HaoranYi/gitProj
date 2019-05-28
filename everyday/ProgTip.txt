@@ -134,8 +134,9 @@ create your own libary
     $ conan create ../ <YOUR_LOCAL_REPO_DIR>  // create package locally
     $ conan upload <YOUR_LOCAL_REPO_DIR>   // upload package
 
-2019/05/28: shell tips for waiting for the command to finish
+2019/05/28
 -------------
+shell tips for waiting for the command to finish
 1. output 'done' at the end of the work.sh
 2. in foreground, run wait.sh
 ```
@@ -146,15 +147,15 @@ show_progress()
   echo -n "Please wait until everything gets set up for you..."
   local -r pid="${1}"
   local -r delay='0.75'
-  local spinstr='\|/-'
+  local spinstr='\|/-'   # print spinning for wait
   local temp
   echo -n "Configuring"
   while true; do
     sudo grep -i "done" /katacoda-background-finished &> /dev/null
     if [[ "$?" -ne 0 ]]; then
-      temp="${spinstr#?}"
+      temp="${spinstr#?}"  # delete the shorted match of ? from front of the string
       printf " [%c]  " "${spinstr}"
-      spinstr=${temp}${spinstr%"${temp}"}
+      spinstr=${temp}${spinstr%"${temp}"} # delete the shorted match of ? from back of the string
       sleep "${delay}"
       printf "\b\b\b\b\b\b"
     else
@@ -169,4 +170,25 @@ show_progress()
 show_progress
 ```
 
-
+2019/05/28
+-------------
+mainipulating string in bash
+- string length
+    ${#string}
+- length of matching substring at the beginning of string
+    expr "$string" : '$substring'
+- substring extraction
+    ${string:position}
+    ${string:position:length}
+- substring removal
+    ${string#substring}  // from front (shortest)
+    ${string##substring}  // from front (longest)
+    ${string%substring}  // from back (shortest)
+    ${string%%substring}  // from back (longest)
+- substring replacement
+    ${string/substring/replacement}  // replace only the first
+    ${string//substring/replacement} // replace all
+    ${string/#substring/replacement}  // replace on the front
+    ${string/%substring/replacement}  // replace on the end
+- use awk
+    awk '{print substr(...)}'
