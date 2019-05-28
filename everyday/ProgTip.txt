@@ -1,0 +1,172 @@
+2019/05/13                                                         :COMPUTER:
+---------
+A commandline tool that takes a json file and generate C++ classes to work
+with that data.  Internall it use JsonLink libary.
+
+https://github.com/beached/json_to_cpp
+https://github.com/beached/daw_json_link
+
+paxos disbributed consensus algorithm
+proposer and acceptor
+    single acceptor: accept the earilest proposer's value
+        limitation: if acceptor is done, no progress, single point failure
+    multiple acceptor: accept the value with majority
+        cons: not efficient when scaling
+
+mull testing
+    mutant, against existing unitest, calculate score
+    if there are test failure for mutant --> good coverage
+
+
+2019/05/14                                                         :COMPUTER:
+---------
+wavedrom: https://wavedrom.com/tutorial.html
+json for wavedata, java script to view the wave data
+<script src="http://wavedrom.com/skins/default.js" type="text/javascript"></script>
+<script src="http://wavedrom.com/wavedrom.min.js" type="text/javascript"></script>
+<body onload="WaveDrom.ProcessAll()">
+<script type="WaveDrom">
+{ signal: [
+    { name: "clk", wave: "p......"},
+    { name: "bus", wave: "x.34.5x"}, data: "head body tail" },
+    { name: "wire", wave: "0.1..0." },
+]}
+</script>
+
+
+2019/05/15                                                         :COMPUTER:
+---------
+emacs package management
+;; add melpa package repo
+(require 'package)
+(add-to-list 'package-archives
+             '("MELPA STABLE" . "https://stable.melpa.org/packages/") t)
+(package-initialize)
+M-x list-packages
+M-x package-install RET flycheck
+
+;; use-package install and config package
+(use-package flycheck
+    :ensure t
+    :init (global-flycheck-mode))
+
+use ~/.emacs.d/init.el instead of ~/.emacs to config your emacs
+1. no clutter $HOME dir
+2. commit init.el to github: git clone repo ~/.emacs.d
+
+
+2019/05/15                                                         :COMPUTER:
+---------
+Jenkins Pipeline (./Jenkinsfile)
+- define build stage inside Jenkinsfile
+pipeline {
+    agent any
+    stages {
+        stage('Build') {
+            steps {
+                echo 'Building ...'
+            }
+        }
+        stage('Testing') {
+            steps {
+                echo 'Testing ...'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Deploying ...'
+            }
+        }
+    }
+    post {
+        alwasy { ... }
+        success { ... }
+        failure { ... }
+        unstable { ... }
+        changed { ... }
+    }
+}
+https://jenkins.io/doc/pipeline
+https://github.com/jenkinsci/pipeline-examples/tree/master/pipeline-examples
+
+2019/05/16                                                         :COMPUTER:
+---------
+Makefile/shell tips
+- use 'filter', 'strip', 'subst', 'suffix' to manipulate string (i.e. filename,
+  flag) in make file.
+- use 'rc=$?; if [[ $? == 0 ]] ' to check success/failure of the last command
+- use 'cmd 2>/dev/null 1>&2' to omit printing error output
+
+2019/05/16                                                         :COMPUTER:
+---------
+ctag: add .cl to langmap
+    ctag --langmap=c:+.cl -R .
+vim add tag file
+    :set tags=./tags;
+
+
+2019/05/28                                                         :COMPUTER:
+---------
+connan - a c++ package manager (equivalent to nuget for csharp, npm for node,
+maven for java).
+Install conan
+    $ pip install conan
+    $ conan --version
+    $ conan profile new default --detect
+    $ conan search boost/1.70.0@conan/stable --remote conan-center   # search package
+C++ project build file
+    - CMakeList.txt  build
+    - conanfile.txt  dependencies (consume package)
+    - commands to build
+        $ make -p build && cd build
+        $ conan install ../
+        $ cmake ../
+        $ cmake --build .
+create your own libary
+    - conanfile.py
+        - pulling source files
+        - automate build
+        - run tests
+        - package your library
+    $ make -p build && cd build
+    $ conan install ../
+    $ conan build ../       // conan use conanfile.py to call cmake to build
+    $ conan create ../ <YOUR_LOCAL_REPO_DIR>  // create package locally
+    $ conan upload <YOUR_LOCAL_REPO_DIR>   // upload package
+
+2019/05/28: shell tips for waiting for the command to finish
+-------------
+1. output 'done' at the end of the work.sh
+2. in foreground, run wait.sh
+```
+#!/bin/bash
+
+show_progress()
+{
+  echo -n "Please wait until everything gets set up for you..."
+  local -r pid="${1}"
+  local -r delay='0.75'
+  local spinstr='\|/-'
+  local temp
+  echo -n "Configuring"
+  while true; do
+    sudo grep -i "done" /katacoda-background-finished &> /dev/null
+    if [[ "$?" -ne 0 ]]; then
+      temp="${spinstr#?}"
+      printf " [%c]  " "${spinstr}"
+      spinstr=${temp}${spinstr%"${temp}"}
+      sleep "${delay}"
+      printf "\b\b\b\b\b\b"
+    else
+      break
+    fi
+  done
+  printf "    \b\b\b\b"
+  echo ""
+  echo "Done. Have fun!"
+}
+
+show_progress
+```
+
+
