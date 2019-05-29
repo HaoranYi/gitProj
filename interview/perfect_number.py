@@ -6,7 +6,7 @@ def gen_perfect_number(x, k, starting, record, result = []):
 
     if k == 1:
         record.append(x)
-        print(record)
+        #print(record)
         result.append(''.join([str(x) for x in record]))
         record.pop()
     else:
@@ -71,7 +71,7 @@ def main_y():
     while True:
         try:
             result = next(gen)
-            print(result)
+            #print(result)
             count = count + 1
 
             if count  == N:
@@ -82,5 +82,5 @@ def main_y():
             gen = gen_perfect_number_yield(10, k, True, record=[])
 
 if __name__ == '__main__':
-    #main1()
+    #main()
     main_y()
