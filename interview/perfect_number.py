@@ -39,9 +39,9 @@ def main():
         if reached:
             break
 
-# implementation with yield
-# to recursively yield use 'yield from' (since pyton 3.3) no need to loop
-# yield.
+# implementation with yield.
+# To yield from recursive function use 'yield from' (since pyton 3.3, no need
+# to do yield loop.
 def gen_perfect_number_yield(x, k, starting, record):
     if starting: record = []
 
