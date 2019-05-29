@@ -1,6 +1,6 @@
 // Given a sorted sequence, binary search to find the element
-// std::lower_bound return the element that is no less than search element
-// std::upper_bound return the element that is greater than search element
+// std::lower_bound return the first element that is no less than search element
+// std::upper_bound return the first element that is greater than search element
 // std::equal_range equivalent to [lower_bound, uppper_bound]
 // std::partition return the first element of the second group (a step in quick sort)
 #include <algorithm>

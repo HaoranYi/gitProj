@@ -192,3 +192,16 @@ mainipulating string in bash
     ${string/%substring/replacement}  // replace on the end
 - use awk
     awk '{print substr(...)}'
+
+2019/05/29
+-------------
+C# language features
+1. yeild
+2. lazy<T>
+3. string internalizing: share the same string, string-intern-pool, compile time
+   and runtime
+4. weakRef: large memory object which can be created easily
+5. ?? operator, can be chained
+6. where constraints
+7. immutable class
+
