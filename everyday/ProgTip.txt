@@ -205,3 +205,79 @@ C# language features
 6. where constraints
 7. immutable class
 
+
+2019/05/30
+-------------
+- gdb user defined command
+    (gdb) define mycmd
+    > info threads
+    > c
+    > end
+    (gdb) mycomd
+    (gdb) define dder
+    > print $arg0 + $arg1 + $arg2
+    > end
+    (gdb) adder 1 2 3
+    // support conditional/looping syntax
+    if <expr> ...  else ...  end
+    while <expr> ... end
+    document commandname
+    help user-defined
+    show user
+    show user commandname
+- hooks. when you run `foo', hook-foo will run before `foo'.
+    define hook-continue
+    handle SIGARM pass
+    end
+    define hook-echo
+    echo <<<---
+    end
+    define hookpost-echo
+    echo --->>>
+    end
+- command files
+    auto source file: .gdbinit/gdb.ini (windows)
+    explicity sourcing: source <command_file>
+- conditional breakpoint
+    (gdb) break context_switch if next == init_task
+- command on breakpoint
+    (gdb) b do_mmap_pgoff
+    (gdb) command 1
+    > print addr
+    > print len
+    > print prot
+    > cont
+    > end
+- pass commmand line args
+    $ gdb --args a.out --opt=xyz
+- run gdb passing preset commands (-ex)
+    $ gdb ./a.out -ex 'b file.c:80' -ex 'b foofunc' -ex 'r -p arg1 -q arg2'
+- finding source files
+    $ apt-get source coreutils
+    $ sudo apt-get install coreutil-dbgsysm
+    $ gdb /bin/ls
+    (gdb) list main
+    (gdb) directory ~/src/coreutils-7.4/src/
+    sometimes, however, debug symbols end up with absolute paths, such as the
+    kernels. In that case, use 'set substitute-path' to tell gdb how to
+    translate paths
+    (gdb) list schedule
+        /build/build/linux-2.6.32/kernel/sched.c: No such file or directory
+    (gdb) set substitute-path /build/build/linux-2.6.32 /home/hyi/src/linux-2.6.32
+    (gdb) list schedule
+- debugging macros
+    make KCFLAGS=-ggdb3 // tcc genereate debug symbol for gdb
+    (gdb) macro exapnd ...
+- gdb variables
+    (gdb) set $foo=4
+    (gdb) p $foo
+- register variables
+    $pc, $rsi
+- x command
+    x/FMT address
+- hack use bash here document to pass input to gdb
+    cat << EOF | sudo gdb
+    > attach $$
+    > call unbind_variable("PI")
+    > detach
+    > EOF
