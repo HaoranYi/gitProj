@@ -87,60 +87,6 @@ PYNQ: jupyter, python, API to hardware IP
 
 * MY DIARIES
 
-2019/5/1
----------
-
-* emacs org-mode                                                   :COMPUTER:
-
-** set org-mode
-   M-x org-mode
-   "#-*- mode: org-*-"
-** config todo
-   "#+TODO: TODO IN-PROGRESS WAITING DONE"
-   (setq org-todo-keywords
-       '((sequence "TODO" "IN-PROGRESS" "WAITING" "DONE")))
-** define shortcut key for org-agenda
-   (global-set-key (kbd "C-c a") 'org-agenda)
-** add timestamps when closing TODO item
-   (setq org-log-done 'time)
-** evaluate buffer region of elisp
-   M-x eval-region
-** archive
-   (setq org-archive-location (concat "archive/archive-"
-                                   (format-time-string "%Y%m" (current-time))
-                                   ".org_archive::"))
-   default location: <<file>>_archive.
-   In buffer option setting  "#+ARCHIVE: %s_done::"
-** tag
-   "#+TAGS: { @OFFICE(o) @HOME(h) } COMPUTER(c) PHONE(p) READING(r)"
-   (setq org-tag-alist '(("@work" . ?w) ("@home" . ?h) ("laptop"
-   . ?l)))
-   Every headline can contain a list of tags. Tags must be preceded
-   and followed by a signle colon `:work:urgent:'
-   SubItem inherits tags from ParentItem.
-   M-x org-mode m create a global list of tags matches from agenda files
-   M-x org-mode M only TODO under tag matches
-
-** export
-   C-c C-e - export menu
-
-* A high frequency market making algorithm			    :FINANCE:
-- limit order book
-- two sided markets for a specified list of equities
-- managing inventory, reducing risk of adverse selection by changing the rate
-  of inventory accumulation dynamicallly
-- dynamically adjusts the range of the bid-ask spread, with the aim of
-  minimizing inventory level on market close
-- make use of estimates of recent market trends and adjust the bid-offer spead
-  to lean in the direciton of the tread
-- a manual adjust factor allows the market-maker to nuge the algorithm in the
-  direction of reducing inventory.
-
-Use queuing theory to model the order arrival
-Use indifference price (parametered on the size of the book)
-
-Here is the 2008 paper on using limit order as market maker
-[[https://www.math.nyu.edu/faculty/avellane/HighFrequencyTrading.pdf][paper]]. Modelling with the limit price for profit.
 
 2019/05/07
 ---------
@@ -150,74 +96,8 @@ usr: yihaoran
 pwd: Yi@123456789
 
 TODO
-    * $7,500 --  check 5/15
     * 60 days temp housing
     * extention of sale of house
-
-
-apartment in chicago
-* https://www.zumper.com/apartments-for-rent/36126784/studio-lakeview-chicago-il
-* studio lakeview $1,165
-
-
-2019/05/20                                                         :TRAVEL:
----------
-Flight AA84 DFW-LAX 10:25PM 2019/5/20 delayed
-Missed 1:30AM 5/21 5:30AM (+1)
-Given hotel, meal and taxi voucher
-Change to CA988 AirChina 2:20PM 2019/5/21 -- 6:10PM +1
-MF3502 9:25-11:05 Qingdao (actual 10:40) -- Huimin (5h) 4:00AM 2019/5/23
-
-2019/05/21                                                        :RELOCATION:
----------
-Ebby haliday realtors (large corop **)
-RE/Max Premier (RE/MAX) prefer
-Virgina cook realtors  (closing down)
-
-Thank you!
-I prefer Ebby haliday realtors. I am available to meet with the agenet until
-6/5. Thanks!
-
-
-2019/05/22                                                        :Trading:
----------
-Trading Software Used at HBK
-OAsys
-    - process end of day allocation with broker
-    - centralized point (no more email/phone manual matching)
-Geneva
-    - object relation database, gather transactions report positions
-    - unix server
-    - loader to enter data
-    - reporter to generate report
-
-
-2019/05/27
----------
-booked hotel Hyatt Regency St. Louis at The Arch
-315 Chestnut St, St. Louis, MO, 63102 [6/8] $163.92
-free cancel till 6/6 Thursday
-
-
-2019/05/28
----------
-- Contacts from HBK
-    Akanimo Udoh           audo@hbk.com
-    Benedict Lee           blee@hbk.com
-    Dale Jensen            djensen@hbk.com
-    James Thiede           jthiede@hbk.com
-    Matthew Jeanes         mjeanes@hbk.com
-    Nasim Mahmood          nmahmood@hbk.com
-    Patrick Grafe          pgrafe@hbk.com
-    Punit Chandra          pchandra@hbk.com
-    James Sexton           jsexton@hbk.com
-    Joe Dai                jdai@hbk.com
-    Thomas Lam             tlam@hbk.com
-    Brendan Wilson         bwilson@hbk.com
-    Hafiz Ahsan            hahsan@hbk.com
-    Keila Selders (HR)     kselders@hbk.com
-    Leslie Stewart (HR)    lstewart@hbk.com
-- Email Leslie about new address for this year's w2 form
 
 
 
@@ -227,11 +107,5 @@ lawn
     https://budgetlawncare.net/
     https://www.trugreen.com/local-lawn-care/texas/plano?utm_source=google&utm_medium=local&utm_campaign=google-local7500200121
     https://thompson-landscape.com/lawn-care-services/lawn-mowing-services/
-pool
-    https://www.poolman.com/
-    972-221-1213
 
-chicago apartment finding
-hinsdale/napervill
-https://www.apartments.com/forest-hill-clarendon-hills-il/5mzflzq/
-https://www.apartments.com/acacia-lane-la-grange-il/glx8vcz/
+
