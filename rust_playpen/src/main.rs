@@ -241,3 +241,11 @@ fn main() {
     }
 }
 }
+
+#[cfg(test)]
+mod tests {
+    #[test]
+    fn foo() {
+	assert_eq!(2+2, 4);
+    }
+}
