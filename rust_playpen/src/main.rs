@@ -239,6 +239,17 @@ fn main() {
       // std::fmt, akin to python string.format or C printf
       println!("arr: {:?}", my_arr);
     }
+    {
+	let x = 3;
+	if x == 3 {
+	    println!("three");
+	}
+	else {
+	    println!("not three");
+	}
+    }
+
+
 }
 }
 
