@@ -31,14 +31,15 @@ fn t1() {
     // Because the lifetime is never constrained, it defaults to `'static`.
 }
 
-
 struct Owner(i32);
 
 impl Owner {
     // Annotate lifetimes as in a standalone function.
-    fn add_one<'a>(&'a mut self) { self.0 += 1; }
+    fn add_one<'a>(&'a mut self) {
+        self.0 += 1;
+    }
     fn print<'a>(&'a self) {
-	println!("`print`: {}", self.0);
+        println!("`print`: {}", self.0);
     }
 }
 
@@ -49,9 +50,9 @@ fn t2() {
     owner.print();
 }
 
-const fn const_add(x: i32, y: i32) -> i32{
-  //x + y +  rand::random::<i32>()
-  x + y
+const fn const_add(x: i32, y: i32) -> i32 {
+    //x + y +  rand::random::<i32>()
+    x + y
 }
 
 // A type `Borrowed` which houses a reference to an
@@ -80,7 +81,7 @@ fn t3() {
     let single = Borrowed(&x);
     let double = NamedBorrowed { x: &x, y: &y };
     let reference = Either::Ref(&x);
-    let number    = Either::Num(y);
+    let number = Either::Num(y);
 
     println!("x is borrowed in {:?}", single);
     println!("x and y are borrowed in {:?}", double);
@@ -109,12 +110,11 @@ fn t5() {
 }
 
 fn main() {
-  t1();
-  t2();
-  t3();
-  t4();
-  t5();
-
+    t1();
+    t2();
+    t3();
+    t4();
+    t5();
 
     // Iterators can be collected into vectors
     let mut collected_iterator: Vec<i32> = (0..10).collect();
@@ -150,113 +150,110 @@ fn main() {
     // `Vector`s can be easily iterated over
     println!("Contents of xs:");
     for x in xs.iter() {
-	println!("> {}", x);
+        println!("> {}", x);
     }
 
     // A `Vector` can also be iterated over while the iteration
     // count is enumerated in a separate variable (`i`)
     for (i, x) in xs.iter().enumerate() {
-	println!("In position {} we have value {}", i, x);
+        println!("In position {} we have value {}", i, x);
     }
 
     // Thanks to `iter_mut`, mutable `Vector`s can also be iterated
     // over in a way that allows modifying each value
     for x in xs.iter_mut() {
-	*x *= 3;
+        *x *= 3;
     }
     println!("Updated vector: {:?}", xs);
 
     {
-      let x = Box::new(5);
-      let y = &x;
-      println!("{} {}", x, y);
+        let x = Box::new(5);
+        let y = &x;
+        println!("{} {}", x, y);
     }
 
     {
-      let x = 5;
-      let y = &x;
-      println!("haha {:?} {:p}", x, y);
+        let x = 5;
+        let y = &x;
+        println!("haha {:?} {:p}", x, y);
     }
 
     {
-      let x = vec![1, 2, 3];
+        let x = vec![1, 2, 3];
 
-    let equal_to_x = move |z| z == x;
+        let equal_to_x = move |z| z == x;
 
-    //println!("can't use x here: {:?}", x);
+        //println!("can't use x here: {:?}", x);
 
-    let y = vec![1, 2, 3];
+        let y = vec![1, 2, 3];
 
-    assert!(equal_to_x(y));
+        assert!(equal_to_x(y));
 
-    {
+        {
+            //let x = 1i32;
+            let x = rand::random::<i32>();
 
-      //let x = 1i32;
-      let x = rand::random::<i32>();
+            //let mut input = String::new();
+            //std::io::stdin().read_line(&mut input).unwrap();
+            //let x: i32 = input.trim().parse().unwrap();
+            let y = 1i32;
+            let z = const_add(x, y);
+            println!("const_add: {}", z);
+        }
 
-      //let mut input = String::new();
-      //std::io::stdin().read_line(&mut input).unwrap();
-      //let x: i32 = input.trim().parse().unwrap();
-      let y = 1i32;
-      let z = const_add(x, y);
-      println!("const_add: {}", z);
+        {
+            let sum = 100;
+            let v: Vec<i32> = (1..100).collect();
+
+            fn find_pairs(v: &Vec<i32>, sum: i32) -> i32 {
+                let mut n: i32 = 0;
+                for i in 0..v.len() {
+                    for j in i + 1..v.len() {
+                        if v[i] + v[j] == sum {
+                            n += 1;
+                        }
+                    }
+                }
+                return n;
+            }
+
+            println!("{}", find_pairs(&v, sum));
+
+            // range
+            for i in (1..20).step_by(2) {
+                println!("step: {}", i);
+            }
+        }
+
+        {
+            // tuple
+            let my_tuple = ("hello", 5, 'c');
+            println!("tuple: {} {} {}", my_tuple.0, my_tuple.1, my_tuple.2);
+        }
+
+        {
+            // array
+            //let my_arr = &[1, 2, 3];
+            let my_arr = &[1; 3];
+            // std::fmt, akin to python string.format or C printf
+            println!("arr: {:?}", my_arr);
+        }
+        {
+            let x = 3;
+            if x == 3 {
+                println!("three");
+            } else {
+                println!("not three");
+            }
+        }
+        println!("done");
     }
-
-    {
-      let sum = 100;
-      let v : Vec<i32> = (1..100).collect();
-
-      fn find_pairs(v: &Vec<i32>, sum: i32) -> i32 {
-	let mut n: i32 = 0;
-	for i in 0..v.len() {
-	  for j in i+1..v.len() {
-	    if v[i] + v[j] == sum {
-	      n += 1;
-	    }
-	  }
-	}
-	return n;
-      }
-
-      println!("{}", find_pairs(&v, sum));
-
-      // range
-      for i in (1..20).step_by(2) {
-	println!("step: {}", i);
-      }
-    }
-
-    {
-      // tuple
-      let my_tuple = ("hello", 5, 'c');
-      println!("tuple: {} {} {}", my_tuple.0, my_tuple.1, my_tuple.2);
-    }
-
-    {
-      // array
-      //let my_arr = &[1, 2, 3];
-      let my_arr = &[1; 3];
-      // std::fmt, akin to python string.format or C printf
-      println!("arr: {:?}", my_arr);
-    }
-    {
-	let x = 3;
-	if x == 3 {
-	    println!("three");
-	}
-	else {
-	    println!("not three");
-	}
-    }
-
-
-}
 }
 
 #[cfg(test)]
 mod tests {
     #[test]
     fn foo() {
-	assert_eq!(2+2, 4);
+        assert_eq!(2 + 2, 4);
     }
 }

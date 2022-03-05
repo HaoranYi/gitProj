@@ -8,6 +8,7 @@ fn main() {
     // raw pointer can only be deferenced in unsafe code
     unsafe {
       *b += 1;
+      *b.offset(100) += 1;
       println!("{}", *b2);
     }
     println!("{}", a);
