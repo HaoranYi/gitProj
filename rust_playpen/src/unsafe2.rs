@@ -12,7 +12,9 @@ struct Point {
 fn foo() -> *const Point {
     let p = Point { x: 1, y: 2 };
     print!("{:?}\n", p);
-    &p as *const _
+    let r = &p as *const _;
+    print!("{:?}\n", r);
+    r
 }
 
 fn main() {
@@ -23,12 +25,16 @@ fn main() {
         p1 = &p as *const _;
     }
 
-    // access local scope struct
+    // access local scope struct!!!
     let p2 = unsafe { p1.as_ref() };
     print!("{:?}\n", p2);
 
     // access local struct from foo function!!!
     p1 = foo();
+    unsafe {
+        print!("{:?\n}\n", *p1);
+    }
+    print!("{:#?}\n", p1);
     let p2 = unsafe { p1.as_ref() };
     print!("{:?}\n", p2);
 }
