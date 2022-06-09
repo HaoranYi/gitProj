@@ -1,0 +1,11 @@
+graph generation notes
+
+- graphiz dot graph generation
+https://graphviz.org/doc/info/lang.html
+
+- https://dotuml.com/
+generate uml graph with dot graph syntax
+
+- https://holatex.app/playground.html
+use latex syntax to generate math formula, tikz, circuitikz or pgfplots
+graphcs.
