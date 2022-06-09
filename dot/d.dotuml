@@ -1,0 +1,23 @@
+StateDiagram [frame=true framecolor=steelblue label="State Diagram" splines=ortho] {
+  state Test
+  state Idle
+  state Maintenance
+  state Out as "Out of service" [fillcolor=orangered]
+  state Service with behaviors "entry / readCard\n exit / ejectCard" [fillcolor=palegreen] {
+    state pin as "Pin validation"
+    state transaction
+    initialState -> pin
+    pin -> transaction
+    transaction -> finalState
+  }
+  initialState->Test
+  Test -> Idle "Success"
+  Test -> Out "Failure"
+  Maintenance -> Out "Failure"
+  Test <- Maintenance "Completed"
+  Idle -> Service "Insert Card"
+  Idle -> Maintenance "Service"
+  Out -> Maintenance "Service"
+  Service -> Out "Failure"
+  Idle <- Service "Cancel or\nComplete"
+}

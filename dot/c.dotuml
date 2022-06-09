@@ -1,0 +1,58 @@
+ClassDiagram [frame=true framecolor=steelblue label="Class Diagram"] {
+
+ abstract class User {
+  private userId : string
+  private email : string
+  private loginStatus : Status
+  public login(email: string, password:string)
+ }
+
+ class Customer {
+  private name : string
+  private address: Address
+  public register()
+  public login()
+ }
+
+ class Administrator {
+  private adminName : string
+ }
+
+ class Order {
+  private orderId : integer
+  private date : Date
+  private status : Status
+  public placeOrder()
+  public getTotal(): Amount
+ }
+
+ class OrderItem {
+  private orderItemId : integer
+  private productId : integer
+  private quantity : integer
+ }
+
+ class Product {
+  private productId : integer
+  private price : amount
+  private name : String
+ }
+
+ align {
+  Customer
+  User
+  Product
+ }
+
+ align {
+  Order
+  OrderItem
+ }
+
+ Customer -g-> User
+ Administrator -g-> User
+ Customer "1" --> "0..*" Order;
+ OrderItem "1..*" -c-> "1" Order
+ Product -- OrderItem
+
+}

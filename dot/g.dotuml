@@ -1,0 +1,12 @@
+SequenceDiagram {
+    lifeline l1
+    lifeline l2
+    lifeline l3
+    l1 --> l2 "a"
+    note right "note to a"
+    l2 --> l3 "b"
+    note left "note to b"
+    l2 --> l3 "c"
+    note left of l1 "left of l1"
+    note over l1,l3 "note over l1 - l3"
+}

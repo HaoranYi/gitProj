@@ -1,0 +1,13 @@
+SequenceDiagram {
+ lifeline l1
+ lifeline l2
+ lifeline l3
+ l1 --> l2 "default==synchrone"
+ l1 -s-> l2 "synchronous"
+ l1 -a-> l2 "asynchronous"
+ l2 -r-> l1 "reply"
+ l1 -c-> l3 "create"
+ l1 -d-> l3 "delete"
+ -f-> l2 "find"
+ l1 -l-> "lost"
+}

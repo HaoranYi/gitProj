@@ -1,0 +1,19 @@
+DeploymentDiagram [frame=true framecolor=steelblue label="Deployment Diagram"] {
+ node webServer as ":WebServer" [color=lightblue] {
+  artifact ss as "Student\nAdministration\n" [icon=file]
+ }
+ node appServer  as ":Application\nServer" [color=indigo]{
+  artifact Student [icon=artifact]
+  artifact Seminar [icon=artifact]
+  artifact Schedule [icon=artifact]
+ }
+ node dbServer as ":DatabaseServer" [color=tomato] {
+  artifact db as "University DB" [icon=database]
+ }
+ node main as ":MainFrame" [color=pink] {
+  artifact cm as "Course\nmanagement"
+ }
+ webServer -- appServer "RMI"
+ appServer -- dbServer "JDBC"
+ appServer -- main "message bus"
+}
