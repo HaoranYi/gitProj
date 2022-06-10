@@ -1,0 +1,16 @@
+@startyaml
+epoch_n1:
+    stake_A : reward_calc_state
+    stake_B : reward_calc_state
+    ...: ...
+    stake_c : reward_calc_state
+
+...: ...
+
+epoch_n100:
+    stake_A : reward_calc_state
+    stake_B : reward_calc_state
+    ...: ...
+    stake_c : reward_calc_state
+
+@endyaml

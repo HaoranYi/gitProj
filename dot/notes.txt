@@ -1,5 +1,8 @@
 graph generation notes
 
+- plantuml: rich and data visualization
+https://plantuml.com/yaml
+
 - graphiz dot graph generation
 https://graphviz.org/doc/info/lang.html
 

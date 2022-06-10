@@ -1,0 +1,22 @@
+@startyaml
+stack_account_a:
+    e1 : reward_calc_state
+    e2 : reward_calc_state
+    ...: ...
+    en : reward_calc_state
+
+stack_account_b:
+    e1 : reward_calc_state
+    e2 : reward_calc_state
+    ...: ...
+    en : reward_calc_state
+
+...: ...
+
+stack_account_z:
+    e1 : reward_calc_state
+    e2 : reward_calc_state
+    ...: ...
+    en : reward_calc_state
+
+@endyaml
