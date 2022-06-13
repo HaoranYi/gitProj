@@ -1,0 +1,10 @@
+@startuml
+
+(*) --> "ThreadPoolBuilder::new"
+"ThreadPoolBuilder::new" --> "apply_feature_activations"
+"apply_feature_activations" --> "stake_cache.activate_epoch"
+"stake_cache.activate_epoch" --> "update_epoch_stake"
+"update_epoch_stake" --> "update_reward"
+"update_reward" --> (*)
+
+@enduml
