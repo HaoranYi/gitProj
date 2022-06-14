@@ -1,14 +1,14 @@
-graph generation notes
+# Graph generation notes
 
-- plantuml: rich and data visualization
+- plantuml: rich and data visualization (***)
 https://plantuml.com/yaml
 
 - graphiz dot graph generation
 https://graphviz.org/doc/info/lang.html
 
-- https://dotuml.com/
-generate uml graph with dot graph syntax
+- generate uml graph with dot graph syntax
+https://dotuml.com/
 
-- https://holatex.app/playground.html
-use latex syntax to generate math formula, tikz, circuitikz or pgfplots
-graphcs.
+- use latex syntax to generate math formula, tikz, circuitikz or pgfplots
+  graphcs.
+https://holatex.app/playground.html

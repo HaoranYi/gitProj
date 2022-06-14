@@ -25,8 +25,18 @@ To address this issue, a few approaches have been proposed, which is summarized 
 
 ---
 
-# Implementation
+# Proposed Implementation
 
-- sharding
-- early reward payment
-- compute total rewards at the start of the epoch required by leader schedule
+- sharding: evenly distributed stake rewards collection over the epoch
+- early reward payment when the stake account is accessed before its assigned collection slot
+
+---
+
+# Leader Scheduler
+![bg fit left](leader_schedule.svg)
+- stake distribution used in epoch leader schedule computation
+- snapshot before epoch leader schedule computation
+- rewards materialized for next epoch's leader schedule computation
+
+---
+# Q/A
