@@ -1,0 +1,15 @@
+@startyaml
+stake_cache:
+    vote_accounts :
+        vote_accounts: map<key, account>
+        staked_nodes: map<key, u64_stakes>
+    stake_delegations :
+        map<key, account>
+    epoch: int
+    stake_history:
+        - (epoch, history_entry)
+        - (epoch, history_entry)
+        - ...
+        - (epoch, history_entry)
+
+@endyaml
