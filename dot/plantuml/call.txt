@@ -1,0 +1,10 @@
+@startuml
+class foo
+class bar
+class bar1
+class bar2
+
+foo --> bar
+foo --> bar1
+foo --> bar2
+@enduml

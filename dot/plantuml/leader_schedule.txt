@@ -1,4 +1,5 @@
 @startuml
+title stake reward processing
 
 (*) --> "ThreadPoolBuilder::new"
 "ThreadPoolBuilder::new" --> "apply_feature_activations"
