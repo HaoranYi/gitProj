@@ -1,0 +1,20 @@
+@startuml
+clock   "Clock_0"   as C0 with period 50
+clock   "Clock_1"   as C1 with period 50 pulse 15 offset 10
+binary  "Binary"  as B
+concise "Concise" as C
+robust  "Robust"  as R
+
+
+@0
+C is Idle
+R is Idle
+
+@100
+B is high
+C is Waiting
+R is Processing
+
+@300
+R is Waiting
+@enduml
