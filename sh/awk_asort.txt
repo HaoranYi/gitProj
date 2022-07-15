@@ -1,0 +1,15 @@
+# An example awk scripts: associative array and sort
+# This idiom are useful to cout the number of occurence of a word.
+
+BEGIN {
+    a[1] = 10;
+    a[3] = 30;
+    a[2] = 20;
+}
+
+END {
+    asort(a);
+    for (i in a) {
+      print i, a[i];
+    }
+}
