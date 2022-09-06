@@ -12,6 +12,7 @@ type VecRef<'a, T> = &'a Vec<T>;
 //     fn Iter::next(&self) -> Option<&'a T>
 // To achieve this relay of lifetime parameter passing throught rust lifetime analyzer in the
 // compiler, use PhantomData marker to enforce the lifetime restriction.
+#[derive(Debug)]
 pub struct Foo<'a, T: 'a> {
     _marker: PhantomData<&'a T>,
 }
@@ -26,7 +27,9 @@ fn main() {
     println!("{:?}", r);
 
     // instantiation
-    let _f = Foo::<'static, i32> {
+    let f = Foo::<'static, i32> {
         _marker: PhantomData,
     };
+
+    println!("{:?}", f);
 }
