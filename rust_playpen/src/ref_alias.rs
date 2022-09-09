@@ -10,9 +10,9 @@ type VecRef<'a, T> = &'a Vec<T>;
 // and then pass the lifetime (from the container) down to member fn returns, i.e. ref to the
 // element
 //     fn Iter::next(&self) -> Option<&'a T>
-// To achieve this relay of lifetime parameter passing throught rust lifetime analyzer in the
-// compiler, use PhantomData marker to enforce the lifetime restriction.
-// marker is like a 'fake' reference that uses the lifetime.
+// To enforce the lifetime restriction from container to its iter, and the element ref returned
+// from member fn of iter, i.e. next(), use PhantomData marker. marker is like a 'fake' reference
+// member that uses the lifetime.
 #[derive(Debug)]
 pub struct Foo<'a, T: 'a> {
     _marker: PhantomData<&'a T>,
