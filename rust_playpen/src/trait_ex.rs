@@ -5,30 +5,38 @@ trait Speaks {
 }
 
 trait Animal {
-    fn type(&self) -> &str;
+    fn kind(&self) -> &str;
     fn noise(&self) -> &str;
 }
 
-impl<T> Speaks for T 
-where T: Animal {
+impl<T: Animal> Speaks for T
+//where
+//    T: Animal,
+{
     fn speak(&self) {
-        println!("the {} said {},", self.type(), self.noise());
+        println!("the {} said {},", self.kind(), self.noise());
     }
 }
-
 
 struct Cat {}
 struct Dog {}
 
 impl Animal for Cat {
-    fn type(&self) -> &str { "cat" }
-    fn noise(&self) -> &str { "meow" }
+    fn kind(&self) -> &str {
+        "cat"
+    }
+    fn noise(&self) -> &str {
+        "meow"
+    }
 }
 
-
 impl Animal for Dog {
-    fn type(&self) -> &str { "dog" }
-    fn noise(&self) -> &str { "woof" }
+    fn kind(&self) -> &str {
+        "dog"
+    }
+    fn noise(&self) -> &str {
+        "woof"
+    }
 }
 
 trait Human {
@@ -36,7 +44,11 @@ trait Human {
     fn words(&self) -> &str;
 }
 
-impl Spearks for T : Human {
+// not workd because  conflicting implementations of trait `Speaks`
+impl<T: Human> Speaks for T
+//where
+//    T: Human,
+{
     fn speak(&self) {
         println!("the {} said {},", self.name(), self.words());
     }
@@ -44,17 +56,20 @@ impl Spearks for T : Human {
 
 struct Person {}
 impl Human for Person {
-    fn name(&self) -> &str { "human" }
-    fn words(&self) -> &str { "blabla" }
+    fn name(&self) -> &str {
+        "human"
+    }
+    fn words(&self) -> &str {
+        "blabla"
+    }
 }
 
 pub fn main() {
-    let dog = Dog{};
-    let cat = Cat{};
+    let dog = Dog {};
+    let cat = Cat {};
     dog.speak();
     cat.speak();
 
-    let p = Person{};
+    let p = Person {};
     p.speak();
 }
-
